@@ -1,0 +1,634 @@
+﻿/* SciReg Basic Low Level Styles */
+/*#region SciReg Low Level Styles*/
+body
+{
+    background-color: #d3d3d3;
+    /*background-image:  url('/images/phd-takeover.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;*/ 
+}
+
+a:link,a:visited
+{
+    color:#215f90; /* Colour A */
+}
+
+a:hover
+{
+    color:#2175b9; /* Colour B */
+}
+
+/* SciReg Central Archipelago CLB Button */
+.clb {
+    background-color: #d91b5c !important; /* Colour L */
+}
+    .clb:hover {
+        background-color: #990b1c !important; 
+    }
+/*#endregion*/
+
+.siteColour_Font
+{
+    color:#215f90 !important; /* Colour A */
+}
+
+.fontColor_A { color: 	#215f90	   !important; }
+.fontColor_B { color: 	#2175b9	   !important; }
+.fontColor_C { color: 	#2275b8	   !important; }
+.fontColor_D { color: 	#4aaefe	   !important; }
+.fontColor_E { color: 	#2b9ffe	   !important; }
+.fontColor_F { color: 	#46abfe	   !important; }
+.fontColor_G { color: 	#9dd3ff	   !important; }
+.fontColor_H { color: 	#abd9ff	   !important; }
+.fontColor_I { color: 	#c6e5ff	   !important; }
+.fontColor_J { color: 	#d4ecff	   !important; }
+.fontColor_K { color: 	#ffffff	   !important; }
+.fontColor_L { color: 	#d91b5c	   !important; }
+.fontColor_M { color: 	#1294FE	   !important; }
+		
+.backColor_A { background-color: 	#215f90	   !important; }
+.backColor_B { background-color: 	#2175b9	   !important; }
+.backColor_C { background-color: 	#2275b8	   !important; }
+.backColor_D { background-color: 	#4aaefe	   !important; }
+.backColor_E { background-color: 	#2b9ffe	   !important; }
+.backColor_F { background-color: 	#46abfe	   !important; }
+.backColor_G { background-color: 	#9dd3ff	   !important; }
+.backColor_H { background-color: 	#abd9ff	   !important; }
+.backColor_I { background-color: 	#c6e5ff	   !important; }
+.backColor_J { background-color: 	#d4ecff	   !important; }
+.backColor_K { background-color: 	#ffffff	   !important; }
+.backColor_L { background-color: 	#d91b5c	   !important; }
+.backColor_M { background-color: 	#1294FE	   !important; }
+		
+.borderColor_A { border-color: 	#215f90	   !important; }
+.borderColor_B { border-color: 	#2175b9	   !important; }
+.borderColor_C { border-color: 	#2275b8	   !important; }
+.borderColor_D { border-color: 	#4aaefe	   !important; }
+.borderColor_E { border-color: 	#2b9ffe	   !important; }
+.borderColor_F { border-color: 	#46abfe	   !important; }
+.borderColor_G { border-color: 	#9dd3ff	   !important; }
+.borderColor_H { border-color: 	#abd9ff	   !important; }
+.borderColor_I { border-color: 	#c6e5ff	   !important; }
+.borderColor_J { border-color: 	#d4ecff	   !important; }
+.borderColor_K { border-color: 	#ffffff	   !important; }
+.borderColor_L { border-color: 	#d91b5c	   !important; }
+.borderColor_M { border-color: 	#1294FE	   !important; }
+/*#endregion*/
+
+/*#region SciReg Page Style Overides */
+#header #inner { padding-left: 190px; padding-top: 20px; position: relative; width: 810px; }
+#header #inner #logo { left: 0; position: absolute; top: 40px; width: 183px; }
+#header #inner #banner { max-width: 728px; width: 100% }
+#header #inner #banner a img { height: auto; width: 100%; }
+/*#endregion*/
+
+/* SciReg Site Menu */
+/*#region SciReg SiteMenu*/
+#menuTab
+{
+    background-color: #2275b8; /* Colour C */
+    border-top: solid 2px #4aaefe; /* Colour D */
+}
+
+#siteMenu li.menuItem a
+{
+    color: white; /* Colour K */
+    font-size: 12px;
+}
+
+#siteMenu .subMenu .subMenuItem a.menuItemLink.bold
+{
+    color: #215f90; /* Colour A */
+}
+
+#siteMenu .subMenu .subMenuItem a.menuItemLink.viewAll {
+    color: #215f90; /* Colour A */
+}
+
+#siteMenu .menuItem.menuItemLinkHover
+{
+    background-color: #ffffff; /* Colour K */
+}
+
+#siteMenu .menuItemLinkHover a,
+#siteMenu .menuItemLinkHover .hasMenu:after,
+.ie7 #siteMenu .menuItemLinkHover .hasMenu span
+{ 
+    color: #215f90 !important; /* Colour A */
+}
+
+#siteMenu .menuItemLinkActive 
+{
+    background-color: #2b9ffe; /* Colour E */
+}
+
+#siteMenu .subMenu .subMenuHeading a
+{
+    color: #2275b8; /* Colour C */
+}
+
+#FrameworkLangTab { display: inline-block; }
+
+/*  Top level tabs drop down icon */
+#siteMenu .hasMenu:after, 
+/* IE7 fix */
+.ie7 #siteMenu .hasMenu span               { color: white;  /* Colour K */ }
+/*#endregion*/
+
+/*#region SectionMenu*/
+#level1_Major a:hover, #level1_All a:hover
+{
+    background-color: #abd9ff; /* Colour H */
+}
+
+#level1_Major .active, #level1_All .active
+{
+    font-weight: normal;
+    background-color: #c6e5ff; /* Colour I */
+    color: #215f90; /* Colour A */
+}
+/*#endregion SectionMenu*/
+
+/*#region InnerMenu*/
+    #innerMenu #level2_Major a
+    {
+        color: white; /* Colour K */
+    }
+    #innerMenu #level2_Major li,
+    #innerMenu #level2_More
+    {
+        border-bottom: 1px solid #606060;
+        background-color: #d91b5c; /* Colour K */
+        color: white; /* Colour K */
+    }
+
+    #innerMenu #level2_More
+    {
+        color: #215f90; /* Colour A */
+    }
+
+    #innerMenu #level2_Major .active a
+    {
+        color: #215f90; /* Colour A */
+    }
+
+    #innerMenu #level2_More
+    {
+        background-color: #abd9ff; /* Colour H */
+    }
+
+    #innerMenu #level2_Xtra
+    {
+        background-color: #abd9ff; /* Colour H */
+    }
+
+    #innerMenu #level2_Xtra a:hover
+    {
+        background-color: #d4ecff; /* Colour J */
+    }
+
+    #innerMenu #level2_More:after,
+    /* IE7 fix */
+    .ie7 #innerMenu #level2_More span
+    {
+        color: #215f90; /* Colour A */
+    }
+
+#translations { position: relative; }
+#FrameworkLangTab { height: 15px; overflow: hidden; position: absolute; right: 5px; top: -21px; }
+#FrameworkLangTab div#FrameworkLangTabInner { overflow: hidden; position: relative; float: right; }
+#FrameworkLangTab div#FrameworkLangTabInner a { display: none; float: right; }
+#FrameworkLangTab div#FrameworkLangTabInner a img { height: 15px; padding: 0 2px; width: 15px; }
+
+/*#endregion*/
+
+
+/* SciReg Content */
+/*#region SciReg Content Styles*/
+/* SciReg content realm */
+#realm_central .archipelago_west div.island,
+#realm_central .archipelago_east div.island,
+#realm_central .archipelago_central div.island
+{
+    background: #2275b8; /* Colour C */
+}
+
+    #realm_central .archipelago_west div.island div.land .expand,
+    #realm_central .archipelago_east div.island div.land .expand,
+    #realm_central .archipelago_central div.island div.land .expand
+    {
+        background-color: #FFFFFF; /* Colour K */
+        color: #215f90; /* Colour A */
+    }
+
+/* Central Archipelago's */
+#realm_central .archipelago_central div.island div.land h1,
+#realm_central .archipelago_central div.island div.land .h1
+{
+     color: #2275b8; /* Colour C */
+
+}
+#realm_central .archipelago_central div.island div.land h2,
+#realm_central .archipelago_central div.island div.land .h2
+{
+    color: #1294FE; /* Colour M */
+   
+}
+#realm_central .archipelago_central div.island div.land h3,
+#realm_central .archipelago_central div.island div.land .h3
+{
+    color: #d91b5c; /* Colour L */
+}
+#realm_central .archipelago_central div.island div.land h4,
+#realm_central .archipelago_central div.island div.land .h4
+{
+    color: #2275b8; /* Colour C */
+    font-style:italic;
+}
+
+#realm_central .archipelago_central div.island div.land table.TypeA tbody td h3 { 
+    color: #d91b5c; /* Colour L */
+    font-weight:normal;
+}
+
+#realm_central .archipelago_central div.island .more.pointer { color: #d91b5c; /* Colour L */ }
+
+.tooltip:hover em, .info em { display: inline; position: absolute !important; color: #fff !important; border: 5px solid #fff !important; background-color: #2275b8; }
+.arrowRight .arrow  { margin-left: -8px !important; border-right-color: #2275b8 !important; left: -12px !important; }
+
+/* SciReg Central Archipelago BreadCrumb */
+/*#endregion*/
+
+
+/*#region SciReg Footer Styles*/
+/*#endregion*/
+
+
+/* SciReg SurveyTab */
+/*#region SciReg SideTab Styles*/
+#SurveyTab { display:none; background-color: #2275b8 !important; } /* Colour C */
+.SurveyTabMsie8 { background-image: url('/images/SurveyTabText.gif') !important; }
+.SurveyTabMsie7 { background-image: url('/images/SurveyTabText.gif') !important; }
+.SurveyTabMsie6 { background-image: url('/images/SurveyTabText.gif') !important; }
+/*#endregion*/
+
+
+/* Common buttons and styles */
+a.BlueButton { background: #e4ecff url('/common/images/forms/bluebuttonbg.gif') repeat-y right; border: solid 1px #afc6f1; display: block; font-family: "Arial","Trebuchet MS", "Verdana"; font-size: 12px; font-weight: bold; height: 14px; line-height: 14px; padding: 2px 2px 2px 2px; text-align: center; width: 96px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+input.BlueButton { background: #e4ecff url('/common/images/forms/bluebuttonbg.gif') repeat-y right; border: solid 1px #afc6f1; display: block; font-family: "Arial","Trebuchet MS", "Verdana"; font-size: 12px; font-weight: bold; line-height: 14px; padding: 2px 2px 2px 2px; text-align: center; width: 96px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+a.BlueButton:link, a.BlueButton:visited { text-decoration: none; color: #4d6185; }
+a.BlueButton:hover { background: #eee; border-color: #bbb; color: #666;  }
+
+/* Other Styles */
+/*** ----------------------------------------------------- ***/
+/*** - Inline or page level styles should be placed here - ***/
+/*** ----------------------------------------------------- ***/
+/*#region SciReg Other Styles*/
+
+/*#region SciReg Study Guide Styles*/
+.focuslink
+{
+    cursor: pointer;
+    border: 1px #06AB99 solid;
+    height: 20px;
+    padding: 2px 2px 2px 4px;
+    line-height: 20px;
+    width: 450px;
+    color: #06AB99;
+    margin:15px 15px;
+    
+}
+
+    .focuslink A:link
+    {
+        text-decoration: none;
+        color: #06AB99;
+    }
+
+    .focuslink A:visited
+    {
+        text-decoration: none;
+        color: #06AB99;
+    }
+
+    .focuslink A:active
+    {
+        text-decoration: none;
+        color: #06AB99;
+    }
+
+    .focuslink A:hover
+    {
+        text-decoration: none;
+        color: #06AB99;
+    }
+
+.authortop
+{
+    margin-top: 5px;
+    font-size: 12px;
+    font-style: italic;
+    color: #46abfe; /* Colour F */
+}
+
+.authorbottom
+{
+    width: 90%;
+    margin: auto;
+    padding: 35px 6px 6px 6px;
+    border: 1px #8D8D8D dotted;
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:10px;
+    background-image: url(/images/icons/copyright-footer.gif);
+  background-position:  top center;
+    background-repeat:no-repeat;
+}
+
+.authorbottom p
+{
+font-size:11px;
+font-family:'Century Gothic', Arial;
+font-weight:normal;
+color:#8D8D8D;
+margin:0px 0;
+padding:2px 0 !important;
+}
+
+    .authorbottom A:link, .authorbottom A:visited, .authorbottom A:active
+    {font-size:11px;
+    }
+
+.bookholder
+{
+    width: 120px;
+    padding: 3px;
+    border: 1px #999999 solid;
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+
+ul.mylist
+{
+    margin-left: 40px; /* Set the indenting back to far left. */
+    padding-left: 0px; /* Set the indenting back to far left. */
+    margin-top: 0px;
+    padding-top: 0px;
+    margin-bottom: 10px;
+}
+
+    ul.mylist li
+    {
+        list-style-type: none; /* Switch the list bullet off altogether. */
+        background-image: url(/images/icons/listbullet.gif); /* The replacement bullet image */
+        background-position: 0px 12px; /* Place bullet 0px from left and 9px from top */
+        background-repeat: no-repeat; /* Stops bullet tiling, important */
+        padding-top: 7px; /* set the space between the lines */
+        padding-left: 14px; /* separation from li txt and bullet */
+        text-align: left;
+    }
+/*#endregion*/
+
+/*#region Funding Styles*/
+
+.authorbottomamazon
+{
+    background: #999999;
+    color: #FFFFFF;
+    width: 90%;
+    margin: auto;
+    padding: 12px;
+    border: 1px #666666 dotted;
+    font-size: 11px;
+}
+
+.authorbottomamazon A:link {text-decoration: none; font-size:14px;color:#FFFFFF; font-weight:bold; }
+.authorbottomamazon A:visited {text-decoration: none; font-size:14px;color:#FFFFFF; font-weight:bold; }
+.authorbottomamazon A:active {text-decoration: none; font-size:14px; color:#FFFFFF; font-weight:bold; }
+.authorbottomamazon A:hover {text-decoration: underline; font-size:14px;color:#FFFFFF; font-weight:bold; }
+
+/*#endregion*/
+
+/*#region Search Styles*/
+
+#divPopupContainer {
+    background-color: #FFFFCC;
+    border: 1px solid #FFCC00;
+    font: 11px arial;
+    padding: 5px;
+    position: absolute;
+    text-align: left;
+    top: 0px;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#PageTopButtons { float: right; height: 21px; margin: 6px 10px 0 10px; }
+#PageTopButtons a { float: right; margin-left: 10px; }
+.ie7 #PageTopButtons { float: none; height: auto; margin-bottom: -6px; }
+
+
+/* Autotype element */
+select.AutoType {  }
+ul#AutoTypePanel { background: #fff; border: solid 1px #abadb3; display: none; list-style-type: none; margin: 0; padding: 0; position: absolute; z-index: 500; -moz-box-shadow: 6px 4px 6px #d0d0d0; -webkit-box-shadow: 6px 4px 6px #d0d0d0; box-shadow: 6px 4px 6px #d0d0d0; }
+ul#AutoTypePanel li { border: solid 1px #fff; color: #272392; cursor: pointer; font-size: 12px; margin: 1px 2px; padding: 1px 2px; text-align: left; }
+ul#AutoTypePanel li span { background: #ccf; color: #000; font-weight: 700; }
+ul#AutoTypePanel li.Selected { background: #ccf; border: solid 1px #ddf; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
+ul#AutoTypePanel li.Hidden { display: none; }
+ul#AutoTypePanel li.NoResults { color: #888; font-style: italic; }
+ul#AutoTypePanel li.NoResults span.keywords { font-family: sans-serif; font-style: initial; }
+
+
+/*#endregion*/
+
+/*#region Providers Section Styles*/
+.checklistheader
+{
+    font-size: 20px;
+    color: #2275B8; /* Colour C */
+    font-family: 'Century Gothic', Arial;
+    font-weight: normal;
+}
+
+.checklist
+{
+    width: 90%;
+    margin: auto;
+    line-height: 32px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.checklistitem
+{
+    margin-top: 20px;
+}
+
+.checklisttext
+{
+    margin: 5px 0px 0px 42px;
+    line-height: 16px;
+}
+
+div.keypoints
+{
+    background-image: url(/images/providers/ataglance-compass.gif);
+    background-position: right center;
+    background-repeat:no-repeat;
+    text-align: left;
+    width: 90%;
+    background-color: #ECECF9;
+    line-height: normal;
+    margin: 0 auto;
+    padding: 5px;
+    border: #C5C5EB 1px solid;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+ul.keypointsbulletlist
+{
+    margin-left: 20px; /* Set the indenting back to far left. */
+    padding-left: 0px; /* Set the indenting back to far left. */
+    padding-bottom: 15px;
+}
+
+    ul.keypointsbulletlist li
+    {
+        list-style-type: none; /* Switch the list bullet off altogether. */
+        background-image: url(/images/providers/purplebullet.gif); /* The replacement bullet image */
+        background-position: 0px 1em; /* Place bullet 0px from left and 9px from top */
+        background-repeat: no-repeat; /* Stops bullet tiling, important */
+        padding-top: 11px; /* set the space between the lines */
+        line-height: 18px;
+        padding-left: 22px; /* separation from li txt and bullet */
+    }
+
+    ul.bulletlist {
+
+margin-left:50px; /* Set the indenting back to far left. */
+padding-left:0px; /* Set the indenting back to far left. */
+}
+
+ul.bulletlist li {
+
+list-style-type:none; /* Switch the list bullet off altogether. */
+background-image:url(/images/providers/greenbullet.gif); /* The replacement bullet image */
+background-position:0px 0.9em; /* Place bullet 0px from left and 9px from top */
+background-repeat:no-repeat; /* Stops bullet tiling, important */
+padding-top:10px; /* set the space between the lines */
+padding-left:22px; /* separation from li txt and bullet */
+}
+
+div.processbox
+{
+    background-image: url(/images/providers/ataglance-compass-80opacity.gif);
+    background-position: right center;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    background-color: #E6F2E6;
+    border: #d91b5c 1px solid;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 0px;
+    margin-right: 0px;
+    font-family: 'Century Gothic',Arial;
+    font-size: 1.25em;
+    color: #333333;
+    float: left;
+}
+
+    div.processbox p
+    {
+        line-height: 1.36em !important;
+    }
+
+
+
+    div.processbox A:link, div.processbox A:visited, div.processbox A:active, div.processbox A:hover
+    {
+        color: #333333;
+    }
+
+div.processarrow
+{
+    background-image: url(/images/providers/process-arrow.png);
+    background-position: center;
+    width: 46px;
+    height: 100px;
+     margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+}
+
+.processwrapper4boxes 
+{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width:606px;
+
+}
+
+.processwrapper3boxes 
+{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width:438px;
+
+}
+
+.wherenext
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+ul.providerbulletlist {
+
+margin-left:50px; /* Set the indenting back to far left. */
+padding-left:0px; /* Set the indenting back to far left. */
+margin-top:15px;
+margin-bottom:15px;
+}
+
+ul.providerbulletlist li {
+
+list-style-type:none; /* Switch the list bullet off altogether. */
+background-image:url(/images/providers/greenbullet.gif); /* The replacement bullet image */
+background-position:0px 0.9em; /* Place bullet 0px from left and 9px from top */
+background-repeat:no-repeat; /* Stops bullet tiling, important */
+padding-top:10px; /* set the space between the lines */
+padding-left:22px; /* separation from li txt and bullet */
+line-height:1.4em;
+}
+
+/*#endregion*/
+
+#sb-wrapper-inner { -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+#sb-player { -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+
+/*advice/phd fun*/
+
+
+    #realm_central #main .imagecaption {
+        font-size:11px;
+        color:#666666;
+        margin:10px 0px 10px 20px;
+        
+            }
+      #realm_central #main .imagecaption p {
+        line-height:14px;
+       
+      }
+
+/* Bespoke Styles For Pages End */
+

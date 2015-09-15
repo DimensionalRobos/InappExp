@@ -1,0 +1,24 @@
+﻿#realm_central .archipelago_west div.island div.panelButtonContainer { background-color: transparent; }
+
+.panelButtonContainer { cursor: pointer;  position:relative; *float: left; 
+                        -webkit-touch-callout: none;
+                        -webkit-user-select: none;
+                        -khtml-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+}
+
+.panelButtonTheme_undefined   { border:2px solid white; border-radius:10px; padding: 5px 10px 5px 10px; text-align:left; }
+.panelButtonTheme_plain       { padding: 5px 0 0 0; }
+
+.panelButton { margin:0 !important; padding:0px !important; color: white !important; }
+.panelArea { border-radius:10px; *clear:left; }
+    .panelArea h3 { font-size: 15px !important; }
+.panelAreaInner { border-radius:10px; cursor: pointer; border:2px solid white; border-top:none; text-align:left; padding: 5px 10px 5px 10px; height:auto !important; background: transparent !important; }
+.panelAreaInners { border:2px solid #ccc; border-width:0 0 2px 0; border-radius:10px; margin:20px 10px; padding:10px 20px; }
+
+.upDown { background-repeat: no-repeat; background-image: url('/common/images/icons/upDown.png'); background-position: 0 -28px; display: block; height: 24px; width: 21px; }
+.miniUpDown { background-image: url('/common/images/icons/upDownMini.png'); background-position: 0 -11px; height: 12px; top: 0px; width: 11px; margin-left: 0px; margin-right: 2px; margin-top: 2px; }
+.showUp { background-position: 0 -7px; }
+.miniUpDown.showUp { background-position: 0 0; }
