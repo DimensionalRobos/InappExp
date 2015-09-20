@@ -19,7 +19,6 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         steps = new StepsGUI();
-        this.btnSteps.setVisible(false);
     }
 
     /**
