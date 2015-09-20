@@ -211,9 +211,9 @@ public class Analyzer {
                         }
                     }
                     if (!newBadWord) {
-                        steps.putPolarity(" is not offensive\n");
+                        steps.putPolarity(" is not inappropriate\n");
                     } else {
-                        steps.putPolarity(" may be offensive\n");
+                        steps.putPolarity(" may be inappropriate\n");
                         hasBadWord = true;
                     }
                 }
@@ -256,11 +256,11 @@ public class Analyzer {
                                 hasBadContext = false;
                                 hasBadWord = false;
                                 token.isNegator = true;
-                                steps.putPolarity(token.word + " negated the offensive context\n");
+                                steps.putPolarity(token.word + " negated the inappropriate context\n");
                             }
                         }
                         if (newTargetPerson) {
-                            steps.putPolarity(token.word + " is a possible target of offense\n");
+                            steps.putPolarity(token.word + " is a possible target of the inappropriate expression\n");
                             hasBadContext = true;
                             hasBadWord = true;
                         }
@@ -268,10 +268,10 @@ public class Analyzer {
                     //JOptionPane.showMessageDialog(null, "Finished Checking hasBadWord=" + hasBadWord + " hasBadContext=" + hasBadContext);
                 }
                 if (hasBadWord & hasBadContext) {
-                    allOutput = allOutput + "Sentence ( " + sentences[i] + " ) is offensive\n";
+                    allOutput = allOutput + "Sentence ( " + sentences[i] + " ) is inappropriate in context\n";
                     for (Token token : tokenlist) {
                         if (token.isOffensive) {
-                            allOutput = allOutput + "\t" + token.word + " is used in an offensive sense\n";
+                            allOutput = allOutput + "\t" + token.word + " is used in an inappropriate sense\n";
                         }
                     }
                     for (Token token : tokenlist) {
@@ -284,11 +284,11 @@ public class Analyzer {
                                             | type.definition.contains(" who ")
                                             | type.definition.contains(" man ")
                                             | type.definition.contains(" woman ")) {
-                                        allOutput = allOutput + "\t" + token.word + " is an offense target\n";
+                                        allOutput = allOutput + "\t" + token.word + " is an inappropriateness target\n";
                                     }
                                 }
                                 if (token.tokenType.isEmpty()) {
-                                        allOutput = allOutput + "\t" + token.word + " is an offense target\n";
+                                        allOutput = allOutput + "\t" + token.word + " is an inappropriateness target\n";
                                 }
                             }
                             if (token.partOfSpeech == 3
@@ -300,25 +300,25 @@ public class Analyzer {
                                     | token.word.equalsIgnoreCase("it")
                                     | token.word.equalsIgnoreCase("its")
                                     | token.word.equalsIgnoreCase("itself"))) {
-                                allOutput = allOutput + "\t" + token.word + " is an offense target\n";
+                                allOutput = allOutput + "\t" + token.word + " is an inappropriateness target\n";
                             }
                         }
                     }
                 } else {
-                    allOutput = allOutput + "Sentence ( " + sentences[i] + " ) is not offensive\n";
+                    allOutput = allOutput + "Sentence ( " + sentences[i] + " ) does not have an inappropriate sense\n";
                     boolean hasNegator = false;
                     for (Token token : tokenlist) {
                         if (token.isNegator) {
-                            allOutput = allOutput + "\tthe keyword " + token.word + " negated the offensive sense\n";
+                            allOutput = allOutput + "\tthe keyword " + token.word + " negated the inappropriate sense\n";
                             hasNegator = true;
                         }
                     }
                     for (Token token : tokenlist) {
                         if (token.isOffensive & hasNegator) {
-                            allOutput = allOutput + "\tthe word " + token.word + " is not used in an offensive sense\n";
+                            allOutput = allOutput + "\tthe word " + token.word + " is not used in an inappropriate sense\n";
                         }
                         if (token.isOffensive & !hasNegator) {
-                            allOutput = allOutput + "\tthe word " + token.word + " does not target a human entity\n";
+                            allOutput = allOutput + "\tthe word " + token.word + " does not have any relation to any words\n";
                         }
                     }
                 }
