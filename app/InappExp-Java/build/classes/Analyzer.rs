@@ -1,3 +1,0 @@
-TokenType
-Token
-Analyzer
