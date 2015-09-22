@@ -130,6 +130,11 @@ public class swntool {
 		String pathToSWN = "swn.txt";
 		swntool sentiwordnet = new swntool(pathToSWN);
 		
+                //a means adj
+                //n means noun
+                //v means verb
+                //r means adv
+                
 		System.out.println("good#a "+sentiwordnet.extract("good", "a"));
 		System.out.println("bad#a "+sentiwordnet.extract("bad", "a"));
 		System.out.println("blue#a "+sentiwordnet.extract("blue", "a"));
