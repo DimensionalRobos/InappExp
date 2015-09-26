@@ -3,7 +3,7 @@ import edu.smu.tspell.wordnet.*;
 import java.util.LinkedList;
 
 /**
- * This is a class that does all of the system's preprocessing(Minus the parsing) and sentiment analysis
+ * This is a class that does all of the system's preprocessing(Minus the parsing & PoSTag) and sentiment analysis
  * @cheerleader Coleen
  * @author Daikaiser
  */
@@ -11,12 +11,12 @@ class TokenType {
 
     public Synset synset;//Synonym sets
     public String definition;//A definition per term
-    public SynsetType type;//A corresponding PoS
+    public SynsetType postag;//A corresponding PoS
     
-    public TokenType(Synset synset, String definition, SynsetType type) {
+    public TokenType(Synset synset, String definition, SynsetType postag) {
         this.synset = synset;
         this.definition = definition;
-        this.type = type;
+        this.postag = postag;
     }
 }
 
@@ -98,7 +98,7 @@ public class Analyzer {
                     }
                     steps.putMeaning("Lexeme>>" + tokenlist.getLast().word + " PoS:" + tokenlist.getLast().partOfSpeech + "\n");
                     for (TokenType tt : tokenlist.getLast().tokenType) {
-                        steps.putMeaning("\tDefinition:" + tt.definition + "\n\tPoS:" + tt.type + "\n");
+                        steps.putMeaning("\tDefinition:" + tt.definition + "\n\tPoS:" + tt.postag + "\n");
                     }
                 }
                 boolean hasBadContext = false;//locates target if target of rude word makes it rude e.g. Screw you, Someone is shit
@@ -109,7 +109,7 @@ public class Analyzer {
                     boolean newBadWord = false;
                     steps.putPolarity(t.word + ' ');
                     for (TokenType tt : t.tokenType) {
-                        if (Integer.parseInt(tt.type.toString()) == t.partOfSpeech) {
+                        if (Integer.parseInt(tt.postag.toString()) == t.partOfSpeech) {
                             if (tt.definition.contains("obscene")) {
                                 newBadWord = true;
                             }
