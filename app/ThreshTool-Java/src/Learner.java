@@ -62,6 +62,7 @@ public class Learner extends javax.swing.JFrame {
             ThreshTool.plot();
         }
         catch(Exception e){
+            javax.swing.JOptionPane.showMessageDialog(null,"TreshTool Not Installed/Configured");
         }
     }//GEN-LAST:event_btnPlotActionPerformed
 
