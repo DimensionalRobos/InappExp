@@ -1,4 +1,4 @@
-function treshplot(X,Y,borderline)
+function threshplot(X,Y,borderline)
     plot(Y,X);
     hold on;
     border=1:length(Y);

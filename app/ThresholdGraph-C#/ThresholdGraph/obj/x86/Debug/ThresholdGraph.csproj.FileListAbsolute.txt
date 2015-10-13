@@ -1,0 +1,6 @@
+C:\Users\user\Documents\GitHub\InappExp\app\ThresholdGraph-C#\ThresholdGraph\obj\x86\Debug\Interop.MLApp.dll
+C:\Users\user\Documents\GitHub\InappExp\app\ThresholdGraph-C#\ThresholdGraph\obj\x86\Debug\ThresholdGraph.csproj.ResolveComReference.cache
+C:\Users\user\Documents\GitHub\InappExp\app\ThresholdGraph-C#\ThresholdGraph\obj\x86\Debug\ThresholdGraph.exe
+C:\Users\user\Documents\GitHub\InappExp\app\ThresholdGraph-C#\ThresholdGraph\obj\x86\Debug\ThresholdGraph.pdb
+C:\Users\user\Documents\GitHub\InappExp\app\ThresholdGraph-C#\ThresholdGraph\bin\Debug\ThresholdGraph.exe
+C:\Users\user\Documents\GitHub\InappExp\app\ThresholdGraph-C#\ThresholdGraph\bin\Debug\ThresholdGraph.pdb
