@@ -13,7 +13,7 @@ namespace ThresholdGraph
             MLApp.MLApp matlab = new MLApp.MLApp();
             matlab.Visible = 0;
             matlab.Execute("threshplot("+args[0]+","+args[1]+","+args[2]+")");
-            //Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }

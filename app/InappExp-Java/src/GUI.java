@@ -172,7 +172,6 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStepsActionPerformed
 
     private void btnFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFileActionPerformed
-        btnClearActionPerformed(null);
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {

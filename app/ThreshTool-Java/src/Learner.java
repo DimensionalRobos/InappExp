@@ -1,3 +1,10 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -195,7 +202,19 @@ public class Learner extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLearnActionPerformed
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
-        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                Scanner scanFile=new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
+                while(scanFile.hasNextLine()){
+                    this.txaInput.setText(txaInput.getText()+scanFile.nextLine()+"\n");
+                }
+                txaInput.setText(txaInput.getText().trim());
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null,"You selected an unopenable file");
+            }
+        }
     }//GEN-LAST:event_btnOpenActionPerformed
 
     private void btnClearLearningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearLearningActionPerformed
