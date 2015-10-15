@@ -190,7 +190,8 @@ public class Learner extends javax.swing.JFrame {
 
     private void btnPlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlotActionPerformed
         try{
-            ThreshTool.plot();
+            plotTool.threshPlot();
+            plotTool.funcPlot();
         }
         catch(Exception e){
             javax.swing.JOptionPane.showMessageDialog(null,"TreshTool Not Installed/Configured");
