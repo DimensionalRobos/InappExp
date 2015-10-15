@@ -159,8 +159,6 @@ public class GUI extends javax.swing.JFrame {
         btnAnalyze.getAccessibleContext().setAccessibleName("jbtnAnalyze");
         btnClear.getAccessibleContext().setAccessibleName("jbtnClear");
 
-        getAccessibleContext().setAccessibleName("Inappropriate Expressions Recognition");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,12 +166,6 @@ public class GUI extends javax.swing.JFrame {
         Analyzer a = new Analyzer(steps);
         this.txaOutput.setText(a.analyze(txaInput.getText()));
     }//GEN-LAST:event_btnAnalyzeActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        txaInput.setText(null);
-        txaOutput.setText(null);
-        steps.clearEverything();
-    }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnStepsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStepsActionPerformed
         steps.setVisible(true);
@@ -195,6 +187,12 @@ public class GUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnFileActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        txaInput.setText(null);
+        txaOutput.setText(null);
+        steps.clearEverything();
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments

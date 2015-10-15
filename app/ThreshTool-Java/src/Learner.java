@@ -27,31 +27,155 @@ public class Learner extends javax.swing.JFrame {
     private void initComponents() {
 
         btnPlot = new javax.swing.JButton();
+        btnLearn = new javax.swing.JButton();
+        btnOpen = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txaInput = new java.awt.TextArea();
+        txaOutput = new java.awt.TextArea();
+        btnClearLearning = new javax.swing.JButton();
+        btnFeatures = new javax.swing.JButton();
+        btnConfigure = new javax.swing.JButton();
+        btnViewResamples = new javax.swing.JButton();
+        btnBlacklist1 = new javax.swing.JButton();
+        lblIn = new javax.swing.JLabel();
+        lblOut = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inappropriate Expressions Learning");
 
-        btnPlot.setText("Plot");
+        btnPlot.setText("Learning Vector Plot");
         btnPlot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlotActionPerformed(evt);
             }
         });
 
+        btnLearn.setText("Learn");
+        btnLearn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLearnActionPerformed(evt);
+            }
+        });
+
+        btnOpen.setText("Open File");
+        btnOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Neutra Display Titling", 0, 24)); // NOI18N
+        jLabel1.setText("INAPPROPRIATE EXPRESSIONS LEARNING");
+        jLabel1.setToolTipText("");
+
+        txaOutput.setBackground(new java.awt.Color(255, 255, 255));
+        txaOutput.setEditable(false);
+
+        btnClearLearning.setText("Clear Learning");
+        btnClearLearning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearLearningActionPerformed(evt);
+            }
+        });
+
+        btnFeatures.setText("View Feature Sets");
+        btnFeatures.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeaturesActionPerformed(evt);
+            }
+        });
+
+        btnConfigure.setText("Configure Threshold");
+        btnConfigure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfigureActionPerformed(evt);
+            }
+        });
+
+        btnViewResamples.setText("View Resample Data");
+        btnViewResamples.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewResamplesActionPerformed(evt);
+            }
+        });
+
+        btnBlacklist1.setText("View Blacklist");
+        btnBlacklist1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBlacklist1ActionPerformed(evt);
+            }
+        });
+
+        lblIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblIn.setText("INPUT");
+
+        lblOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblOut.setText("OUTPUT");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(246, Short.MAX_VALUE)
-                .addComponent(btnPlot)
-                .addGap(93, 93, 93))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnOpen)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLearn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPlot))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnConfigure)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFeatures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnViewResamples)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnClearLearning)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBlacklist1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOut)
+                            .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
-                .addComponent(btnPlot)
-                .addGap(68, 68, 68))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIn)
+                    .addComponent(lblOut))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txaInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLearn)
+                    .addComponent(btnPlot)
+                    .addComponent(btnOpen)
+                    .addComponent(btnClearLearning)
+                    .addComponent(btnBlacklist1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfigure)
+                    .addComponent(btnViewResamples)
+                    .addComponent(btnFeatures))
+                .addContainerGap())
         );
 
         pack();
@@ -65,6 +189,34 @@ public class Learner extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(null,"TreshTool Not Installed/Configured");
         }
     }//GEN-LAST:event_btnPlotActionPerformed
+
+    private void btnLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLearnActionPerformed
+
+    private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOpenActionPerformed
+
+    private void btnClearLearningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearLearningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearLearningActionPerformed
+
+    private void btnFeaturesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeaturesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFeaturesActionPerformed
+
+    private void btnConfigureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigureActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfigureActionPerformed
+
+    private void btnViewResamplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewResamplesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewResamplesActionPerformed
+
+    private void btnBlacklist1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlacklist1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBlacklist1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,6 +254,18 @@ public class Learner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBlacklist1;
+    private javax.swing.JButton btnClearLearning;
+    private javax.swing.JButton btnConfigure;
+    private javax.swing.JButton btnFeatures;
+    private javax.swing.JButton btnLearn;
+    private javax.swing.JButton btnOpen;
     private javax.swing.JButton btnPlot;
+    private javax.swing.JButton btnViewResamples;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblIn;
+    private javax.swing.JLabel lblOut;
+    private java.awt.TextArea txaInput;
+    private java.awt.TextArea txaOutput;
     // End of variables declaration//GEN-END:variables
 }
