@@ -190,11 +190,12 @@ public class Learner extends javax.swing.JFrame {
 
     private void btnPlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlotActionPerformed
         try{
-            plotTool.threshPlot();
-            plotTool.funcPlot();
+            PlotTool.threshPlot();
+            PlotTool.funcPlot();
+            urbanDictScrape.scrape("fuck");
         }
         catch(Exception e){
-            javax.swing.JOptionPane.showMessageDialog(null,"TreshTool Not Installed/Configured");
+            javax.swing.JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_btnPlotActionPerformed
 
