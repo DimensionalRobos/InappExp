@@ -22,11 +22,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class swntool {
+public class SentimentCorpus {
 
 	private Map<String, Double> dictionary;
 
-	public swntool(String pathToSWN) throws IOException {
+	public SentimentCorpus(String pathToSWN) throws IOException {
 		// This is our main dictionary representation
 		dictionary = new HashMap<String, Double>();
 
@@ -124,11 +124,16 @@ public class swntool {
 	public double extract(String word, String partOfSpeech) {
 		return dictionary.get(word + "#" + partOfSpeech);
 	}
+        
+        public double extract(String sentiment) {
+                sentiment=sentiment.toLowerCase();
+                sentiment=sentiment.substring(0,sentiment.indexOf("#")+2);
+		return dictionary.get(sentiment);
+	}
 	
 	public static void main(String [] args) throws IOException{
-		
-		String pathToSWN = "swn.txt";
-		swntool sentiwordnet = new swntool(pathToSWN);
+            
+		SentimentCorpus sentiwordnet = new SentimentCorpus("swn.txt");
 		
                 //a means adj
                 //n means noun
