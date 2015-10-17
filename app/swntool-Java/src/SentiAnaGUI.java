@@ -1,6 +1,11 @@
+import edu.mit.jwi.Dictionary;
+import edu.mit.jwi.item.POS;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
+import edu.mit.jwi.morph.WordnetStemmer;
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -77,6 +82,13 @@ public class SentiAnaGUI extends javax.swing.JFrame {
     private void btnAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalyzeActionPerformed
         String taggerPath = "models/english-caseless-left3words-distsim.tagger";
         MaxentTagger tagger = new MaxentTagger(taggerPath);
+        Dictionary dict = new Dictionary(new File("C:\\Program Files\\WordNet\\2.1\\dict"));
+        try {
+            dict.open();
+        } catch (IOException ex) {
+            Logger.getLogger(SentiAnaGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        WordnetStemmer stemmer = new WordnetStemmer(dict);
         try {
             SentimentCorpus sentiWordNet=new SentimentCorpus("swn.txt");
             LinkedList<Sentiment> sentiments=new LinkedList<Sentiment>();
@@ -89,7 +101,26 @@ public class SentiAnaGUI extends javax.swing.JFrame {
                     sentiments.addLast(new Sentiment(token.split("#")[0],sentiWordNet.extract(token)));
                 }
                 catch(Exception e){
-                    
+                    POS tag=null;
+                    if(token.split("#")[1].equals("a"))
+                        tag=POS.ADJECTIVE;
+                    if(token.split("#")[1].equals("v"))
+                        tag=POS.VERB;
+                    if(token.split("#")[1].equals("n"))
+                        tag=POS.NOUN;
+                    if(token.split("#")[1].equals("r"))
+                        tag=POS.ADVERB;
+                    List<String> stems=stemmer.findStems(token.split("#")[0], tag);
+                    for(String stem:stems){
+                        try{
+                            System.err.println(stem);
+                            sentiments.addLast(new Sentiment(stem,sentiWordNet.extract(stem+"#"+token.split("#")[1])));
+                            break;
+                        }
+                        catch(Exception ex){
+                        
+                        }
+                    }
                 }
             }
             for(Sentiment sentiment:sentiments){
