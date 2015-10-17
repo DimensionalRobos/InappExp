@@ -120,14 +120,14 @@ public class SentimentCorpus {
 			}
 		}
 	}
-
-	public double extract(String word, String partOfSpeech) {
-		return dictionary.get(word + "#" + partOfSpeech);
-	}
         
         public double extract(String sentiment) {
                 sentiment=sentiment.toLowerCase();
                 sentiment=sentiment.substring(0,sentiment.indexOf("#")+2);
+                if(sentiment.endsWith("j")){
+                    sentiment=sentiment.substring(0,sentiment.length()-1);
+                    sentiment+="a";
+                }
 		return dictionary.get(sentiment);
 	}
 	
@@ -139,10 +139,5 @@ public class SentimentCorpus {
                 //n means noun
                 //v means verb
                 //r means adv
-                
-		System.out.println("good#a "+sentiwordnet.extract("good", "a"));
-		System.out.println("bad#a "+sentiwordnet.extract("bad", "a"));
-		System.out.println("blue#a "+sentiwordnet.extract("blue", "a"));
-		System.out.println("blue#n "+sentiwordnet.extract("blue", "n"));
 	}
 }

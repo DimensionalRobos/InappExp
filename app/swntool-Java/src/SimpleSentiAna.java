@@ -46,8 +46,11 @@ public class SimpleSentiAna {
             for(Sentiment sentiment:sentiments){
                 System.out.println(sentiment.word+"#"+sentiment.sentimentValue);
             }
+            PlotTool.threshPlot(sentiments);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"sentiWordNet/POSTagger not configured");
+        } catch (Exception ex) {
+            Logger.getLogger(SimpleSentiAna.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
