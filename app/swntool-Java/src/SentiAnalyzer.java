@@ -38,6 +38,7 @@ public class SentiAnalyzer {
             }
             for(Sentiment sentiment:sentiments){
                 System.out.println(sentiment.word+"#"+sentiment.sentimentValue);
+                DefinitionExtractor.extract(sentiment.word);
             }
             PlotTool.threshPlot(sentiments);
             PlotTool.funcPlot(sentiments);
