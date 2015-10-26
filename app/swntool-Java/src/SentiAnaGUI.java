@@ -80,8 +80,8 @@ public class SentiAnaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAnalyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalyzeActionPerformed
-        String taggerPath = "models/english-caseless-left3words-distsim.tagger";
-        MaxentTagger tagger = new MaxentTagger(taggerPath);
+
+        
         Dictionary dict = new Dictionary(new File("C:\\Program Files\\WordNet\\2.1\\dict"));
         try {
             dict.open();
@@ -90,46 +90,8 @@ public class SentiAnaGUI extends javax.swing.JFrame {
         }
         WordnetStemmer stemmer = new WordnetStemmer(dict);
         try {
-            SentimentCorpus sentiWordNet=new SentimentCorpus("swn.txt");
-            LinkedList<Sentiment> sentiments=new LinkedList<Sentiment>();
-            String tagged = tagger.tagString(taInput.getText());
-            System.out.println(tagged);
-            tagged=tagged.replace('_','#');
-            String[]tokens=tagged.split(" ");
-            for(String token:tokens){
-                try{
-                    sentiments.addLast(new Sentiment(token.split("#")[0],sentiWordNet.extract(token)));
-                }
-                catch(Exception e){
-                    POS tag=null;
-                    if(token.split("#")[1].equals("a"))
-                        tag=POS.ADJECTIVE;
-                    if(token.split("#")[1].equals("v"))
-                        tag=POS.VERB;
-                    if(token.split("#")[1].equals("n"))
-                        tag=POS.NOUN;
-                    if(token.split("#")[1].equals("r"))
-                        tag=POS.ADVERB;
-                    List<String> stems=stemmer.findStems(token.split("#")[0], tag);
-                    for(String stem:stems){
-                        try{
-                            System.err.println(stem);
-                            sentiments.addLast(new Sentiment(stem,sentiWordNet.extract(stem+"#"+token.split("#")[1])));
-                            break;
-                        }
-                        catch(Exception ex){
-                        
-                        }
-                    }
-                }
-            }
-            for(Sentiment sentiment:sentiments){
-                System.out.println(sentiment.word+"#"+sentiment.sentimentValue);
-            }
-            PlotTool.threshPlot(sentiments);
-            PlotTool.funcPlot(sentiments);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"sentiWordNet/POSTagger not configured");
+            String taggedText=POSTagger.tag(taInput.getText());
+            SentiAnalyzer.analyze(taggedText);
         } catch (Exception ex) {
             Logger.getLogger(SimpleSentiAna.class.getName()).log(Level.SEVERE, null, ex);
         }
