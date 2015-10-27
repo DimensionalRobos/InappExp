@@ -1,8 +1,13 @@
-
+import org.math.plot.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,8 +37,6 @@ public class Learner extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txaInput = new java.awt.TextArea();
         txaOutput = new java.awt.TextArea();
-        btnClearLearning = new javax.swing.JButton();
-        btnViewResamples = new javax.swing.JButton();
         lblIn = new javax.swing.JLabel();
         lblOut = new javax.swing.JLabel();
 
@@ -61,20 +64,6 @@ public class Learner extends javax.swing.JFrame {
         txaOutput.setBackground(new java.awt.Color(255, 255, 255));
         txaOutput.setEditable(false);
 
-        btnClearLearning.setText("Clear Learning");
-        btnClearLearning.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearLearningActionPerformed(evt);
-            }
-        });
-
-        btnViewResamples.setText("View Resample Data");
-        btnViewResamples.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewResamplesActionPerformed(evt);
-            }
-        });
-
         lblIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblIn.setText("INPUT");
 
@@ -90,21 +79,17 @@ public class Learner extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnOpen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLearn))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txaInput, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblIn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblOut)
-                            .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnOpen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLearn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnViewResamples)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnClearLearning)))
+                            .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,7 +97,7 @@ public class Learner extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIn)
                     .addComponent(lblOut))
@@ -123,9 +108,7 @@ public class Learner extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLearn)
-                    .addComponent(btnOpen)
-                    .addComponent(btnViewResamples)
-                    .addComponent(btnClearLearning))
+                    .addComponent(btnOpen))
                 .addGap(54, 54, 54))
         );
 
@@ -133,32 +116,55 @@ public class Learner extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnActionPerformed
-        
-    }//GEN-LAST:event_btnLearnActionPerformed
 
-    private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
+        LinkedList<Sentiment> sentiments=new LinkedList<Sentiment>();
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             try {
-                Scanner scanFile=new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
-                while(scanFile.hasNextLine()){
-                    this.txaInput.setText(txaInput.getText()+scanFile.nextLine()+"\n");
+                Scanner scanFile = new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
+                while (scanFile.hasNextLine()) {
+                    String input = scanFile.nextLine();
+                    this.txaInput.setText(txaInput.getText() + input + "\n");
+                    try {
+                        for (String scrape : UrbanDictScraper.scrape(input)) {
+                            Sentiment senti=SentiAnalyzer.analyze(POSTagger.tag(scrape));
+                            if(senti!=null){
+                                sentiments.add(senti);
+                                txaOutput.setText(txaOutput.getText()+senti.word+"#"+senti.sentimentValue+"\n");
+                            }
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try{
+                        for (String look : DefinitionExtractor.extract(input)) {
+                            Sentiment senti=SentiAnalyzer.analyze(POSTagger.tag(look));
+                            if(senti!=null){
+                                sentiments.add(senti);
+                                txaOutput.setText(txaOutput.getText()+senti.word+"#"+senti.sentimentValue+"\n");
+                            }
+                        }
+                    }
+                    catch (Exception ex) {
+                        Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 txaInput.setText(txaInput.getText().trim());
             } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(null,"You selected an unopenable file");
+                JOptionPane.showMessageDialog(null, "You selected an unopenable file");
             }
         }
+        try {
+            PlotTool.funcPlot(sentiments);
+        } catch (Exception ex) {
+            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnLearnActionPerformed
+
+    private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
+        
     }//GEN-LAST:event_btnOpenActionPerformed
-
-    private void btnClearLearningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearLearningActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnClearLearningActionPerformed
-
-    private void btnViewResamplesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewResamplesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewResamplesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,10 +202,8 @@ public class Learner extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClearLearning;
     private javax.swing.JButton btnLearn;
     private javax.swing.JButton btnOpen;
-    private javax.swing.JButton btnViewResamples;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblIn;
     private javax.swing.JLabel lblOut;

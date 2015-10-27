@@ -29,6 +29,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" alignment="0" min="-2" pref="551" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnOpen" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnLearn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txaInput" alignment="0" min="-2" pref="330" max="-2" attributes="0"/>
                           <Component id="lblIn" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -38,15 +43,6 @@
                           <Component id="lblOut" min="-2" max="-2" attributes="0"/>
                           <Component id="txaOutput" min="-2" pref="425" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="btnOpen" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnLearn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnViewResamples" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnClearLearning" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -58,7 +54,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="29" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblIn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblOut" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -72,8 +68,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnLearn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnOpen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnViewResamples" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnClearLearning" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
@@ -115,22 +109,6 @@
         </Property>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnClearLearning">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Clear Learning"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearLearningActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnViewResamples">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View Resample Data"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewResamplesActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblIn">
       <Properties>

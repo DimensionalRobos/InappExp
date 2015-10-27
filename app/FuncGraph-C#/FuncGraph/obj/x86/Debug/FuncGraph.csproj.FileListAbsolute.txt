@@ -1,6 +1,0 @@
-C:\Users\user\Documents\FuncGraph-C#\FuncGraph\obj\x86\Debug\Interop.MLApp.dll
-C:\Users\user\Documents\FuncGraph-C#\FuncGraph\obj\x86\Debug\FuncGraph.csproj.ResolveComReference.cache
-C:\Users\user\Documents\FuncGraph-C#\FuncGraph\bin\Debug\FuncGraph.exe
-C:\Users\user\Documents\FuncGraph-C#\FuncGraph\bin\Debug\FuncGraph.pdb
-C:\Users\user\Documents\FuncGraph-C#\FuncGraph\obj\x86\Debug\FuncGraph.exe
-C:\Users\user\Documents\FuncGraph-C#\FuncGraph\obj\x86\Debug\FuncGraph.pdb
