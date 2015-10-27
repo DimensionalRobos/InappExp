@@ -2,8 +2,10 @@ import org.math.plot.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -117,7 +119,7 @@ public class Learner extends javax.swing.JFrame {
 
     private void btnLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnActionPerformed
 
-        LinkedList<Sentiment> sentiments=new LinkedList<Sentiment>();
+        ExpressionList sentiments=new ExpressionList();
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -129,7 +131,7 @@ public class Learner extends javax.swing.JFrame {
                     try {
                         for (String scrape : UrbanDictScraper.scrape(input)) {
                             Sentiment senti=SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                            if(senti!=null){
+                            if(senti!=null&&(!sentiments.contains(senti))){
                                 sentiments.add(senti);
                                 txaOutput.setText(txaOutput.getText()+senti.word+"#"+senti.sentimentValue+"\n");
                             }
@@ -140,7 +142,7 @@ public class Learner extends javax.swing.JFrame {
                     try{
                         for (String look : DefinitionExtractor.extract(input)) {
                             Sentiment senti=SentiAnalyzer.analyze(POSTagger.tag(look));
-                            if(senti!=null){
+                             if(senti!=null&&(!sentiments.contains(senti))){
                                 sentiments.add(senti);
                                 txaOutput.setText(txaOutput.getText()+senti.word+"#"+senti.sentimentValue+"\n");
                             }
@@ -156,14 +158,39 @@ public class Learner extends javax.swing.JFrame {
             }
         }
         try {
-            PlotTool.funcPlot(sentiments);
+            PlotTool.funcPlot(new LinkedList<>(sentiments));
         } catch (Exception ex) {
             Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnLearnActionPerformed
 
     private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenActionPerformed
-        
+        LinkedList<Sentiment> sentiments=new LinkedList<Sentiment>();
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                Scanner scanFile = new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
+                while (scanFile.hasNextLine()) {
+                    String s=scanFile.nextLine();
+                    Sentiment sentiment=new Sentiment(s.split("#")[0],Double.valueOf(s.split("#")[1]));
+                    sentiments.add(sentiment);
+                }
+                try {
+                    PlotTool.funcPlot(sentiments);
+                } catch (Exception ex) {
+                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                txaInput.setText(txaInput.getText().trim());
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "You selected an unopenable file");
+            }
+        }
+        try {
+            PlotTool.funcPlot(new LinkedList<>(sentiments));
+        } catch (Exception ex) {
+            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnOpenActionPerformed
 
     /**

@@ -8,6 +8,15 @@ import javax.swing.JOptionPane;
  *
  * @author Daikaiser
  */
+class ExpressionList extends LinkedList<Sentiment>{
+    public boolean contains(Sentiment s){
+        for(Sentiment sentiments:this){
+            if(sentiments.word.equals(s.word)&s.sentimentValue==sentiments.sentimentValue)
+                return true;
+        }
+        return false;
+    }
+}
 
 class Sentiment{
     public double sentimentValue;
@@ -16,6 +25,13 @@ class Sentiment{
         this.word=word;
         this.sentimentValue=sentimentValue;
     }
+    public boolean equals(Object obj) {
+         if (obj instanceof Sentiment)
+             return (this.word.equals(((Sentiment)obj).word)
+                     &this.sentimentValue==((Sentiment)obj).sentimentValue); 
+         else
+             return false;
+     }
 }
 public class SimpleSentiAna {
     static String taggerPath = "models/english-caseless-left3words-distsim.tagger";

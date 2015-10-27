@@ -1,8 +1,6 @@
 
-import java.io.*;
 import javax.swing.*;
 import java.util.*;
-import javafx.scene.paint.Color;
 import org.math.plot.Plot2DPanel;
 
 public class PlotTool {
