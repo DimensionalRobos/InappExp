@@ -23,4 +23,17 @@ public class DefinitionExtractor {
         }
         return extractedData;
     }
+    public static LinkedList<String> resample(String input,String definition){
+        System.setProperty("wordnet.database.dir", "C:\\Program Files\\WordNet\\2.1\\dict");
+        WordNetDatabase database = WordNetDatabase.getFileInstance();
+        Synset[] synsets = database.getSynsets(input);
+        LinkedList<String> extractedData=new LinkedList<String>();
+        for(Synset synset:synsets){
+            if(definition.equals(synset.getDefinition()))
+            for(String word:synset.getWordForms()){
+                extractedData.add(word);
+            }
+        }
+        return extractedData;
+    }
 }

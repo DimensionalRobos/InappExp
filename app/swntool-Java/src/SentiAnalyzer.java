@@ -70,7 +70,7 @@ public class SentiAnalyzer {
             if (mainDescriptor.sentimentValue >= 0) {
                 throw new Exception();
             } else {
-                System.err.println(mainDescriptor.word + "#" + mainDescriptor.sentimentValue);
+                System.err.println("<p>"+mainDescriptor.word + "#" + mainDescriptor.sentimentValue+"</p>");
                 return mainDescriptor;
             }
         } catch (Exception ex) {
@@ -118,5 +118,21 @@ public class SentiAnalyzer {
             sum += descriptor.sentimentValue;
         }
         return sum/sentiments.size();
+    }
+    
+    public static double getVariance(LinkedList<Sentiment> sentiments){
+        double sum=0;
+        for(Sentiment sentiment:sentiments){
+            sum+=Math.pow(sentiment.sentimentValue-getMean(sentiments), 2);
+        }
+        return sum/sentiments.size();
+    }
+    
+    public static double getRMS(LinkedList<Sentiment> sentiments){
+        double sum=0;
+        for(Sentiment sentiment:sentiments){
+            sum+=Math.pow(sentiment.sentimentValue, 2);
+        }
+        return Math.sqrt(sum/sentiments.size());
     }
 }

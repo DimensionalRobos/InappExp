@@ -8,6 +8,9 @@
  *
  * @author user
  */
-public class Config {
-    public static String MATLABFolder="C:\\Users\\user\\Documents\\";
+public class MainProg {
+    public static void main(String[]args){
+        double[] d={2,3,6,8,12,15,18,22};
+        KMeans.compute(d, 3);
+    }
 }
