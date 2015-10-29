@@ -22,7 +22,8 @@ public class PlotTool {
         Plot2DPanel plot = new Plot2DPanel();
 
         // add a line plot to the PlotPanel
-        plot.addLinePlot("InappExp Fluctuations", x, y);
+        plot.addScatterPlot("InappExp Fluctuations", Color.MAGENTA,x, y);
+        plot.addLinePlot("InappExp Fluctuations", Color.BLUE,x, y);
         
         double []linX=new double[2];
         double []linY=new double[2];
