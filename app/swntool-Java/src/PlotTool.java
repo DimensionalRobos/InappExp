@@ -16,23 +16,23 @@ public class PlotTool {
             x[i] = i;
             i++;
         }
-        Arrays.sort(y);
         
         // create your PlotPanel (you can use it as a JPanel)
         Plot2DPanel plot = new Plot2DPanel();
 
         // add a line plot to the PlotPanel
-        plot.addScatterPlot("InappExp Fluctuations", Color.MAGENTA,x, y);
+        plot.addScatterPlot("InappExp Fluctuations", Color.PINK,x, y);
+        Arrays.sort(y);
         plot.addLinePlot("InappExp Fluctuations", Color.BLUE,x, y);
         
-        double []linX=new double[2];
-        double []linY=new double[2];
-        linY[0]=0;
-        linY[1]=SentiAnalyzer.getMin(sentiments);
-        linX[0]=sentiments.size();
-        linX[1]=SentiAnalyzer.getMax(sentiments);
-        
-        plot.addLinePlot("Regression", Color.GRAY, linX, linY);
+//        double []linX=new double[2];
+//        double []linY=new double[2];
+//        linY[0]=0;
+//        linY[1]=SentiAnalyzer.getMin(sentiments);
+//        linX[0]=sentiments.size();
+//        linX[1]=SentiAnalyzer.getMax(sentiments);
+//        
+//        plot.addLinePlot("Regression", Color.GRAY, linX, linY);
         
         System.err.println("Sample Count:"+sentiments.size());
         
