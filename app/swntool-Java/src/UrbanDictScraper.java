@@ -10,7 +10,7 @@ public class UrbanDictScraper
     public static LinkedList<String> scrape(String word) throws IOException{
         LinkedList<String> scrapedData=new LinkedList<String>();
         ProcessBuilder builder = new ProcessBuilder(
-            "python",Config.MATLABFolder+"udscrape.py",word);
+            "python",Config.PythonFolder+"udscrape.py",word);
         Process pr = builder.start();
         // retrieve output from python script
         BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));

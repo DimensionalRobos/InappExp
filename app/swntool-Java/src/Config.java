@@ -4,5 +4,5 @@
  * @author Daikaiser
  */
 public class Config {
-    public static String MATLABFolder="C:\\Users\\user\\Documents\\MATLAB\\";
+    public static String PythonFolder="C:\\Users\\user\\Documents\\MATLAB\\";
 }
