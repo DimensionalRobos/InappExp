@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class Stemmer {
 
     public static LinkedList<String> stem(String word, String tag) {
-        Dictionary dict = new Dictionary(new File("C:\\Program Files\\WordNet\\2.1\\dict"));
+        Dictionary dict = new Dictionary(new File(Config.WordNetPath));
         try {
             dict.open();
         } catch (IOException ex) {
