@@ -1,5 +1,5 @@
 import sys
-import  requests
+import requests
 
 from bs4 import BeautifulSoup   
 
@@ -8,4 +8,4 @@ r =         requests.get("http://www.urbandictionary.com/define.php?term={}".for
 soup = BeautifulSoup(r.content)
         
 for definition in soup.find_all("div",attrs={"class":"meaning"}):
-    print(sys.argv[1],"==",definition.text)
+    print(definition.text,"<p>")
