@@ -69,7 +69,6 @@ public class PlotTool {
         
         System.err.println("RMS is "+SentiAnalyzer.getRMS(sentiments));
         
-        // put the PlotPanel in a JFrame, as a JPanel
         JFrame scatterFrame = new JFrame("Support Vector Scatter Plot");
         scatterFrame.setContentPane(scatteredPlot);
         scatterFrame.setVisible(true);
