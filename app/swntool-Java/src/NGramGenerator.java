@@ -1,3 +1,4 @@
+
 import edu.smu.tspell.wordnet.*;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -7,48 +8,76 @@ import java.util.logging.Logger;
  *
  * @author Daikaiser
  */
+class Expression {
 
-class Expression{
     public String word;
-    public boolean isInappropriate=false;
+    public boolean isInappropriate = false;
     public String postag;
-    
-    public Expression(String word,String postag){
-        this.word=word;
-        this.postag=postag;
+    public double value = 0;
+
+    public Expression(String word, String postag) {
+        this.word = word;
+        this.postag = postag;
     }
 }
 
 public class NGramGenerator {
-    public static void main(String[] args){
-        String input="Fuck you";
-        String taggedInput=POSTagger.tag(input);
+
+    public static void main(String[] args) {
+        String input = "Fuck you";
+        String taggedInput = POSTagger.tag(input);
+        ExpressionList trainingData = MLDAO.getSentiments();
         String[] tokens = taggedInput.split(" ");
-        Expression[] expressions=new Expression[tokens.length];
-        for (int i=0;i<tokens.length;i++){
-            expressions[i]=new Expression(tokens[i].split("_")[0],tokens[i].split("_")[1]);
+        Expression[] expressions = new Expression[tokens.length];
+        for (int i = 0; i < tokens.length; i++) {
+            expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
         }
-        for(Expression expression:expressions){
-            try {
-                for (String scrape : UrbanDictScraper.scrape(expression.word)) {
-                    Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                    if (senti != null) {
-                        //TODO InappExp Candidation Analysis here
+        for (Expression expression : expressions) {
+            double sum = 0;
+            int numberOfDefs = 0;
+            if (shouldBeTested(expression.postag)) {
+                try {
+                    for (String look : DefinitionExtractor.extract(expression.word)) {
+                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
+                        if (senti != null) {
+                            sum += senti.sentimentValue;
+                            numberOfDefs++;
+                        }
                     }
+                } catch (Exception ex) {
+                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (IOException ex) {
-                Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                for (String look : DefinitionExtractor.extract(expression.word)) {
-                    Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
-                    if(senti!=null){
-                        //TODO InappExp Candidation Analysis here
+                try {
+                    for (String scrape : UrbanDictScraper.scrape(expression.word)) {
+                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
+                        if (senti != null) {
+                            sum += senti.sentimentValue;
+                            numberOfDefs++;
+                        }
                     }
+                } catch (IOException ex) {
+                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                sum /= numberOfDefs;
+                expression.value = sum;
+                if (sum <= SentiAnalyzer.getMean(trainingData)) {
+                    expression.isInappropriate = true;
+                }
             }
         }
+        for (Expression expression : expressions) {
+            if (expression.isInappropriate) {
+                System.out.print("IE ");
+            } else {
+                System.out.print(expression.postag);
+            }
+        }
+        for (Expression expression : expressions) {
+            System.err.println(expression.value);
+        }
+    }
+
+    private static boolean shouldBeTested(String postag) {
+        return postag.startsWith("NN")|postag.startsWith("RB")|postag.startsWith("VB")|postag.startsWith("JJ");
     }
 }
