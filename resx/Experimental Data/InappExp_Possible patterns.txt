@@ -1,0 +1,25 @@
+N-Gram for InappExp
+
+-<Noun/Pronoun> is <Inapp>
+	:Joshua is gay
+
+-<Inapp> that
+	:Fuck that
+
+-<Inapp> <Noun/Pronoun>
+	:Fuck you
+
+-<Inapp> !
+	:Fuck!
+
+-<Noun/Pronoun> is a <Inapp>
+	:Joshua is a faggot
+
+-<Inapp> your <Noun>
+	:Screw your Mom
+
+-that <Inapp>
+	:That ass
+
+-<Adj> <Inapp>
+	:Pink Pussy
