@@ -23,8 +23,8 @@ class Expression {
 
 public class NGramGenerator {
 
-    public static void main(String[] args) {
-        String input = "Fuck you";
+    public static String generate(String input) {
+        String s="";
         String taggedInput = POSTagger.tag(input);
         ExpressionList trainingData = MLDAO.getSentiments();
         String[] tokens = taggedInput.split(" ");
@@ -60,7 +60,7 @@ public class NGramGenerator {
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
-                if (sum <= SentiAnalyzer.getMean(trainingData)) {
+                if (sum <= SentiAnalyzer.getMean(trainingData)*SentiAnalyzer.getRMS(trainingData)) {
                     expression.isInappropriate = true;
                 }
             }
@@ -68,13 +68,16 @@ public class NGramGenerator {
         for (Expression expression : expressions) {
             if (expression.isInappropriate) {
                 System.out.print("IE ");
+                s+="IE ";
             } else {
-                System.out.print(expression.postag);
+                System.out.print(expression.postag+" ");
+                s+=expression.postag+" ";
             }
         }
         for (Expression expression : expressions) {
             System.err.println(expression.value);
         }
+        return s;
     }
 
     private static boolean shouldBeTested(String postag) {
