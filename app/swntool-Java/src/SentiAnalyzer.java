@@ -39,13 +39,6 @@ public class SentiAnalyzer {
             }
             for (Sentiment sentiment : sentiments) {
                 System.out.println(sentiment.word + "#" + sentiment.sentimentValue);
-//                DefinitionExtractor.extract(sentiment.word);
-//                try{
-//                    UrbanDictScraper.scrape(sentiment.word);
-//                }
-//                catch(IOException e){
-//                    System.out.println("Cannot get the Urban Dictionary definition of "+sentiment.word+" due to missing Internet Connection");
-//                }
             }
             return getMainDescriptor(sentiments);
 
