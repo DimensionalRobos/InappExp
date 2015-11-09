@@ -1,3 +1,8 @@
+/**
+ * Machine Learning Module of the InappExp
+ * Learns Inappropriate Expression Features and retrieves resamples.
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,4 +1,9 @@
-
+/**
+ * All configurations are done here.
+ * PythonFolder=location of udscrape.py
+ * WordNetPath=location of wordNet dict
+ * Training Data=basis of Inappropriateness
+ */
 /**
  *
  * @author Daikaiser

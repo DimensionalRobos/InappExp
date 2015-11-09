@@ -1,3 +1,9 @@
+/**
+ * Pulls out data in Dictionary
+ * extract=pulls out WordNet WordSenses and definition
+ * resample=retrieves Synset of a word with similar WordSenses
+ */
+
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
 import java.util.LinkedList;
