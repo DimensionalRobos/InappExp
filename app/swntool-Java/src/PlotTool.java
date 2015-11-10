@@ -1,8 +1,16 @@
+/**
+ * Produces Plot of the Training Data Information
+ */
+
 import java.awt.Color;
 import javax.swing.*;
 import java.util.*;
 import org.math.plot.Plot2DPanel;
 
+/**
+ * 
+ * @author Daikaiser
+ */
 public class PlotTool {
 
     static void funcPlot(LinkedList<Sentiment> sentiments) throws Exception {

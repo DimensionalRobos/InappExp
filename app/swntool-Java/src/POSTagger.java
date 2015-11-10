@@ -1,3 +1,6 @@
+/**
+ * Produces POSTags based on Stanford NLP POStagger Module
+ */
 
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 

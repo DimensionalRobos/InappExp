@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author user
+ * @author Daikaiser
  */
 public class SentiAnaGUI extends javax.swing.JFrame {
 
@@ -87,7 +87,7 @@ public class SentiAnaGUI extends javax.swing.JFrame {
             String taggedText=POSTagger.tag(taInput.getText());
             SentiAnalyzer.analyze(taggedText);
         } catch (Exception ex) {
-            Logger.getLogger(SimpleSentiAna.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Models.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAnalyzeActionPerformed
 

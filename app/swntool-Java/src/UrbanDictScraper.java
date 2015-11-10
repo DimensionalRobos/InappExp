@@ -1,3 +1,7 @@
+/**
+ * Retrieves Data from UrbanDictionary by invoking udscrape.py python script
+ */
+
 
 /**
  *

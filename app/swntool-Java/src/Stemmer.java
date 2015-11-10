@@ -1,3 +1,7 @@
+/**
+ * Produces Stemmed word due to Sentiment Analyzer Module uses String Matching method
+ */
+
 import edu.mit.jwi.Dictionary;
 import edu.mit.jwi.item.POS;
 import edu.mit.jwi.morph.WordnetStemmer;
