@@ -60,7 +60,7 @@ public class NGramGenerator {
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
-                if (sum <= SentiAnalyzer.getMean(trainingData)*SentiAnalyzer.getRMS(trainingData)) {
+                if (sum <= SentiAnalyzer.getMean(trainingData)+SentiAnalyzer.getVariance(trainingData)) {
                     expression.isInappropriate = true;
                 }
             }
@@ -71,7 +71,12 @@ public class NGramGenerator {
                 s+="IE ";
             } else {
                 System.out.print(expression.postag+" ");
-                s+=expression.postag+" ";
+                try{
+                    s+=expression.postag.substring(0,2)+" "; 
+                }
+                catch(Exception e){
+                    s+=expression.postag+" ";
+                }
             }
         }
         for (Expression expression : expressions) {
@@ -81,6 +86,6 @@ public class NGramGenerator {
     }
 
     private static boolean shouldBeTested(String postag) {
-        return postag.startsWith("NN")|postag.startsWith("RB")|postag.startsWith("VB")|postag.startsWith("JJ");
+        return postag.startsWith("NN")|postag.startsWith("FW")|postag.startsWith("RB")|postag.startsWith("VB")|postag.startsWith("JJ");
     }
 }
