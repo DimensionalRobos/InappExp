@@ -32,8 +32,10 @@ public class NGramGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnNGram = new javax.swing.JButton();
+        btnLearn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inappropriate Expressions Recognition");
 
         txaOutput.setColumns(20);
         txaOutput.setRows(5);
@@ -50,6 +52,13 @@ public class NGramGUI extends javax.swing.JFrame {
             }
         });
 
+        btnLearn.setText("Learn");
+        btnLearn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLearnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,7 +67,8 @@ public class NGramGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(btnNGram, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnNGram, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLearn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -80,6 +90,8 @@ public class NGramGUI extends javax.swing.JFrame {
                         .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNGram)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLearn)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                 .addContainerGap())
@@ -91,6 +103,10 @@ public class NGramGUI extends javax.swing.JFrame {
     private void btnNGramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNGramActionPerformed
         this.txaOutput.setText(NGramGenerator.generate(this.txtInput.getText()));
     }//GEN-LAST:event_btnNGramActionPerformed
+
+    private void btnLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnActionPerformed
+        new Learner().setVisible(true);
+    }//GEN-LAST:event_btnLearnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,6 +144,7 @@ public class NGramGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLearn;
     private javax.swing.JButton btnNGram;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
