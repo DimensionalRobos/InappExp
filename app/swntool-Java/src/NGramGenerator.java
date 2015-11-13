@@ -79,6 +79,26 @@ public class NGramGenerator {
                 }
             }
         }
+        s+="\nExpressions:";
+        for(int i=0;i<expressions.length;i++){
+            if(expressions[i].isInappropriate)
+            try{
+                if(expressions[i+2].isInappropriate){
+                    
+                }
+            }
+            catch(Exception e){
+                
+            }
+            try{
+                if(expressions[i+1].isInappropriate){
+                    
+                }
+            }
+            catch(Exception e){
+                    
+            }
+        }
         for (Expression expression : expressions) {
             System.err.println(expression.value);
         }
@@ -87,5 +107,9 @@ public class NGramGenerator {
 
     private static boolean shouldBeTested(String postag) {
         return postag.startsWith("NN")|postag.startsWith("FW")|postag.startsWith("RB")|postag.startsWith("VB")|postag.startsWith("JJ");
+    }
+    
+    private static String generateNGram(Expression[] expressions,int startIndex,int countGrams){
+        return null;
     }
 }
