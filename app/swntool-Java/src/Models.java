@@ -13,6 +13,20 @@ import javax.swing.JOptionPane;
  *
  * @author Daikaiser
  */
+
+class Expression {
+
+    public String word;
+    public boolean isInappropriate = false;
+    public String postag;
+    public double value = 0;
+
+    public Expression(String word, String postag) {
+        this.word = word;
+        this.postag = postag;
+    }
+}
+
 class WordList extends LinkedList<String> {
 
     @Override

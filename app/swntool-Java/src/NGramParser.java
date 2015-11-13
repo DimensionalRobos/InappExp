@@ -12,11 +12,37 @@ import java.util.logging.Logger;
  */
 
 public class NGramParser {
-    public static void parse(){
+    public static void parse(Expression[]expressions){
         WordList NGrams=extractNGrams();
-        for(String NGram:NGrams){
-            String[]NGramPattern=NGram.split(" ");
+        for(int i=0;i<expressions.length;i++){
+            testNGramInvoke(expressions,NGrams,i);
         }
+    }
+    public static boolean testNGramInvoke(Expression[]expressions,WordList NGrams,int startIndex){
+        for(String NGram:NGrams){
+            boolean isInvoked=false;
+            String[] NGramPattern=NGram.split(" ");
+            for(String NGramUnit:NGramPattern){
+                try{
+                    NGramUnit=NGramUnit.substring(0,2);
+                }
+                catch(Exception e){
+                    
+                }
+            }
+            for(int i=0;i<NGramPattern.length;i++){
+                if(NGramPattern[i].equals(expressions[startIndex+i].postag))
+                    isInvoked=true;
+                else{
+                    isInvoked=false;
+                    break;
+                }
+            }
+            if(isInvoked){
+                return true;
+            }
+        }
+        return false;
     }
     public static WordList extractNGrams(){
         WordList NGrams=new WordList();

@@ -8,23 +8,11 @@ import java.util.logging.Logger;
  *
  * @author Daikaiser
  */
-class Expression {
-
-    public String word;
-    public boolean isInappropriate = false;
-    public String postag;
-    public double value = 0;
-
-    public Expression(String word, String postag) {
-        this.word = word;
-        this.postag = postag;
-    }
-}
 
 public class NGramGenerator {
 
     public static String generate(String input) {
-        String s="";
+        String s = "";
         String taggedInput = POSTagger.tag(input);
         ExpressionList trainingData = MLDAO.getSentiments();
         String[] tokens = taggedInput.split(" ");
@@ -60,7 +48,7 @@ public class NGramGenerator {
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
-                if (sum <= SentiAnalyzer.getMean(trainingData)+SentiAnalyzer.getVariance(trainingData)) {
+                if (sum <= SentiAnalyzer.getMean(trainingData) + SentiAnalyzer.getVariance(trainingData)) {
                     expression.isInappropriate = true;
                 }
             }
@@ -68,35 +56,40 @@ public class NGramGenerator {
         for (Expression expression : expressions) {
             if (expression.isInappropriate) {
                 System.out.print("IE ");
-                s+="IE ";
+                s += "IE ";
             } else {
-                System.out.print(expression.postag+" ");
-                try{
-                    s+=expression.postag.substring(0,2)+" "; 
-                }
-                catch(Exception e){
-                    s+=expression.postag+" ";
+                System.out.print(expression.postag + " ");
+                try {
+                    s += expression.postag.substring(0, 2) + " ";
+                } catch (Exception e) {
+                    s += expression.postag + " ";
                 }
             }
         }
-        s+="\nExpressions:";
-        for(int i=0;i<expressions.length;i++){
-            if(expressions[i].isInappropriate)
-            try{
-                if(expressions[i+2].isInappropriate){
+        s += "\nNGrams:\n";
+        for (int i = 0; i < expressions.length; i++) {
+            if (expressions[i].isInappropriate) {
+                try{
+                    s+=generateNGram(expressions, i, 2);
+                    s+=generateNGram(expressions, i, 3);
+                }
+                catch(Exception e){
                     
                 }
             }
-            catch(Exception e){
-                
-            }
-            try{
-                if(expressions[i+1].isInappropriate){
-                    
+            try {
+                if (expressions[i + 2].isInappropriate) {
+                    s+=generateNGram(expressions, i, 3);
                 }
+            } catch (Exception e) {
+
             }
-            catch(Exception e){
-                    
+            try {
+                if (expressions[i + 1].isInappropriate) {
+                    s+=generateNGram(expressions, i, 2);
+                }
+            } catch (Exception e) {
+
             }
         }
         for (Expression expression : expressions) {
@@ -106,10 +99,33 @@ public class NGramGenerator {
     }
 
     private static boolean shouldBeTested(String postag) {
-        return postag.startsWith("NN")|postag.startsWith("FW")|postag.startsWith("RB")|postag.startsWith("VB")|postag.startsWith("JJ");
+        return postag.startsWith("NN") | postag.startsWith("FW") | postag.startsWith("RB") | postag.startsWith("VB") | postag.startsWith("JJ");
     }
-    
-    private static String generateNGram(Expression[] expressions,int startIndex,int countGrams){
-        return null;
+
+    private static String generateNGram(Expression[] expressions, int startIndex, int countGrams) {
+        int noOfTags=0;
+        String s = "";
+        for (int i = 0; i < countGrams; i++) {
+            try {
+                if (expressions[startIndex + i].isInappropriate) {
+                    s += "IE ";
+                    noOfTags++;
+                } else {
+                    System.out.print(expressions[startIndex+i].postag + " ");
+                    try {
+                        s += expressions[startIndex+i].postag.substring(0, 2) + " ";
+                        noOfTags++;
+                    } catch (Exception e) {
+                        s += expressions[startIndex+i].postag + " ";
+                        noOfTags++;
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        if(noOfTags>1)
+            return s+"\n";
+        return "";
     }
 }
