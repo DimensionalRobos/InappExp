@@ -1,0 +1,29 @@
+Ask Adv:
+Create InappExp Corpus as Explicit Layer
+
+&
+
+Feature Sets as Hidden Layer
+
+Related Lit as Theorem:Paper 2010.pdf
+
+NGram Parser Pseudocode
+for(String expression:expressions){
+	if(expression.invoked==false)
+		testNGramInvoke(expression);
+}
+testNGramInvoke(expression){
+	foreach(NGram:NGrams){
+		NGrammed=false
+		foreach(Gram:NGram){
+			if(Gram==expression.pos)
+				NGrammed=true;
+			else
+				NGrammed=false;
+		}
+		if(NGrammed)
+			foreach(Gram:NGram){
+				expression.invoked=true;
+			}
+	}
+}
