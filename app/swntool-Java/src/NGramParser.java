@@ -1,7 +1,5 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,47 +8,48 @@ import java.util.logging.Logger;
  *
  * @author Daikaiser
  */
-
 public class NGramParser {
-    public static void parse(Expression[]expressions){
-        WordList NGrams=extractNGrams();
-        for(int i=0;i<expressions.length;i++){
-            testNGramInvoke(expressions,NGrams,i);
+
+    public static void parse(Expression[] expressions) {
+        WordList NGrams = extractNGrams();
+        for (int i = 0; i < expressions.length; i++) {
+            for (String NGram : NGrams) {
+                String[] NGramPattern = NGram.split(" ");
+                for (String NGramUnit : NGramPattern) {
+                    try {
+                        NGramUnit = NGramUnit.substring(0, 2);
+                    } catch (Exception e) {
+
+                    }
+                }
+                testNGramInvoke(expressions, NGramPattern, i);
+            }
         }
     }
-    public static boolean testNGramInvoke(Expression[]expressions,WordList NGrams,int startIndex){
-        for(String NGram:NGrams){
-            boolean isInvoked=false;
-            String[] NGramPattern=NGram.split(" ");
-            for(String NGramUnit:NGramPattern){
-                try{
-                    NGramUnit=NGramUnit.substring(0,2);
-                }
-                catch(Exception e){
-                    
-                }
+
+    public static boolean testNGramInvoke(Expression[] expressions, String[] NGramPattern, int startIndex) {
+        boolean isInvoked = false;
+        for (int i = 0; i < NGramPattern.length; i++) {
+            if (NGramPattern[i].equals(expressions[startIndex + i].postag)) {
+                isInvoked = true;
+            } else {
+                isInvoked = false;
+                break;
             }
-            for(int i=0;i<NGramPattern.length;i++){
-                if(NGramPattern[i].equals(expressions[startIndex+i].postag))
-                    isInvoked=true;
-                else{
-                    isInvoked=false;
-                    break;
-                }
-            }
-            if(isInvoked){
-                return true;
-            }
+        }
+        if (isInvoked) {
+            return true;
         }
         return false;
     }
-    public static WordList extractNGrams(){
-        WordList NGrams=new WordList();
+
+    public static WordList extractNGrams() {
+        WordList NGrams = new WordList();
         try {
-            Scanner scan=new Scanner(new File(Config.NGramData));
+            Scanner scan = new Scanner(new File(Config.NGramData));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
-                if(!NGrams.contains(s)){
+                if (!NGrams.contains(s)) {
                     NGrams.add(s);
                     System.out.println(s);
                 }
@@ -60,7 +59,8 @@ public class NGramParser {
         }
         return NGrams;
     }
-    public static void main(String[]args){
+
+    public static void main(String[] args) {
         extractNGrams();
     }
 }
