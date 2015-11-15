@@ -95,6 +95,11 @@ public class NGramGenerator {
         for (Expression expression : expressions) {
             System.err.println(expression.value);
         }
+        NGramParser.parse(expressions);
+        for (Expression expression : expressions) {
+            if(expression.isInvoked)
+                System.out.println(expression.word);
+        }
         return s;
     }
 

@@ -20,6 +20,7 @@ class Expression {
     public boolean isInappropriate = false;
     public String postag;
     public double value = 0;
+    public boolean isInvoked=false;
 
     public Expression(String word, String postag) {
         this.word = word;

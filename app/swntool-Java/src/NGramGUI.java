@@ -102,6 +102,7 @@ public class NGramGUI extends javax.swing.JFrame {
 
     private void btnNGramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNGramActionPerformed
         this.txaOutput.setText(NGramGenerator.generate(this.txtInput.getText()));
+        
     }//GEN-LAST:event_btnNGramActionPerformed
 
     private void btnLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnActionPerformed
