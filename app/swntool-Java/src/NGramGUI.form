@@ -28,8 +28,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtInput" alignment="0" min="-2" pref="315" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnNGram" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnLearn" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnRecognize" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnWordLearn" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnNGramLearn" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -56,9 +57,11 @@
                   <Group type="102" attributes="0">
                       <Component id="txtInput" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnNGram" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRecognize" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnLearn" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnNGramLearn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnWordLearn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" pref="155" max="32767" attributes="0"/>
@@ -96,20 +99,28 @@
         <Property name="text" type="java.lang.String" value="OUTPUT:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnNGram">
+    <Component class="javax.swing.JButton" name="btnRecognize">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Generate N-Gram"/>
+        <Property name="text" type="java.lang.String" value="Recognize"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNGramActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRecognizeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnLearn">
+    <Component class="javax.swing.JButton" name="btnWordLearn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Learn"/>
+        <Property name="text" type="java.lang.String" value="Word Learn"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLearnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWordLearnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnNGramLearn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="NGram Learn"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNGramLearnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

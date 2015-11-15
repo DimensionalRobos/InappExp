@@ -31,8 +31,9 @@ public class NGramGUI extends javax.swing.JFrame {
         txaOutput = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnNGram = new javax.swing.JButton();
-        btnLearn = new javax.swing.JButton();
+        btnRecognize = new javax.swing.JButton();
+        btnWordLearn = new javax.swing.JButton();
+        btnNGramLearn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inappropriate Expressions Recognition");
@@ -45,17 +46,24 @@ public class NGramGUI extends javax.swing.JFrame {
 
         jLabel2.setText("OUTPUT:");
 
-        btnNGram.setText("Generate N-Gram");
-        btnNGram.addActionListener(new java.awt.event.ActionListener() {
+        btnRecognize.setText("Recognize");
+        btnRecognize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNGramActionPerformed(evt);
+                btnRecognizeActionPerformed(evt);
             }
         });
 
-        btnLearn.setText("Learn");
-        btnLearn.addActionListener(new java.awt.event.ActionListener() {
+        btnWordLearn.setText("Word Learn");
+        btnWordLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLearnActionPerformed(evt);
+                btnWordLearnActionPerformed(evt);
+            }
+        });
+
+        btnNGramLearn.setText("NGram Learn");
+        btnNGramLearn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNGramLearnActionPerformed(evt);
             }
         });
 
@@ -67,8 +75,9 @@ public class NGramGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(btnNGram, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnLearn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(btnRecognize, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnWordLearn, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnNGramLearn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -89,9 +98,11 @@ public class NGramGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNGram)
+                        .addComponent(btnRecognize)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLearn)
+                        .addComponent(btnNGramLearn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnWordLearn)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                 .addContainerGap())
@@ -100,14 +111,18 @@ public class NGramGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNGramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNGramActionPerformed
-        this.txaOutput.setText(NGramGenerator.generate(this.txtInput.getText()));
+    private void btnRecognizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecognizeActionPerformed
+        this.txaOutput.setText(NGramGenerator.generateAndRecognize(this.txtInput.getText()));
         
-    }//GEN-LAST:event_btnNGramActionPerformed
+    }//GEN-LAST:event_btnRecognizeActionPerformed
 
-    private void btnLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLearnActionPerformed
+    private void btnWordLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWordLearnActionPerformed
         new Learner().setVisible(true);
-    }//GEN-LAST:event_btnLearnActionPerformed
+    }//GEN-LAST:event_btnWordLearnActionPerformed
+
+    private void btnNGramLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNGramLearnActionPerformed
+        this.txaOutput.setText(NGramGenerator.generateAndLearn(this.txtInput.getText()));
+    }//GEN-LAST:event_btnNGramLearnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,8 +160,9 @@ public class NGramGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLearn;
-    private javax.swing.JButton btnNGram;
+    private javax.swing.JButton btnNGramLearn;
+    private javax.swing.JButton btnRecognize;
+    private javax.swing.JButton btnWordLearn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
