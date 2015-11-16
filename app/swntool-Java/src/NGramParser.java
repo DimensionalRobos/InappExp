@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
  *
  * @author Daikaiser
  */
+
 public class NGramParser {
 
     public static void parse(Expression[] expressions) {
