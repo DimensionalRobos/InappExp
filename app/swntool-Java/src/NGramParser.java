@@ -1,11 +1,3 @@
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Daikaiser
@@ -30,6 +22,7 @@ public class NGramParser {
                     for (int j = 0; j < NGramPattern.length; j++) {
                         expressions[i + j].isInvoked = true;
                     }
+                    break;
                 }
             }
         }
