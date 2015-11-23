@@ -70,7 +70,7 @@ class Sentiment {
     public String word;
 
     public Sentiment(String word, double sentimentValue) {
-        this.word = word;
+        this.word = word.toLowerCase();
         this.sentimentValue = sentimentValue;
     }
 
