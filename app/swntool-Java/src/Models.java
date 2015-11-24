@@ -2,12 +2,7 @@
  * Contains Models used For Sentiment Analysis
  */
 
-import edu.stanford.nlp.tagger.maxent.MaxentTagger;
-import java.io.IOException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *

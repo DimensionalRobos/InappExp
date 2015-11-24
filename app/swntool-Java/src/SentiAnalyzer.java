@@ -60,7 +60,7 @@ public class SentiAnalyzer {
                     mainDescriptor = descriptor;
                 }
             }
-            if (mainDescriptor.sentimentValue >= 0) {
+            if (mainDescriptor.sentimentValue >= 0|String.valueOf(mainDescriptor.sentimentValue).equals("NaN")) {
                 throw new Exception();
             } else {
                 System.err.println("<p>"+mainDescriptor.word + "#" + mainDescriptor.sentimentValue+"</p>");

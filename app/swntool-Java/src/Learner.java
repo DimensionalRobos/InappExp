@@ -3,7 +3,6 @@
  * Machine Learning Module of the InappExp Learns Inappropriate Expression
  * Features and retrieves resamples.
  */
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,6 +42,7 @@ public class Learner extends javax.swing.JFrame {
         txaOutput = new java.awt.TextArea();
         lblIn = new javax.swing.JLabel();
         lblOut = new javax.swing.JLabel();
+        btnResample = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inappropriate Expressions Learning");
@@ -76,6 +76,13 @@ public class Learner extends javax.swing.JFrame {
         lblOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblOut.setText("OUTPUT");
 
+        btnResample.setText("Resample");
+        btnResample.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResampleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +100,10 @@ public class Learner extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblOut)
                                     .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnLearn)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnLearn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnResample))))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(15, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -115,36 +125,28 @@ public class Learner extends javax.swing.JFrame {
                     .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLearn)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnLearn)
+                        .addComponent(btnResample))
                     .addComponent(btnViewLearning))
                 .addGap(54, 54, 54))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public ExpressionList learn(WordList sample, ExpressionList sentiments) {
+    public ExpressionList resample(WordList sample, ExpressionList sentiments) {
         if (sample.isEmpty()) {
             return sentiments;
         }
         WordList resampleList = new WordList();
         for (String input : sample) {
             this.txaInput.setText(txaInput.getText() + input + "\n");
-            try {
-                for (String scrape : UrbanDictScraper.scrape(input)) {
-                    Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                    if (senti != null && (!sentiments.contains(senti))) {
-                        sentiments.add(senti);
-                        txaOutput.setText(txaOutput.getText() + senti.word + "#" + senti.sentimentValue + "\n");
-                        MLDAO.write(senti.word + "#" + senti.sentimentValue + "\n");
-                    }
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ExpressionList basisData = new ExpressionList();
             try {
                 for (String look : DefinitionExtractor.extract(input)) {
                     Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
                     if (senti != null) {
+                        basisData.add(senti);
                         for (String resample : DefinitionExtractor.resample(input, look)) {
                             if (!(sample.contains(resample) | resampleList.contains(resample))) {
                                 resampleList.addLast(resample);
@@ -154,11 +156,63 @@ public class Learner extends javax.swing.JFrame {
                     if (senti != null && (!sentiments.contains(senti))) {
                         sentiments.add(senti);
                         txaOutput.setText(txaOutput.getText() + senti.word + "#" + senti.sentimentValue + "\n");
-                        MLDAO.write(senti.word + "#" + senti.sentimentValue + "\n");
+                        MLDAO.write("\n" + senti.word + "#" + senti.sentimentValue);
                     }
                 }
             } catch (Exception ex) {
                 Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        System.err.println("resamples=" + resampleList.size() + " samples=" + sample.size() + "\n");
+        learn(resampleList, sample, sentiments);
+        return sentiments;
+    }
+
+    public ExpressionList learn(WordList sample, ExpressionList sentiments) {
+        if (sample.isEmpty()) {
+            return sentiments;
+        }
+        WordList resampleList = new WordList();
+        for (String input : sample) {
+            this.txaInput.setText(txaInput.getText() + input + "\n");
+            if (!BWDAO.exists(input)) {
+                ExpressionList basisData = new ExpressionList();
+                try {
+                    for (String scrape : UrbanDictScraper.scrape(input)) {
+                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
+                        if (senti != null) {
+                            basisData.add(senti);
+                            if (!sentiments.contains(senti)) {
+                                sentiments.add(senti);
+                                txaOutput.setText(txaOutput.getText() + senti.word + "#" + senti.sentimentValue + "\n");
+                                MLDAO.write("\n" + senti.word + "#" + senti.sentimentValue);
+                            }
+                        }
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    for (String look : DefinitionExtractor.extract(input)) {
+                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
+                        if (senti != null) {
+                            basisData.add(senti);
+                            for (String resample : DefinitionExtractor.resample(input, look)) {
+                                if (!(sample.contains(resample) | resampleList.contains(resample))) {
+                                    resampleList.addLast(resample);
+                                }
+                            }
+                        }
+                        if (senti != null && (!sentiments.contains(senti))) {
+                            sentiments.add(senti);
+                            txaOutput.setText(txaOutput.getText() + senti.word + "#" + senti.sentimentValue + "\n");
+                            MLDAO.write("\n" + senti.word + "#" + senti.sentimentValue);
+                        }
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                BWDAO.write("\n" + input + "#" + SentiAnalyzer.getMean(basisData), false);
             }
         }
         System.err.println("resamples=" + resampleList.size() + " samples=" + sample.size() + "\n");
@@ -173,20 +227,15 @@ public class Learner extends javax.swing.JFrame {
         }
         sampledList.addAll(sample);
         for (String input : sample) {
-            this.txaInput.setText(txaInput.getText() + input + "\n");
-            if (!BWDAO.exists(input)) {
-                ExpressionList basisList=new ExpressionList();
+            this.txaInput.setText("\n" + txaInput.getText() + input);
+            if (!(BWDAO.exists(input) | BWDAO.existsAsResample(input))) {
                 try {
                     for (String scrape : UrbanDictScraper.scrape(input)) {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                        if(senti!=null)
-                        {
-                            basisList.add(senti);
-                        }
                         if (senti != null && (!sentiments.contains(senti))) {
                             sentiments.add(senti);
                             txaOutput.setText(txaOutput.getText() + senti.word + "#" + senti.sentimentValue + "\n");
-                            MLDAO.write(senti.word + "#" + senti.sentimentValue + "\n");
+                            MLDAO.write("\n" + senti.word + "#" + senti.sentimentValue);
                         }
                     }
                 } catch (IOException ex) {
@@ -195,24 +244,16 @@ public class Learner extends javax.swing.JFrame {
                 try {
                     for (String look : DefinitionExtractor.extract(input)) {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
-                        if (senti != null) {
-                            basisList.add(senti);
-                            for (String resample : DefinitionExtractor.resample(input, look)) {
-                                if (!(sampledList.contains(resample) | resampleList.contains(resample))) {
-                                    resampleList.addLast(resample);
-                                }
-                            }
-                        }
-                        if (senti != null && (!sentiments.contains(senti))) {
+                        if (senti != null & (!sentiments.contains(senti))) {
                             sentiments.add(senti);
                             txaOutput.setText(txaOutput.getText() + senti.word + "#" + senti.sentimentValue + "\n");
-                            MLDAO.write(senti.word + "#" + senti.sentimentValue + "\n");
+                            MLDAO.write("\n" + senti.word + "#" + senti.sentimentValue);
                         }
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                BWDAO.write(input+"#"+SentiAnalyzer.getMean(basisList));
+                BWDAO.write("\n" + input + "#0", true);
             }
         }
         System.err.println("resamples=" + resampleList.size() + " samples=" + sampledList.size() + "\n");
@@ -250,7 +291,7 @@ public class Learner extends javax.swing.JFrame {
     private void btnViewLearningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLearningActionPerformed
         LinkedList<Sentiment> sentiments = new LinkedList<Sentiment>();
         try {
-            Scanner scanFile = new Scanner(new File("MLearn.txt"));
+            Scanner scanFile = new Scanner(new File(Config.BasisData));
             while (scanFile.hasNextLine()) {
                 String s = scanFile.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
@@ -266,6 +307,34 @@ public class Learner extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You selected an unopenable file");
         }
     }//GEN-LAST:event_btnViewLearningActionPerformed
+
+    private void btnResampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResampleActionPerformed
+        ExpressionList sentiments = MLDAO.getSentiments();
+        for (Sentiment sentiment : sentiments) {
+            txaOutput.setText(txaOutput.getText() + sentiment.word + "#" + sentiment.sentimentValue + "\n");
+        }
+        WordList sample = new WordList();
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                Scanner scanFile = new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
+                while (scanFile.hasNextLine()) {
+                    String input = scanFile.nextLine();
+                    sample.addLast(input);
+                }
+                txaInput.setText(txaInput.getText().trim());
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "You selected an unopenable file");
+            }
+        }
+        this.resample(sample, sentiments);
+        try {
+            PlotTool.funcPlot(new LinkedList<>(sentiments));
+        } catch (Exception ex) {
+            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnResampleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,6 +373,7 @@ public class Learner extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLearn;
+    private javax.swing.JButton btnResample;
     private javax.swing.JButton btnViewLearning;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblIn;

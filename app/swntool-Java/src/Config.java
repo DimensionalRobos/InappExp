@@ -14,4 +14,5 @@ public class Config {
     public static String TrainingData="MLearn.txt";
     public static String NGramData="NGram.txt";
     public static String BasisData="WordVal.txt";
+    public static String ResampleData="Resample.txt";
 }

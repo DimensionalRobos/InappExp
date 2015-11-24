@@ -38,7 +38,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lblOut" min="-2" max="-2" attributes="0"/>
                                   <Component id="txaOutput" min="-2" pref="425" max="-2" attributes="0"/>
-                                  <Component id="btnLearn" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="btnLearn" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btnResample" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Component id="jLabel1" min="-2" pref="551" max="-2" attributes="0"/>
@@ -70,7 +74,10 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnLearn" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="btnLearn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnResample" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="btnViewLearning" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
@@ -132,6 +139,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="OUTPUT"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnResample">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Resample"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResampleActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

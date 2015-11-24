@@ -24,7 +24,6 @@ public class PlotTool {
             i++;
         }
         
-        // create your PlotPanel (you can use it as a JPanel)
         Plot2DPanel scatteredPlot = new Plot2DPanel();
         Plot2DPanel distributionPlot=new Plot2DPanel();
         
