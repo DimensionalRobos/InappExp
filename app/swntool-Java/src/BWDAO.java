@@ -19,6 +19,7 @@ public class BWDAO {
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
+                sentiment.word=sentiment.word.trim();
                 if (sentiment.word.equals(word)) {
                     return true;
                 }
@@ -29,9 +30,25 @@ public class BWDAO {
         return false;
     }
 
-    public static void write(String word) {
+    public static boolean existsAsResample(String word){
         try {
-            File file = new File(Config.TrainingData);
+            Scanner scan = new Scanner(new File(Config.ResampleData));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
+                sentiment.word=sentiment.word.trim();
+                if (sentiment.word.equals(word)) {
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MLDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    public static void write(String word,boolean isResample) {
+        try {
+            File file = new File(isResample?Config.ResampleData:Config.BasisData);
             FileWriter f = new FileWriter(file, true);
             f.write(word);
             f.close();
