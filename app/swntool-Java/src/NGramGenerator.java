@@ -14,6 +14,7 @@ public class NGramGenerator {
         String s = "";
         String taggedInput = POSTagger.tag(input);
         ExpressionList trainingData = MLDAO.getSentiments();
+        ExpressionList basisData=BWDAO.getSentiments();
         String[] tokens = taggedInput.split(" ");
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
@@ -47,7 +48,7 @@ public class NGramGenerator {
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
-                if (sum <= SentiAnalyzer.getMean(trainingData) + SentiAnalyzer.getVariance(trainingData)) {
+                if (sum <= (SentiAnalyzer.getMean(trainingData)+SentiAnalyzer.getMean(basisData))/2) {
                     expression.isInappropriate = true;
                 }
             }
@@ -112,7 +113,8 @@ public class NGramGenerator {
     public static String generateAndLearn(String input) {
         String s = "";
         String taggedInput = POSTagger.tag(input);
-        ExpressionList trainingData = MLDAO.getSentiments();
+        ExpressionList trainingData = BWDAO.getSentiments();
+        ExpressionList basisData=BWDAO.getSentiments();
         String[] tokens = taggedInput.split(" ");
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
@@ -150,7 +152,7 @@ public class NGramGenerator {
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
-                if (sum <= SentiAnalyzer.getMean(trainingData) + SentiAnalyzer.getVariance(trainingData)) {
+                if (sum <= (SentiAnalyzer.getMean(trainingData)+SentiAnalyzer.getMean(basisData))/2) {
                     expression.isInappropriate = true;
                 }
             }
