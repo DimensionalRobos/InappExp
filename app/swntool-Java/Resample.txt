@@ -197,3 +197,858 @@ bother#0
 get at#0
 irritate#0
 chink#0
+crap#0
+dirt#0
+bull#0
+Irish bull#0
+dogshit#0
+jack#0
+doodly-squat#0
+diddly-squat#0
+diddlysquat#0
+diddly-shit#0
+diddlyshit#0
+diddly#0
+diddley#0
+squat#0
+dump#0
+SOB#0
+darn#0
+hoot#0
+red cent#0
+shucks#0
+tinker's damn#0
+tinker's dam#0
+denounce#0
+tell on#0
+betray#0
+give away#0
+grass#0
+shop#0
+snitch#0
+stag#0
+stool#0
+take a shit#0
+take a crap#0
+ca-ca#0
+make#0
+gripe#0
+kick#0
+beef#0
+squawk#0
+lollipop#0
+all-day sucker#0
+puss#0
+slit#0
+jacking off#0
+jerking off#0
+hand job#0
+Cu#0
+fairy#0
+nance#0
+pansy#0
+queen#0
+poove#0
+pouf#0
+faggot up#0
+arsenic#0
+As#0
+atomic number 33#0
+by-blow#0
+love child#0
+illegitimate child#0
+illegitimate#0
+mongrel#0
+bogus#0
+fake#0
+phony#0
+phoney#0
+shaft#0
+peter#0
+tool#0
+putz#0
+stopcock#0
+turncock#0
+hammer#0
+rooster#0
+Satan#0
+Old Nick#0
+Beelzebub#0
+the Tempter#0
+Prince of Darkness#0
+rile#0
+nark#0
+nettle#0
+gravel#0
+vex#0
+chafe#0
+flatus#0
+wind#0
+breaking wind#0
+jerking#0
+jolt#0
+saccade#0
+jerky#0
+jerked meat#0
+tug#0
+yank#0
+twitch#0
+buck#0
+hitch#0
+flick#0
+prevaricator#0
+deviant#0
+deviate#0
+degenerate#0
+twist#0
+twist around#0
+convolute#0
+sophisticate#0
+misuse#0
+thwart#0
+spoil#0
+scotch#0
+foil#0
+cross#0
+frustrate#0
+baffle#0
+bilk#0
+expose#0
+scupper#0
+endanger#0
+peril#0
+curious#0
+funny#0
+odd#0
+peculiar#0
+rum#0
+rummy#0
+singular#0
+check#0
+delay#0
+decelerate#0
+slow#0
+slow down#0
+slow up#0
+kitty#0
+kitty-cat#0
+pussycat#0
+blasted#0
+blame#0
+blamed#0
+blessed#0
+damned#0
+darned#0
+deuced#0
+goddam#0
+infernal#0
+hell on earth#0
+hellhole#0
+snake pit#0
+the pits#0
+inferno#0
+blaze#0
+perdition#0
+Inferno#0
+infernal region#0
+nether region#0
+pit#0
+Hel#0
+Hades#0
+netherworld#0
+Scheol#0
+underworld#0
+sin#0
+blackness#0
+inkiness#0
+Joseph Black#0
+Black person#0
+blacken#0
+melanize#0
+melanise#0
+nigrify#0
+dark#0
+sinister#0
+bleak#0
+dim#0
+calamitous#0
+disastrous#0
+fatal#0
+fateful#0
+blackened#0
+pitch-black#0
+pitch-dark#0
+grim#0
+mordant#0
+bootleg#0
+black-market#0
+contraband#0
+smuggled#0
+disgraceful#0
+ignominious#0
+inglorious#0
+opprobrious#0
+shameful#0
+smutty#0
+sludge#0
+slime#0
+goo#0
+guck#0
+gunk#0
+muck#0
+ooze#0
+slant-eye#0
+dumbbell#0
+dummy#0
+pinhead#0
+cola#0
+the skinny#0
+low-down#0
+dope up#0
+psychotic#0
+psychotic person#0
+trash#0
+twerp#0
+twirp#0
+taunt#0
+taunting#0
+tease#0
+razz#0
+cod#0
+tantalize#0
+tantalise#0
+bait#0
+rally#0
+ride#0
+jerk-off#0
+crazy#0
+loony#0
+looney#0
+homophile#0
+cheery#0
+sunny#0
+surly#0
+despicable#0
+vile#0
+slimy#0
+unworthy#0
+worthless#0
+wretched#0
+atrocious#0
+frightful#0
+horrifying#0
+horrible#0
+bit#0
+kidnapping#0
+catch#0
+grab#0
+snap#0
+kidnap#0
+nobble#0
+abduct#0
+slattern#0
+slovenly woman#0
+trollop#0
+adulteress#0
+fornicatress#0
+jade#0
+loose woman#0
+strumpet#0
+bisexual person#0
+cock sucking#0
+blunder#0
+blooper#0
+bloomer#0
+bungle#0
+pratfall#0
+foul-up#0
+flub#0
+botch#0
+boo-boo#0
+front#0
+phallus#0
+member#0
+fork#0
+genitalia#0
+genital organ#0
+genitals#0
+private parts#0
+privates#0
+curse#0
+beshrew#0
+bedamn#0
+anathemize#0
+anathemise#0
+imprecate#0
+maledict#0
+hard-on#0
+erecting#0
+sexual urge#0
+arouse#0
+excite#0
+turn on#0
+wind up#0
+ruttish#0
+steamy#0
+turned on#0
+perverted#0
+crisp#0
+frizzly#0
+frizzy#0
+nappy#0
+far-out#0
+offbeat#0
+quirky#0
+way-out#0
+defenseless#0
+raw#0
+nude painting#0
+nude sculpture#0
+nude statue#0
+binge#0
+splurge#0
+debauch#0
+debauchery#0
+saturnalia#0
+riot#0
+bacchanal#0
+bacchanalia#0
+drunken revelry#0
+woodpecker#0
+beak#0
+bill#0
+neb#0
+nib#0
+nincompoop#0
+ninny#0
+pornography#0
+porno#0
+erotica#0
+smut#0
+prison guard#0
+jailer#0
+jailor#0
+gaoler#0
+turnkey#0
+screw propeller#0
+drive in#0
+cheat#0
+chouse#0
+chicane#0
+jockey#0
+disgusting#0
+disgustful#0
+distasteful#0
+foul#0
+loathly#0
+loathsome#0
+repellent#0
+repellant#0
+repelling#0
+revolting#0
+wicked#0
+yucky#0
+miscarriage#0
+maltreatment#0
+ill-treatment#0
+ill-usage#0
+insult#0
+revilement#0
+contumely#0
+vilification#0
+mistreat#0
+maltreat#0
+ill-use#0
+step#0
+ill-treat#0
+clapperclaw#0
+blackguard#0
+shout#0
+hook#0
+anal retentive#0
+ring of color#0
+wake up#0
+awake#0
+awaken#0
+wake#0
+come alive#0
+waken#0
+raise#0
+conjure#0
+conjure up#0
+invoke#0
+evoke#0
+stir#0
+call down#0
+bring up#0
+put forward#0
+call forth#0
+rouse#0
+wound up#0
+ablaze#0
+aflame#0
+emotional#0
+excited#0
+worked up#0
+As#0
+assassinator#0
+bravo#0
+character assassination#0
+blackwash#0
+rape#0
+violation#0
+ravishment#0
+assail#0
+set on#0
+attack#0
+ravish#0
+violate#0
+dishonor#0
+dishonour#0
+outrage#0
+round#0
+lash out#0
+snipe#0
+SOB#0
+back door#0
+ball#0
+musket ball#0
+globe#0
+orb#0
+formal#0
+battering#0
+slam#0
+bang#0
+spang#0
+vomit#0
+vomitus#0
+vomit up#0
+purge#0
+cast#0
+sick#0
+cat#0
+be sick#0
+disgorge#0
+regorge#0
+retch#0
+spew#0
+spue#0
+chuck#0
+upchuck#0
+honk#0
+regurgitate#0
+throw up#0
+bast fiber#0
+phloem#0
+beaver fur#0
+dress hat#0
+high hat#0
+opera hat#0
+silk hat#0
+stovepipe#0
+top hat#0
+topper#0
+castor#0
+beaver away#0
+beastly#0
+brute#0
+brutish#0
+zooerastia#0
+zooerasty#0
+bismuth#0
+atomic number 83#0
+Joseph Black#0
+Black person#0
+bullock block#0
+bordello#0
+bagnio#0
+house of prostitution#0
+house of ill repute#0
+bawdyhouse#0
+cathouse#0
+sporting house#0
+Irish bull#0
+As#0
+SOB#0
+Joseph Black#0
+Black person#0
+Irish bull#0
+cocain#0
+sexual intercourse#0
+sex act#0
+copulation#0
+coition#0
+sexual congress#0
+congress#0
+sexual relation#0
+relation#0
+carnal knowledge#0
+rubber#0
+safety#0
+safe#0
+prophylactic#0
+confederacy#0
+cabal#0
+felon#0
+crook#0
+outlaw#0
+malefactor#0
+condemnable#0
+deplorable#0
+reprehensible#0
+vicious#0
+felonious#0
+kumquat tree#0
+Guinea#0
+eternal damnation#0
+darkey#0
+Satan#0
+Old Nick#0
+Beelzebub#0
+the Tempter#0
+Prince of Darkness#0
+victimize#0
+swindle#0
+rook#0
+goldbrick#0
+bunco#0
+defraud#0
+scam#0
+mulct#0
+gip#0
+hornswoggle#0
+short-change#0
+con#0
+toy#0
+fiddle#0
+play#0
+drop shot#0
+soil#0
+begrime#0
+grime#0
+colly#0
+bemire#0
+soiled#0
+unclean#0
+contaminating#0
+filthy#0
+dingy#0
+muddied#0
+muddy#0
+marked-up#0
+ill-gotten#0
+cheating#0
+unsporting#0
+unsportsmanlike#0
+sordid#0
+Dorothea Dix#0
+Dorothea Lynde Dix#0
+doomsday#0
+day of reckoning#0
+end of the world#0
+dense#0
+dull#0
+obtuse#0
+speechless#0
+mute#0
+silent#0
+interjection#0
+clyster#0
+vertical#0
+upright#0
+tumid#0
+heathen#0
+heathenish#0
+pagan#0
+body waste#0
+excretion#0
+excreta#0
+excretory product#0
+fecal matter#0
+faecal matter#0
+BM#0
+ordure#0
+dejection#0
+labor#0
+labour#0
+toil#0
+travail#0
+grind#0
+drudge#0
+dig#0
+moil#0
+tire#0
+wear upon#0
+tire out#0
+wear#0
+weary#0
+wear out#0
+outwear#0
+wear down#0
+fag out#0
+fatigue#0
+adipose tissue#0
+fatty tissue#0
+fatness#0
+blubber#0
+avoirdupois#0
+juju#0
+voodoo#0
+hoodoo#0
+fetich#0
+quartet#0
+quartette#0
+four#0
+4#0
+IV#0
+tetrad#0
+quatern#0
+quaternion#0
+quaternary#0
+quaternity#0
+quadruplet#0
+Little Joe#0
+imposter#0
+impostor#0
+pretender#0
+faker#0
+sham#0
+shammer#0
+pseudo#0
+pseud#0
+role player#0
+fraudulence#0
+dupery#0
+hoax#0
+humbug#0
+put-on#0
+bally#0
+blinking#0
+bloody#0
+blooming#0
+crashing#0
+flaming#0
+bloke#0
+trap#0
+cakehole#0
+hole#0
+maw#0
+yap#0
+gentile#0
+non-Jew#0
+bunco game#0
+bunko#0
+bunko game#0
+confidence trick#0
+confidence game#0
+con game#0
+hustle#0
+sting#0
+flimflam#0
+herpes virus#0
+heterosexual person#0
+straight person#0
+straight#0
+highjacker#0
+highwayman#0
+road agent#0
+hillbilly#0
+bushwhacker#0
+human immunodeficiency virus#0
+holmium#0
+atomic number 67#0
+man#0
+human being#0
+human#0
+honker#0
+hooter#0
+nozzle#0
+snoot#0
+snout#0
+schnozzle#0
+schnoz#0
+Canada goose#0
+Canadian goose#0
+Branta canadensis#0
+honkie#0
+streetwalker#0
+street girl#0
+floozy#0
+floozie#0
+automobile horn#0
+car horn#0
+motor horn#0
+horn#0
+owl#0
+bird of Minerva#0
+bird of night#0
+wheeler dealer#0
+operator#0
+sheeny#0
+yid#0
+Nip#0
+great millet#0
+kafir corn#0
+kaffir corn#0
+Sorghum bicolor#0
+caffer#0
+caffre#0
+slayer#0
+cause of death#0
+killer whale#0
+orca#0
+grampus#0
+sea wolf#0
+Orcinus orca#0
+Krauthead#0
+Boche#0
+Jerry#0
+Hun#0
+Kentucky#0
+Bluegrass State#0
+also-ran#0
+failure#0
+nonstarter#0
+unsuccessful person#0
+match#0
+friction match#0
+genus Macaca#0
+methamphetamine#0
+methamphetamine hydrochloride#0
+Methedrine#0
+deoxyephedrine#0
+chalk#0
+chicken feed#0
+crank#0
+glass#0
+ice#0
+shabu#0
+liquidator#0
+manslayer#0
+Niger River#0
+Republic of Niger#0
+skinflint#0
+scrooge#0
+churl#0
+meanness#0
+minginess#0
+niggardness#0
+parsimony#0
+parsimoniousness#0
+tightness#0
+tightfistedness#0
+closeness#0
+grudging#0
+scrimy#0
+procurer#0
+panderer#0
+pander#0
+pandar#0
+fancy man#0
+ponce#0
+handgun#0
+side arm#0
+shooting iron#0
+despoil#0
+plunder#0
+rap#0
+knap#0
+despoiled#0
+pillaged#0
+ravaged#0
+sacked#0
+mentally retarded#0
+scalawag#0
+rogue#0
+knave#0
+rascal#0
+rapscallion#0
+varlet#0
+imp#0
+scamp#0
+monkey#0
+sex kitten#0
+sex bomb#0
+defecation#0
+laxation#0
+filth#0
+crud#0
+snob#0
+prig#0
+expectorator#0
+spitball#0
+kindling#0
+tinder#0
+touchwood#0
+heart#0
+mettle#0
+nerve#0
+feisty#0
+plucky#0
+game#0
+gamy#0
+gamey#0
+gritty#0
+mettlesome#0
+spirited#0
+stupid person#0
+stupe#0
+dullard#0
+dolt#0
+pudding head#0
+pudden-head#0
+poor fish#0
+pillock#0
+dazed#0
+stunned#0
+stupefied#0
+sucking#0
+suction#0
+suck in#0
+breastfeed#0
+bottle-feed#0
+suckle#0
+nurse#0
+wet-nurse#0
+lactate#0
+give suck#0
+three#0
+3#0
+III#0
+trio#0
+tierce#0
+leash#0
+troika#0
+triad#0
+trine#0
+trinity#0
+ternary#0
+ternion#0
+triplet#0
+tercet#0
+terzetto#0
+trey#0
+deuce-ace#0
+cross-dresser#0
+transvestic#0
+treble#0
+triple#0
+frank#0
+frankfurter#0
+hotdog#0
+hot dog#0
+dog#0
+wiener#0
+wienerwurst#0
+urine#0
+pee#0
+piddle#0
+water#0
+greaser#0
+taco#0
+weakling#0
+doormat#0
+thirty#0
+30#0
+Yank#0
+Northerner#0
