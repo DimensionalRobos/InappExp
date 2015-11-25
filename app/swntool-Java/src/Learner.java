@@ -140,7 +140,7 @@ public class Learner extends javax.swing.JFrame {
         }
         WordList resampleList = new WordList();
         for (String input : sample) {
-            this.txaInput.setText(txaInput.getText() + input + "\n");
+            this.txaInput.setText(txaInput.getText() + input+"\n");
             ExpressionList basisData = new ExpressionList();
             try {
                 for (String look : DefinitionExtractor.extract(input)) {
@@ -174,7 +174,7 @@ public class Learner extends javax.swing.JFrame {
         }
         WordList resampleList = new WordList();
         for (String input : sample) {
-            this.txaInput.setText(txaInput.getText() + input + "\n");
+            this.txaInput.setText(txaInput.getText() + input+"\n");
             if (!BWDAO.exists(input)) {
                 ExpressionList basisData = new ExpressionList();
                 try {
@@ -227,7 +227,7 @@ public class Learner extends javax.swing.JFrame {
         }
         sampledList.addAll(sample);
         for (String input : sample) {
-            this.txaInput.setText("\n" + txaInput.getText() + input);
+            this.txaInput.setText(txaInput.getText() + input+"\n");
             if (!(BWDAO.exists(input) | BWDAO.existsAsResample(input))) {
                 try {
                     for (String scrape : UrbanDictScraper.scrape(input)) {
