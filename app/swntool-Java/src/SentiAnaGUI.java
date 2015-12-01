@@ -1,14 +1,9 @@
 import edu.mit.jwi.Dictionary;
-import edu.mit.jwi.item.POS;
-import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import edu.mit.jwi.morph.WordnetStemmer;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
