@@ -1,8 +1,8 @@
+
 /**
  *
  * @author Daikaiser
  */
-
 public class NGramParser {
 
     public static void parse(Expression[] expressions) {
@@ -17,12 +17,16 @@ public class NGramParser {
                     } catch (Exception e) {
 
                     }
-                }
-                if (testNGramInvoke(expressions, NGramPattern, i)) {
-                    for (int j = 0; j < NGramPattern.length; j++) {
-                        expressions[i + j].isInvoked = true;
+                    if (testNGramInvoke(expressions, NGramPattern, i)) {
+                        for (int j = 0; j < NGramPattern.length; j++) {
+                            try {
+                                expressions[i + j].isInvoked = true;
+                            } catch (Exception e) {
+
+                            }
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
@@ -30,14 +34,17 @@ public class NGramParser {
 
     public static boolean testNGramInvoke(Expression[] expressions, String[] NGramPattern, int startIndex) {
         boolean isInvoked = false;
-        for (int i = 0; i < NGramPattern.length; i++) {
-            if (expressions[startIndex + i].postag.startsWith(NGramPattern[i])) {
-                isInvoked = true;
-            } 
-            else {
-                isInvoked = false;
-                break;
+        try {
+            for (int i = 0; i < NGramPattern.length; i++) {
+                if (expressions[startIndex + i].postag.startsWith(NGramPattern[i])) {
+                    isInvoked = true;
+                } else {
+                    isInvoked = false;
+                    break;
+                }
             }
+        } catch (Exception e) {
+
         }
         return isInvoked;
     }
