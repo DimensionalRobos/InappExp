@@ -14,7 +14,7 @@ public class NGramGenerator {
         String s = "";
         String taggedInput = POSTagger.tag(input);
         ExpressionList trainingData = MLDAO.getSentiments();
-        ExpressionList basisData=BWDAO.getSentiments();
+        ExpressionList basisData = BWDAO.getSentiments();
         String[] tokens = taggedInput.split(" ");
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
@@ -29,8 +29,8 @@ public class NGramGenerator {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
                         if (senti != null) {
                             sum += senti.sentimentValue;
-                            numberOfDefs++;
                         }
+                        numberOfDefs++;
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
@@ -40,15 +40,15 @@ public class NGramGenerator {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
                         if (senti != null) {
                             sum += senti.sentimentValue;
-                            numberOfDefs++;
                         }
+                        numberOfDefs++;
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
-                if (sum <= (SentiAnalyzer.getMean(trainingData)+SentiAnalyzer.getMean(basisData))/2) {
+                if (sum <= (SentiAnalyzer.getMean(trainingData) + SentiAnalyzer.getMean(basisData)) / 2) {
                     expression.isInappropriate = true;
                 }
             }
@@ -98,10 +98,9 @@ public class NGramGenerator {
         NGramParser.parse(expressions);
         s += "\n";
         for (Expression expression : expressions) {
-            if (expression.isInvoked) {
-                System.out.println(expression.word);
-            }
-            if (expression.isInappropriate&expression.isInvoked) {
+            if (!expression.isInvoked) {
+                s += expression.word + " ";
+            } else if (expression.isInappropriate & expression.isInvoked) {
                 s += "<Inapp>" + expression.word + "</Inapp> ";
             } else {
                 s += expression.word + " ";
@@ -113,8 +112,6 @@ public class NGramGenerator {
     public static String generateAndLearn(String input) {
         String s = "";
         String taggedInput = POSTagger.tag(input);
-        ExpressionList trainingData = BWDAO.getSentiments();
-        ExpressionList basisData=BWDAO.getSentiments();
         String[] tokens = taggedInput.split(" ");
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
@@ -129,9 +126,8 @@ public class NGramGenerator {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
                         if (senti != null) {
                             sum += senti.sentimentValue;
-                            numberOfDefs++;
-
                         }
+                        numberOfDefs++;
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Learner.class
@@ -142,9 +138,8 @@ public class NGramGenerator {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
                         if (senti != null) {
                             sum += senti.sentimentValue;
-                            numberOfDefs++;
-
                         }
+                        numberOfDefs++;
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(Learner.class
@@ -152,7 +147,7 @@ public class NGramGenerator {
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
-                if (sum <= (SentiAnalyzer.getMean(trainingData)+SentiAnalyzer.getMean(basisData))/2) {
+                if (InappExp.isInappropriate(expression)) {
                     expression.isInappropriate = true;
                 }
             }
