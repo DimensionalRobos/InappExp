@@ -14,6 +14,7 @@ class Expression {
     public String word;
     public boolean isInappropriate = false;
     public String postag;
+    public String nertag;
     public double value = 0;
     public boolean isInvoked=false;
 

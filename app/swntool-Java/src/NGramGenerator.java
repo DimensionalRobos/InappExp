@@ -1,5 +1,4 @@
 
-import edu.smu.tspell.wordnet.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,43 +11,56 @@ public class NGramGenerator {
 
     public static String generateAndRecognize(String input) {
         String s = "";
-        String taggedInput = POSTagger.tag(input);
+        String posTaggedInput = POSTagger.tag(input);
+        String nerTaggedInput = NERTagger.tag(input);
+        s += posTaggedInput + "\n";
+        s += nerTaggedInput + "\n";
         ExpressionList trainingData = MLDAO.getSentiments();
         ExpressionList basisData = BWDAO.getSentiments();
-        String[] tokens = taggedInput.split(" ");
+        String[] tokens = posTaggedInput.split(" ");
+        String[] nerTokens = nerTaggedInput.split(" ");
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
             expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
         }
+        for (int i = 0; i < tokens.length; i++) {
+            expressions[i].nertag = nerTokens[i].split("/")[1];
+        }
         for (Expression expression : expressions) {
             double sum = 0;
             int numberOfDefs = 0;
-            if (shouldBeTested(expression.postag)) {
-                try {
-                    for (String look : DefinitionExtractor.extract(expression.word)) {
-                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
-                        if (senti != null) {
-                            sum += senti.sentimentValue;
+            if (shouldBeTested(expression)) {
+                if (!BWDAO.exists(expression.word)) {
+                    try {
+                        for (String look : DefinitionExtractor.extract(expression.word)) {
+                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
+                            if (senti != null) {
+                                sum += senti.sentimentValue;
+                                numberOfDefs++;
+                            }
                         }
-                        numberOfDefs++;
+                    } catch (Exception ex) {
+                        Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (Exception ex) {
-                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    for (String scrape : UrbanDictScraper.scrape(expression.word)) {
-                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                        if (senti != null) {
-                            sum += senti.sentimentValue;
+                    try {
+                        for (String scrape : UrbanDictScraper.scrape(expression.word)) {
+                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
+                            if (senti != null) {
+                                sum += senti.sentimentValue;
+                                numberOfDefs++;
+                            }
                         }
-                        numberOfDefs++;
+                    } catch (IOException ex) {
+                        Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (IOException ex) {
-                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                    sum /= numberOfDefs;
+                    expression.value = sum;
                 }
-                sum /= numberOfDefs;
-                expression.value = sum;
-                if (sum <= (SentiAnalyzer.getMean(trainingData) + SentiAnalyzer.getMean(basisData)) / 2) {
+                else{
+                    expression.isInappropriate=true;
+                    continue;
+                }
+                if (InappExp.isInappropriate(expression)) {
                     expression.isInappropriate = true;
                 }
             }
@@ -111,23 +123,31 @@ public class NGramGenerator {
 
     public static String generateAndLearn(String input) {
         String s = "";
-        String taggedInput = POSTagger.tag(input);
-        String[] tokens = taggedInput.split(" ");
+        String posTaggedInput = POSTagger.tag(input);
+        String nerTaggedInput = NERTagger.tag(input);
+        s += posTaggedInput + "\n";
+        s += nerTaggedInput + "\n";
+        String[] tokens = posTaggedInput.split(" ");
+        String[] nerTokens = nerTaggedInput.split(" ");
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
             expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
         }
+        for (int i = 0; i < tokens.length; i++) {
+            expressions[i].nertag = nerTokens[i].split("/")[1];
+        }
         for (Expression expression : expressions) {
             double sum = 0;
             int numberOfDefs = 0;
-            if (shouldBeTested(expression.postag)) {
+            if (shouldBeTested(expression)) {
+                if(!BWDAO.exists(expression.word)){
                 try {
                     for (String look : DefinitionExtractor.extract(expression.word)) {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
                         if (senti != null) {
                             sum += senti.sentimentValue;
+                            numberOfDefs++;
                         }
-                        numberOfDefs++;
                     }
                 } catch (Exception ex) {
                     Logger.getLogger(Learner.class
@@ -138,8 +158,8 @@ public class NGramGenerator {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
                         if (senti != null) {
                             sum += senti.sentimentValue;
+                            numberOfDefs++;
                         }
-                        numberOfDefs++;
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(Learner.class
@@ -147,6 +167,11 @@ public class NGramGenerator {
                 }
                 sum /= numberOfDefs;
                 expression.value = sum;
+                }
+                else{
+                    expression.isInappropriate=true;
+                    continue;
+                }
                 if (InappExp.isInappropriate(expression)) {
                     expression.isInappropriate = true;
                 }
@@ -201,8 +226,11 @@ public class NGramGenerator {
         return s;
     }
 
-    private static boolean shouldBeTested(String postag) {
-        return postag.startsWith("NN") | postag.startsWith("FW") | postag.startsWith("RB") | postag.startsWith("VB") | postag.startsWith("JJ");
+    private static boolean shouldBeTested(Expression e) {
+        if (!SWDAO.exists(e.word) & (e.nertag.equals("O"))) {
+            return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
+        }
+        return false;
     }
 
     private static String generateNGram(Expression[] expressions, int startIndex, int countGrams) {

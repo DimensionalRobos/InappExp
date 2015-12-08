@@ -1205,3 +1205,118 @@ Hades#0
 char#0
 sear#0
 scorch#0
+moonshine#0
+corn liquor#0
+scandalous#0
+shocking#0
+abusive#0
+insulting#0
+scurrilous#0
+nasty#0
+tweet#0
+peep#0
+cheep#0
+chirp#0
+chirrup#0
+boo#0
+Bronx cheer#0
+hiss#0
+raspberry#0
+razzing#0
+snort#0
+bird#0
+brainsick#0
+demented#0
+distracted#0
+disturbed#0
+mad#0
+unbalanced#0
+unhinged#0
+half-baked#0
+screwball#0
+softheaded#0
+dotty#0
+gaga#0
+enamored#0
+infatuated#0
+in love#0
+smitten#0
+soft on#0
+taken with#0
+balmy#0
+barmy#0
+bats#0
+batty#0
+bonkers#0
+buggy#0
+cracked#0
+crackers#0
+daft#0
+fruity#0
+haywire#0
+kooky#0
+kookie#0
+loco#0
+loopy#0
+nuts#0
+nutty#0
+round the bend#0
+around the bend#0
+wacky#0
+whacky#0
+flagitious#0
+grievous#0
+heinous#0
+monstrous#0
+abominable#0
+awful#0
+dreadful#0
+painful#0
+terrible#0
+unspeakable#0
+pilfer#0
+cabbage#0
+purloin#0
+pinch#0
+abstract#0
+snarf#0
+swipe#0
+filch#0
+lift#0
+bodge#0
+bumble#0
+fumble#0
+botch up#0
+blow#0
+screw up#0
+ball up#0
+muck up#0
+fluff#0
+bollix#0
+bollix up#0
+bollocks up#0
+bobble#0
+mishandle#0
+louse up#0
+foul up#0
+mess up#0
+fuck up#0
+genus Phallus#0
+accurse#0
+execrate#0
+comminate#0
+anathematize#0
+anathematise#0
+cuss#0
+blaspheme#0
+swear#0
+accursed#0
+accurst#0
+finish up#0
+land up#0
+fetch up#0
+end up#0
+finish#0
+distorted#0
+misrepresented#0
+twisted#0

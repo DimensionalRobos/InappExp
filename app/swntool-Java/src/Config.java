@@ -15,4 +15,5 @@ public class Config {
     public static String NGramData="NGram.txt";
     public static String BasisData="WordVal.txt";
     public static String ResampleData="Resample.txt";
+    public static String stopWordData="stopwords.txt";
 }

@@ -15,6 +15,11 @@ import java.util.logging.Logger;
  */
 public class BWDAO {
 
+    public static void main(String[]args){
+        System.out.println(exists("fuck"));
+        System.out.println(exists("screw"));
+    }
+    
     public static boolean exists(String word) {
         word = word.toLowerCase();
         try {
@@ -23,7 +28,8 @@ public class BWDAO {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
                 sentiment.word=sentiment.word.trim();
-                if (sentiment.word.equals(word)) {
+                word=word.trim();
+                if (sentiment.word.equals(word=word.toLowerCase())) {
                     return true;
                 }
             }
