@@ -227,7 +227,7 @@ public class NGramGenerator {
     }
 
     private static boolean shouldBeTested(Expression e) {
-        if (!SWDAO.exists(e.word) & (e.nertag.equals("O"))) {
+        if (!EWDAO.exists(e.word) & (e.nertag.equals("O"))) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;

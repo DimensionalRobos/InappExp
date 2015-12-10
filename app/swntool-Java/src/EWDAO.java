@@ -7,14 +7,14 @@ import java.util.logging.Logger;
  *
  * @author Daikaiser
  */
-public class SWDAO {
+public class EWDAO {
     public static boolean exists(String word){
         word = word.toLowerCase();
         try {
-            Scanner scan = new Scanner(new File(Config.BasisData));
+            Scanner scan = new Scanner(new File(Config.stopWordData));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
-                if (s.equals(word)) {
+                if (s.equalsIgnoreCase(word)) {
                     return true;
                 }
             }
