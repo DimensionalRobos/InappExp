@@ -83,7 +83,10 @@ public class BWDAO {
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
-                if (sentiment.word.equals(word)) {
+                sentiment.word=sentiment.word.trim();
+                String testWord=word.toLowerCase();
+                testWord=testWord.trim();
+                if (sentiment.word.equalsIgnoreCase(testWord)) {
                     return sentiment;
                 }
             }

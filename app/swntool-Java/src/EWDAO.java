@@ -19,7 +19,7 @@ public class EWDAO {
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(MLDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EWDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

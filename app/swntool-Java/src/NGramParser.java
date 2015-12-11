@@ -9,7 +9,6 @@ public class NGramParser {
         WordList NGrams = NGDAO.extractNGrams();
         for (int i = 0; i < expressions.length; i++) {
             for (String NGram : NGrams) {
-                System.err.println(NGram);
                 String[] NGramPattern = NGram.split(" ");
                 for (String NGramUnit : NGramPattern) {
                     try {

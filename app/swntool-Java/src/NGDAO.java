@@ -33,7 +33,7 @@ public class NGDAO {
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(MLDAO.class
+            Logger.getLogger(NGDAO.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
         return NGrams;
