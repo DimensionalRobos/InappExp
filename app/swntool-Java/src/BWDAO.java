@@ -14,11 +14,6 @@ import java.util.logging.Logger;
  * @author Daikaiser
  */
 public class BWDAO {
-
-    public static void main(String[]args){
-        System.out.println(exists("fuck"));
-        System.out.println(exists("screw"));
-    }
     
     public static boolean exists(String word) {
         word = word.toLowerCase();
@@ -34,7 +29,7 @@ public class BWDAO {
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(MLDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BWDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -77,8 +72,24 @@ public class BWDAO {
                 expressions.add(sentiment);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(MLDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BWDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return expressions;
+    }
+    
+    public static Sentiment findExpression(String word){
+        try {
+            Scanner scan=new Scanner(new File(Config.BasisData));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
+                if (sentiment.word.equals(word)) {
+                    return sentiment;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BWDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
