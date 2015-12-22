@@ -1320,3 +1320,20 @@ finish#0
 distorted#0
 misrepresented#0
 twisted#0
+knock#0
+bash#0
+belt#0
+smash-up#0
+overhead#0
+crash#0
+dash#0
+bankrupt#0
+ruin#0
+break#0
+crush#0
+demolish#0
+bang up#0
+smash up#0
+stemmer#0
+sprigger#0
+stripper well#0
