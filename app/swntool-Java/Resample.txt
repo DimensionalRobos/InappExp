@@ -1337,3 +1337,15 @@ smash up#0
 stemmer#0
 sprigger#0
 stripper well#0
+killing#0
+putting to death#0
+stamp out#0
+toss off#0
+pop#0
+bolt down#0
+belt down#0
+pour down#0
+down#0
+drink down#0
+obliterate#0
+wipe out#0
