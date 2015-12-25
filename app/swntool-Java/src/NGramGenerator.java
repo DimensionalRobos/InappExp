@@ -15,8 +15,6 @@ public class NGramGenerator {
         String nerTaggedInput = NERTagger.tag(input);
         s += posTaggedInput + "\n";
         s += nerTaggedInput + "\n";
-        ExpressionList trainingData = MLDAO.getSentiments();
-        ExpressionList basisData = BWDAO.getSentiments();
         String[] tokens = posTaggedInput.split(" ");
         String[] nerTokens = nerTaggedInput.split(" ");
         Expression[] expressions = new Expression[tokens.length];
@@ -34,7 +32,12 @@ public class NGramGenerator {
                 expression.sentimentValue=sentiWordNet.extract(input);
             }
             catch(Exception e){
-                
+                try{
+                    SentimentCorpus sentiWordNet=new SentimentCorpus(Config.SentiWordNetPath);
+                }
+                catch(Exception ex){
+                    
+                }
             }
             if (shouldBeTested(expression)) {
                 if (!BWDAO.exists(expression.word)) {
