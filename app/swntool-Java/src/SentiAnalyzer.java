@@ -15,7 +15,7 @@ public class SentiAnalyzer {
             return null;
         }
         try {
-            SentimentCorpus sentiWordNet = new SentimentCorpus("swn.txt");
+            SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath);
             LinkedList<Sentiment> sentiments = new LinkedList<Sentiment>();
             taggedDoc = taggedDoc.toLowerCase();
             taggedDoc = taggedDoc.replace('_', '#');
