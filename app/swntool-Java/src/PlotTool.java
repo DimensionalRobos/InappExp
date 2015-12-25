@@ -14,7 +14,7 @@ import org.math.plot.Plot2DPanel;
  */
 public class PlotTool {
 
-    static void funcPlot(LinkedList<Sentiment> sentiments,String title) throws Exception {
+    static void learnPlot(LinkedList<Sentiment> sentiments,String title) throws Exception {
         double[] y = new double[sentiments.size()];
         double[] x = new double[sentiments.size()];
         int i = 0;

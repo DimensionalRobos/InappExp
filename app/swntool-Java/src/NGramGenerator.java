@@ -29,6 +29,13 @@ public class NGramGenerator {
         for (Expression expression : expressions) {
             double sum = 0;
             int numberOfDefs = 0;
+            try{
+                SentimentCorpus sentiWordNet=new SentimentCorpus(Config.SentiWordNetPath);
+                expression.sentimentValue=sentiWordNet.extract(input);
+            }
+            catch(Exception e){
+                
+            }
             if (shouldBeTested(expression)) {
                 if (!BWDAO.exists(expression.word)) {
                     try {

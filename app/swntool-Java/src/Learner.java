@@ -282,7 +282,7 @@ public class Learner extends javax.swing.JFrame {
         }
         this.learn(sample, sentiments);
         try {
-            PlotTool.funcPlot(new LinkedList<>(sentiments),"Feature sets Regression");
+            PlotTool.learnPlot(new LinkedList<>(sentiments),"Feature sets Regression");
         } catch (Exception ex) {
             Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -297,16 +297,15 @@ public class Learner extends javax.swing.JFrame {
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
                 sentiments.add(sentiment);
             }
-            try {
-                PlotTool.funcPlot(sentiments,"Inappropriate Expressions Regression");
-            } catch (Exception ex) {
-                Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-            }
             txaInput.setText(txaInput.getText().trim());
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "You selected an unopenable file");
         }
-        
+        try {
+            PlotTool.learnPlot(new LinkedList<>(sentiments),"Inappropriate Expressions Regression");
+        } catch (Exception ex) {
+            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+        }
         sentiments.clear();
         try {
             Scanner scanFile = new Scanner(new File(Config.TrainingData));
@@ -315,14 +314,14 @@ public class Learner extends javax.swing.JFrame {
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
                 sentiments.add(sentiment);
             }
-            try {
-                PlotTool.funcPlot(sentiments,"Feature sets Regression");
-            } catch (Exception ex) {
-                Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-            }
             txaInput.setText(txaInput.getText().trim());
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "You selected an unopenable file");
+        }
+        try {
+            PlotTool.learnPlot(new LinkedList<>(sentiments),"Feature sets Regression");
+        } catch (Exception ex) {
+            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnViewLearningActionPerformed
 
@@ -348,7 +347,7 @@ public class Learner extends javax.swing.JFrame {
         }
         this.resample(sample, sentiments);
         try {
-            PlotTool.funcPlot(new LinkedList<>(sentiments),"Feature sets Regression");
+            PlotTool.learnPlot(new LinkedList<>(sentiments),"Feature sets Regression");
         } catch (Exception ex) {
             Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -17,7 +17,8 @@ class Expression {
     public String nertag;
     public double value = 0;
     public boolean isInvoked=false;
-
+    public double sentimentValue=0;
+    
     public Expression(String word, String postag) {
         this.word = word;
         this.postag = postag;
