@@ -29,7 +29,6 @@ public class NGDAO {
                 if (!NGrams.contains(s)) {
                     NGrams.add(s);
                     System.out.println(s);
-
                 }
             }
         } catch (FileNotFoundException ex) {

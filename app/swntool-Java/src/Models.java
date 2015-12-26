@@ -12,6 +12,7 @@ import java.util.LinkedList;
 class Expression {
 
     public String word;
+    public LinkedList<String> baseForms=new LinkedList<String>();
     public boolean isInappropriate = false;
     public String postag;
     public String nertag;
