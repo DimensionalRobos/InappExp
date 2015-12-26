@@ -27,16 +27,19 @@ public class NGramGenerator {
         for (Expression expression : expressions) {
             double sum = 0;
             int numberOfDefs = 0;
-            try{
-                SentimentCorpus sentiWordNet=new SentimentCorpus(Config.SentiWordNetPath);
-                expression.sentimentValue=sentiWordNet.extract(input);
-            }
-            catch(Exception e){
-                try{
-                    SentimentCorpus sentiWordNet=new SentimentCorpus(Config.SentiWordNetPath);
-                }
-                catch(Exception ex){
-                    
+            expression.baseForms = Stemmer.stem(expression.word, expression.postag);
+            try {
+                SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath);
+                expression.sentimentValue = sentiWordNet.extract(input);
+            } catch (Exception e) {
+                for (String baseForm : expression.baseForms) {
+                    try {
+                        SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath);
+                        expression.sentimentValue = sentiWordNet.extract(input);
+                        break;
+                    } 
+                    catch (Exception ex) {
+                    }
                 }
             }
             if (shouldBeTested(expression)) {
@@ -67,7 +70,7 @@ public class NGramGenerator {
                     expression.value = sum;
                 } else {
                     Sentiment sent = BWDAO.findExpression(expression.word);
-                    expression.value=sent.sentimentValue;
+                    expression.value = sent.sentimentValue;
                     expression.isInappropriate = true;
                     continue;
                 }
@@ -180,7 +183,7 @@ public class NGramGenerator {
                     expression.value = sum;
                 } else {
                     Sentiment sent = BWDAO.findExpression(expression.word);
-                    expression.value=sent.sentimentValue;
+                    expression.value = sent.sentimentValue;
                     expression.isInappropriate = true;
                     continue;
                 }
@@ -239,7 +242,7 @@ public class NGramGenerator {
     }
 
     private static boolean shouldBeTested(Expression e) {
-        if (!EWDAO.exists(e.word)&!e.nertag.equals("PERSON")) {
+        if (!EWDAO.exists(e.word) & !e.nertag.equals("PERSON")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
