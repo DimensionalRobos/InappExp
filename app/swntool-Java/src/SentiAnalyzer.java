@@ -44,8 +44,6 @@ public class SentiAnalyzer {
 
             //PlotTool.threshPlot(sentiments);
             //PlotTool.funcPlot(sentiments);
-        } catch (IOException ex) {
-            Logger.getLogger(SentiAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(SentiAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
         }
