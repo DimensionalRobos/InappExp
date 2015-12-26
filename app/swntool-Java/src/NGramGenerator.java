@@ -37,43 +37,35 @@ public class NGramGenerator {
                         SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath);
                         expression.sentimentValue = sentiWordNet.extract(input);
                         break;
-                    } 
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
                     }
                 }
             }
             if (shouldBeTested(expression)) {
-                if (!BWDAO.exists(expression.word)) {
-                    try {
-                        for (String look : DefinitionExtractor.extract(expression.word)) {
-                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
-                            if (senti != null) {
-                                sum += senti.sentimentValue;
-                                numberOfDefs++;
-                            }
+                try {
+                    for (String look : DefinitionExtractor.extract(expression.word)) {
+                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
+                        if (senti != null) {
+                            sum += senti.sentimentValue;
+                            numberOfDefs++;
                         }
-                    } catch (Exception ex) {
-                        Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    try {
-                        for (String scrape : UrbanDictScraper.scrape(expression.word)) {
-                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                            if (senti != null) {
-                                sum += senti.sentimentValue;
-                                numberOfDefs++;
-                            }
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    sum /= numberOfDefs;
-                    expression.value = sum;
-                } else {
-                    Sentiment sent = BWDAO.findExpression(expression.word);
-                    expression.value = sent.sentimentValue;
-                    expression.isInappropriate = true;
-                    continue;
+                } catch (Exception ex) {
+                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                try {
+                    for (String scrape : UrbanDictScraper.scrape(expression.word)) {
+                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
+                        if (senti != null) {
+                            sum += senti.sentimentValue;
+                            numberOfDefs++;
+                        }
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                sum /= numberOfDefs;
+                expression.value = sum;
                 if (InappExp.isInappropriate(expression)) {
                     expression.isInappropriate = true;
                 }
