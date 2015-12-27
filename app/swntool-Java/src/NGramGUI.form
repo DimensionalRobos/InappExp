@@ -28,9 +28,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="txtInput" alignment="0" min="-2" pref="315" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnRecognize" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnWordLearn" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnNGramLearn" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnWordLearn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnRecognize" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnNGramLearn" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnWordLearn1" alignment="1" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -62,6 +65,8 @@
                       <Component id="btnNGramLearn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnWordLearn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnWordLearn1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" pref="155" max="32767" attributes="0"/>
@@ -121,6 +126,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNGramLearnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnWordLearn1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Logs"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWordLearn1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

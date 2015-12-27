@@ -29,6 +29,7 @@ public class NGramGUI extends javax.swing.JFrame {
         btnRecognize = new javax.swing.JButton();
         btnWordLearn = new javax.swing.JButton();
         btnNGramLearn = new javax.swing.JButton();
+        btnWordLearn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inappropriate Expressions Recognition");
@@ -62,6 +63,13 @@ public class NGramGUI extends javax.swing.JFrame {
             }
         });
 
+        btnWordLearn1.setText("Logs");
+        btnWordLearn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWordLearn1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,9 +78,11 @@ public class NGramGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(btnRecognize, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnWordLearn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnNGramLearn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnWordLearn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRecognize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNGramLearn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnWordLearn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -98,6 +108,8 @@ public class NGramGUI extends javax.swing.JFrame {
                         .addComponent(btnNGramLearn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnWordLearn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnWordLearn1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                 .addContainerGap())
@@ -118,6 +130,10 @@ public class NGramGUI extends javax.swing.JFrame {
     private void btnNGramLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNGramLearnActionPerformed
         this.txaOutput.setText(NGramGenerator.generateAndLearn(this.txtInput.getText()));
     }//GEN-LAST:event_btnNGramLearnActionPerformed
+
+    private void btnWordLearn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWordLearn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnWordLearn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,6 +174,7 @@ public class NGramGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnNGramLearn;
     private javax.swing.JButton btnRecognize;
     private javax.swing.JButton btnWordLearn;
+    private javax.swing.JButton btnWordLearn1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
