@@ -46,6 +46,7 @@ after
 again
 against
 all
+awhile
 am
 an
 and
