@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,17 +9,25 @@ import java.util.logging.Logger;
  * @author Daikaiser
  */
 public class InappExp {
-    public static boolean isInappropriate(Expression expression){
+
+    public static boolean isInappropriate(Expression expression) {
         ExpressionList trainingData = MLDAO.getSentiments();
-        if(BWDAO.exists(expression.word))return true;
-        for(String baseForm:expression.baseForms)
-            if(BWDAO.exists(baseForm))return true;
-        return expression.value<SentiAnalyzer.getMean(trainingData);
+        if (BWDAO.exists(expression.word)) {
+            return true;
+        }
+        for (String baseForm : expression.baseForms) {
+            if (BWDAO.exists(baseForm)) {
+                return true;
+            }
+        }
+        return expression.value < SentiAnalyzer.getMean(trainingData);
     }
-    public static double threshold(){
+
+    public static double threshold() {
         ExpressionList trainingData = MLDAO.getSentiments();
         return SentiAnalyzer.getMean(trainingData);
     }
+
     public static String recognize(String input) {
         String s = "";
         String posTaggedInput = POSTagger.tag(input);
@@ -125,7 +134,7 @@ public class InappExp {
         }
         NGramParser.parse(expressions);
         s += "\n";
-        s +=analyzeSemantics(expressions);
+        s += analyzeSemantics(expressions);
         for (Expression expression : expressions) {
             if (!expression.isInvoked) {
                 s += expression.word + " ";
@@ -137,25 +146,48 @@ public class InappExp {
         }
         return s;
     }
+
     public static boolean shouldBeTested(Expression e) {
         if (!EWDAO.exists(e.word) & !e.nertag.equals("PERSON")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
     }
-    public static String analyzeSemantics(Expression[]expressions){
-        String s="\n";
-        for(int i=0;i<expressions.length;i++){
-            if(expressions[i].isInvoked){
-                s+="(";
-                for(;i<expressions.length;i++){
-                    if(expressions[i].isInvoked)
-                        s+=" "+expressions[i].word+" ";
+
+    public static String analyzeSemantics(Expression[] expressions) {
+        String s = "\n";
+        for (int i = 0; i < expressions.length; i++) {
+            if (expressions[i].isInvoked) {
+                LinkedList<Expression> testExpressions = new LinkedList<Expression>();
+                int start = i;
+                s += "(";
+                for (; i < expressions.length; i++) {
+                    if (expressions[i].isInvoked) {
+                        s += " " + expressions[i].word + " ";
+                        testExpressions.add(expressions[i]);
+                    } 
                     else break;
                 }
-                s+=")\n";
+                s += ")";
+                if (!inappropriate(testExpressions)) {
+                    s+= " is not Inappropriate";
+                    for (i=start; i < expressions.length; i++) {
+                        if (expressions[i].isInvoked) {
+                            expressions[i].isInvoked=false;
+                        } 
+                        else break;
+                    }
+                }
+                else{
+                    s+=" is Inappropriate";
+                }
+                s+="\n";
             }
         }
         return s;
+    }
+
+    public static boolean inappropriate(LinkedList<Expression> expressions) {
+        return true;
     }
 }
