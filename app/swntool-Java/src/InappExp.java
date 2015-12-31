@@ -218,7 +218,7 @@ public class InappExp {
     public static boolean passiveVoice(LinkedList<Expression> expressions) {
         for (Expression expression : expressions) {
             if (expression.postag.contains("VB")) {
-                if (expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
+                if (expression.word.equalsIgnoreCase("'s")|expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
                     return true;
                 }
             }
