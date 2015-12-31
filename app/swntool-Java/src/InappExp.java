@@ -106,28 +106,46 @@ public class InappExp {
         }
         s += "\nNGrams:\n";
         for (int i = 0; i < expressions.length; i++) {
-            if (expressions[i].isInappropriate) {
+            try {
+                    s += NGramGenerator.generateNGram(expressions, i - 1, 2);
+                } catch (Exception e) {
+
+                }
+                try {
+                    s += NGramGenerator.generateNGram(expressions, i - 2, 3);
+                } catch (Exception e) {
+
+                }
+                try {
+                    s += NGramGenerator.generateNGram(expressions, i - 3, 4);
+                } catch (Exception e) {
+
+                }
+                try {
+                    s += NGramGenerator.generateNGram(expressions, i - 4, 5);
+                } catch (Exception e) {
+
+                }
                 try {
                     s += NGramGenerator.generateNGram(expressions, i, 2);
+                } catch (Exception e) {
+
+                }
+                try {
                     s += NGramGenerator.generateNGram(expressions, i, 3);
                 } catch (Exception e) {
-                    
+
                 }
-            }
-            try {
-                if (expressions[i + 2].isInappropriate) {
-                    s += NGramGenerator.generateNGram(expressions, i, 3);
+                try {
+                    s += NGramGenerator.generateNGram(expressions, i, 4);
+                } catch (Exception e) {
+
                 }
-            } catch (Exception e) {
-                
-            }
-            try {
-                if (expressions[i + 1].isInappropriate) {
-                    s += NGramGenerator.generateNGram(expressions, i, 2);
+                try {
+                    s += NGramGenerator.generateNGram(expressions, i, 5);
+                } catch (Exception e) {
+
                 }
-            } catch (Exception e) {
-                
-            }
         }
         for (Expression expression : expressions) {
             System.err.println(expression.value);
