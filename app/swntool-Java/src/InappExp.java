@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -8,17 +9,25 @@ import java.util.logging.Logger;
  * @author Daikaiser
  */
 public class InappExp {
-    public static boolean isInappropriate(Expression expression){
+    
+    public static boolean isInappropriate(Expression expression) {
         ExpressionList trainingData = MLDAO.getSentiments();
-        if(BWDAO.exists(expression.word))return true;
-        for(String baseForm:expression.baseForms)
-            if(BWDAO.exists(baseForm))return true;
-        return expression.value<SentiAnalyzer.getMean(trainingData);
+        if (BWDAO.exists(expression.word)) {
+            return true;
+        }
+        for (String baseForm : expression.baseForms) {
+            if (BWDAO.exists(baseForm)) {
+                return true;
+            }
+        }
+        return expression.value < SentiAnalyzer.getMean(trainingData);
     }
-    public static double threshold(){
+    
+    public static double threshold() {
         ExpressionList trainingData = MLDAO.getSentiments();
         return SentiAnalyzer.getMean(trainingData);
     }
+    
     public static String recognize(String input) {
         String s = "";
         String posTaggedInput = POSTagger.tag(input);
@@ -102,7 +111,7 @@ public class InappExp {
                     s += NGramGenerator.generateNGram(expressions, i, 2);
                     s += NGramGenerator.generateNGram(expressions, i, 3);
                 } catch (Exception e) {
-
+                    
                 }
             }
             try {
@@ -110,14 +119,14 @@ public class InappExp {
                     s += NGramGenerator.generateNGram(expressions, i, 3);
                 }
             } catch (Exception e) {
-
+                
             }
             try {
                 if (expressions[i + 1].isInappropriate) {
                     s += NGramGenerator.generateNGram(expressions, i, 2);
                 }
             } catch (Exception e) {
-
+                
             }
         }
         for (Expression expression : expressions) {
@@ -125,7 +134,7 @@ public class InappExp {
         }
         NGramParser.parse(expressions);
         s += "\n";
-        s +=analyzeSemantics(expressions);
+        s += analyzeSemantics(expressions);
         for (Expression expression : expressions) {
             if (!expression.isInvoked) {
                 s += expression.word + " ";
@@ -137,25 +146,97 @@ public class InappExp {
         }
         return s;
     }
+    
     public static boolean shouldBeTested(Expression e) {
-        if (!EWDAO.exists(e.word) & !e.nertag.equals("PERSON")) {
+        if (!EWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
     }
-    public static String analyzeSemantics(Expression[]expressions){
-        String s="\n";
-        for(int i=0;i<expressions.length;i++){
-            if(expressions[i].isInvoked){
-                s+="(";
-                for(;i<expressions.length;i++){
-                    if(expressions[i].isInvoked)
-                        s+=" "+expressions[i].word+" ";
-                    else break;
+    
+    public static String analyzeSemantics(Expression[] expressions) {
+        String s = "\n";
+        for (int i = 0; i < expressions.length; i++) {
+            if (expressions[i].isInvoked) {
+                LinkedList<Expression> testExpressions = new LinkedList<Expression>();
+                int start = i;
+                s += "(";
+                for (; i < expressions.length; i++) {
+                    if (expressions[i].isInvoked) {
+                        s += " " + expressions[i].word + " ";
+                        testExpressions.add(expressions[i]);
+                    } else {
+                        break;
+                    }
                 }
-                s+=")\n";
+                s += ")";
+                if (!inappropriate(testExpressions)) {
+                    s += " is not Inappropriate";
+                    for (i = start; i < expressions.length; i++) {
+                        if (expressions[i].isInvoked) {
+                            expressions[i].isInvoked = false;
+                        } else {
+                            break;
+                        }
+                    }
+                } else {
+                    s += " is Inappropriate";
+                }
+                s += "\n";
             }
         }
         return s;
+    }
+    
+    public static boolean inappropriate(LinkedList<Expression> expressions) {
+        boolean inappropriateness = probablyInappropriate(expressions);
+        if (passiveVoice(expressions)) {
+            for (int i = expressions.size() - 1; i <= 0; i--) {
+                
+            }
+        } else {
+            for (Expression expression : expressions) {
+                
+            }
+        }
+        double[] inappropriatenessValues = new double[expressions.size()];
+        double[] sentimentalValues = new double[expressions.size()];
+        for (int i = 0; i < expressions.size(); i++) {
+            inappropriatenessValues[i] = expressions.get(i).value;
+            sentimentalValues[i] = expressions.get(i).sentimentValue;
+        }
+        return inappropriateness;
+    }
+    
+    public static boolean negativeWord(Expression expression) {
+        if (expression.postag.startsWith("RB")) {
+            return expression.word.equalsIgnoreCase("not") | expression.word.equalsIgnoreCase("n't") | expression.word.equalsIgnoreCase("never");
+        }
+        return false;
+    }
+    
+    public static boolean passiveVoice(LinkedList<Expression> expressions) {
+        for (Expression expression : expressions) {
+            if (expression.postag.contains("VB")) {
+                if (expression.word.equalsIgnoreCase("'s")|expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public static boolean probablyInappropriate(LinkedList<Expression> expressions) {
+        boolean inappropriateness = false;
+        for (Expression expression : expressions) {
+            if (expression.isInappropriate & expression.value > threshold()) {
+                inappropriateness = true;
+            }
+        }
+        return inappropriateness;
+    }
+    
+    public static boolean targetableUnit(Expression expression) {
+        return expression.nertag.equalsIgnoreCase("person")|expression.nertag.equalsIgnoreCase("location")|expression.postag.contains("PR");
     }
 }

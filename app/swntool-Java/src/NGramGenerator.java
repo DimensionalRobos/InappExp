@@ -8,7 +8,7 @@ import java.util.logging.Logger;
  * @author Daikaiser
  */
 public class NGramGenerator {
-    
+
     public static String generateAndLearn(String input) {
         String s = "";
         String posTaggedInput = POSTagger.tag(input);
@@ -84,29 +84,53 @@ public class NGramGenerator {
         for (int i = 0; i < expressions.length; i++) {
             if (expressions[i].isInappropriate) {
                 try {
+                    s += generateNGram(expressions, i - 1, 2);
+                    NGDAO.write(generateNGram(expressions, i - 1, 2));
+                } catch (Exception e) {
+
+                }
+                try {
+                    s += generateNGram(expressions, i - 2, 3);
+                    NGDAO.write(generateNGram(expressions, i - 2, 3));
+                } catch (Exception e) {
+
+                }
+                try {
+                    s += generateNGram(expressions, i - 3, 4);
+                    NGDAO.write(generateNGram(expressions, i - 3, 4));
+                } catch (Exception e) {
+
+                }
+                try {
+                    s += generateNGram(expressions, i - 4, 5);
+                    NGDAO.write(generateNGram(expressions, i, 5));
+                } catch (Exception e) {
+
+                }
+                try {
                     s += generateNGram(expressions, i, 2);
                     NGDAO.write(generateNGram(expressions, i, 2));
+                } catch (Exception e) {
+
+                }
+                try {
                     s += generateNGram(expressions, i, 3);
                     NGDAO.write(generateNGram(expressions, i, 3));
                 } catch (Exception e) {
 
                 }
-            }
-            try {
-                if (expressions[i + 2].isInappropriate) {
-                    s += generateNGram(expressions, i, 3);
-                    NGDAO.write(generateNGram(expressions, i, 3));
-                }
-            } catch (Exception e) {
+                try {
+                    s += generateNGram(expressions, i, 4);
+                    NGDAO.write(generateNGram(expressions, i, 4));
+                } catch (Exception e) {
 
-            }
-            try {
-                if (expressions[i + 1].isInappropriate) {
-                    s += generateNGram(expressions, i, 2);
-                    NGDAO.write(generateNGram(expressions, i, 2));
                 }
-            } catch (Exception e) {
+                try {
+                    s += generateNGram(expressions, i, 5);
+                    NGDAO.write(generateNGram(expressions, i, 5));
+                } catch (Exception e) {
 
+                }
             }
         }
         for (Expression expression : expressions) {
