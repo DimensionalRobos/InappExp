@@ -228,12 +228,6 @@ public class InappExp {
                 }
             }
         }
-//        double[] inappropriatenessValues = new double[expressions.size()];
-//        double[] sentimentalValues = new double[expressions.size()];
-//        for (int i = 0; i < expressions.size(); i++) {
-//            inappropriatenessValues[i] = expressions.get(i).value;
-//            sentimentalValues[i] = expressions.get(i).sentimentValue;
-//        }
         String s="";
         for(Expression expression:expressions){
             s+=expression.word+" ";
@@ -279,7 +273,15 @@ public class InappExp {
         if(expression.postag.contains("NN")){
             if(expression.nertag.equalsIgnoreCase("person")|expression.nertag.equalsIgnoreCase("location"))return true;
             for(String definition:expression.definitions){
-                if(definition.contains("man ")|definition.contains("men "))return true;
+                if(definition.contains("man ")|definition.contains("men ")|definition.contains(" he ")
+                                            | definition.contains(" she ")
+                                            | definition.contains(" person ")
+                                            | definition.contains(" people")
+                                            | definition.contains(" who ")
+                                            | definition.contains(" girl ")
+                                            | definition.contains(" boy ")
+                                            | definition.contains(" man ")
+                                            | definition.contains(" woman "))return true;
             }
         }
         return false;
