@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -11,7 +10,7 @@ import java.util.logging.Logger;
 public class InappExp {
     
     public static boolean isInappropriate(Expression expression) {
-        ExpressionList trainingData = MLDAO.getSentiments();
+        ExpressionList trainingData = BWDAO.getSentiments();
         if (BWDAO.exists(expression.word)) {
             return true;
         }
@@ -24,7 +23,7 @@ public class InappExp {
     }
     
     public static double threshold() {
-        ExpressionList trainingData = MLDAO.getSentiments();
+        ExpressionList trainingData = BWDAO.getSentiments();
         return SentiAnalyzer.getMean(trainingData);
     }
     
@@ -67,6 +66,7 @@ public class InappExp {
                         if (senti != null) {
                             sum += senti.sentimentValue;
                             numberOfDefs++;
+                            expression.definitions.add(look);
                         }
                     }
                 } catch (Exception ex) {
@@ -210,18 +210,36 @@ public class InappExp {
         boolean inappropriateness = probablyInappropriate(expressions);
         if (passiveVoice(expressions)) {
             for (int i = expressions.size() - 1; i <= 0; i--) {
-                
+                if(negativeWord(expressions.get(i))){
+                    inappropriateness=false;
+                }
+                if(targetableUnit(expressions.get(i))){
+                    inappropriateness=true;
+                }
             }
         } else {
             for (Expression expression : expressions) {
-                
+                if(negativeWord(expression)){
+                    inappropriateness=false;
+                }
+                if(targetableUnit(expression)){
+                    inappropriateness=true;
+                }
             }
         }
-        double[] inappropriatenessValues = new double[expressions.size()];
-        double[] sentimentalValues = new double[expressions.size()];
-        for (int i = 0; i < expressions.size(); i++) {
-            inappropriatenessValues[i] = expressions.get(i).value;
-            sentimentalValues[i] = expressions.get(i).sentimentValue;
+//        double[] inappropriatenessValues = new double[expressions.size()];
+//        double[] sentimentalValues = new double[expressions.size()];
+//        for (int i = 0; i < expressions.size(); i++) {
+//            inappropriatenessValues[i] = expressions.get(i).value;
+//            sentimentalValues[i] = expressions.get(i).sentimentValue;
+//        }
+        String s="";
+        for(Expression expression:expressions){
+            s+=expression.word+" ";
+        }
+        try {
+            PlotTool.expressionPlot(expressions, s);
+        } catch (Exception e) {
         }
         return inappropriateness;
     }
@@ -247,7 +265,7 @@ public class InappExp {
     public static boolean probablyInappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = false;
         for (Expression expression : expressions) {
-            if (expression.isInappropriate & expression.value > threshold()) {
+            if (expression.isInappropriate&expression.value<threshold()) {
                 inappropriateness = true;
             }
         }
@@ -255,6 +273,14 @@ public class InappExp {
     }
     
     public static boolean targetableUnit(Expression expression) {
-        return expression.nertag.equalsIgnoreCase("person")|expression.nertag.equalsIgnoreCase("location")|expression.postag.contains("PR");
+        if(expression.postag.contains("PR"))
+            return true;
+        if(expression.postag.contains("NN")){
+            if(expression.nertag.equalsIgnoreCase("person")|expression.nertag.equalsIgnoreCase("location"))return true;
+            for(String definition:expression.definitions){
+                if(definition.contains("man ")|definition.contains("men "))return true;
+            }
+        }
+        return false;
     }
 }

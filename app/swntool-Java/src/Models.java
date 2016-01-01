@@ -17,6 +17,7 @@ class Expression {
     public String postag;
     public String nertag;
     public double value = 0;
+    public LinkedList<String> definitions=new LinkedList<String>();
     public boolean isInvoked=false;
     public double sentimentValue=0;
     
