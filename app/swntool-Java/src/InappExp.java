@@ -180,6 +180,7 @@ public class InappExp {
                 int start = i;
                 s += "(";
                 for (; i < expressions.length; i++) {
+                    if(expressions[i].postag.equals("."))break;
                     if (expressions[i].isInvoked) {
                         s += " " + expressions[i].word + " ";
                         testExpressions.add(expressions[i]);
