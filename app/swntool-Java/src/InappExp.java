@@ -159,19 +159,28 @@ public class InappExp {
             } else if (expression.isInappropriate & expression.isInvoked) {
                 s += "<Inapp>" + expression.word + "</Inapp> ";
             } else {
-                s += expression.word + " ";
+                if(isSymbolToken(expression.word))
+                    s=s.substring(0, s.length()-1)+expression.word + " ";
+                else
+                    s += expression.word + " ";
             }
         }
         return s;
     }
     
     public static boolean shouldBeTested(Expression e) {
-        if (!EWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
+        if (!isSymbolToken(e.word)&!EWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
     }
     
+    public static boolean isSymbolToken(String s){
+        for(char c:s.toCharArray()){
+            if(!(Character.isAlphabetic(c)|Character.isDigit(c)))return true;
+        }
+        return false;
+    }
     public static String analyzeSemantics(Expression[] expressions) {
         String s = "\n";
         for (int i = 0; i < expressions.length; i++) {
