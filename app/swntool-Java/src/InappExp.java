@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -8,7 +9,7 @@ import java.util.logging.Logger;
  * @author Daikaiser
  */
 public class InappExp {
-    
+
     public static boolean isInappropriate(Expression expression) {
         ExpressionList trainingData = BWDAO.getSentiments();
         if (BWDAO.exists(expression.word)) {
@@ -21,12 +22,12 @@ public class InappExp {
         }
         return expression.value < SentiAnalyzer.getMean(trainingData);
     }
-    
+
     public static double threshold() {
         ExpressionList trainingData = BWDAO.getSentiments();
         return SentiAnalyzer.getMean(trainingData);
     }
-    
+
     public static String recognize(String input) {
         String s = "";
         String posTaggedInput = POSTagger.tag(input);
@@ -80,6 +81,15 @@ public class InappExp {
                             numberOfDefs++;
                         }
                     }
+                    for (String baseForm : expression.baseForms) {
+                        for (String scrape : UrbanDictScraper.scrape(baseForm)) {
+                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
+                            if (senti != null) {
+                                sum += senti.sentimentValue;
+                                numberOfDefs++;
+                            }
+                        }
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -107,45 +117,45 @@ public class InappExp {
         s += "\nNGrams:\n";
         for (int i = 0; i < expressions.length; i++) {
             try {
-                    s += NGramGenerator.generateNGram(expressions, i - 1, 2);
-                } catch (Exception e) {
+                s += NGramGenerator.generateNGram(expressions, i - 1, 2);
+            } catch (Exception e) {
 
-                }
-                try {
-                    s += NGramGenerator.generateNGram(expressions, i - 2, 3);
-                } catch (Exception e) {
+            }
+            try {
+                s += NGramGenerator.generateNGram(expressions, i - 2, 3);
+            } catch (Exception e) {
 
-                }
-                try {
-                    s += NGramGenerator.generateNGram(expressions, i - 3, 4);
-                } catch (Exception e) {
+            }
+            try {
+                s += NGramGenerator.generateNGram(expressions, i - 3, 4);
+            } catch (Exception e) {
 
-                }
-                try {
-                    s += NGramGenerator.generateNGram(expressions, i - 4, 5);
-                } catch (Exception e) {
+            }
+            try {
+                s += NGramGenerator.generateNGram(expressions, i - 4, 5);
+            } catch (Exception e) {
 
-                }
-                try {
-                    s += NGramGenerator.generateNGram(expressions, i, 2);
-                } catch (Exception e) {
+            }
+            try {
+                s += NGramGenerator.generateNGram(expressions, i, 2);
+            } catch (Exception e) {
 
-                }
-                try {
-                    s += NGramGenerator.generateNGram(expressions, i, 3);
-                } catch (Exception e) {
+            }
+            try {
+                s += NGramGenerator.generateNGram(expressions, i, 3);
+            } catch (Exception e) {
 
-                }
-                try {
-                    s += NGramGenerator.generateNGram(expressions, i, 4);
-                } catch (Exception e) {
+            }
+            try {
+                s += NGramGenerator.generateNGram(expressions, i, 4);
+            } catch (Exception e) {
 
-                }
-                try {
-                    s += NGramGenerator.generateNGram(expressions, i, 5);
-                } catch (Exception e) {
+            }
+            try {
+                s += NGramGenerator.generateNGram(expressions, i, 5);
+            } catch (Exception e) {
 
-                }
+            }
         }
         for (Expression expression : expressions) {
             System.err.println(expression.value);
@@ -158,29 +168,31 @@ public class InappExp {
                 s += expression.word + " ";
             } else if (expression.isInappropriate & expression.isInvoked) {
                 s += "<Inapp>" + expression.word + "</Inapp> ";
+            } else if (isSymbolToken(expression.word)) {
+                s = s.substring(0, s.length() - 1) + expression.word + " ";
             } else {
-                if(isSymbolToken(expression.word))
-                    s=s.substring(0, s.length()-1)+expression.word + " ";
-                else
-                    s += expression.word + " ";
+                s += expression.word + " ";
             }
         }
         return s;
     }
-    
+
     public static boolean shouldBeTested(Expression e) {
-        if (!isSymbolToken(e.word)&!EWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
+        if (!isSymbolToken(e.word) & !EWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
     }
-    
-    public static boolean isSymbolToken(String s){
-        for(char c:s.toCharArray()){
-            if(!(Character.isAlphabetic(c)|Character.isDigit(c)))return true;
+
+    public static boolean isSymbolToken(String s) {
+        for (char c : s.toCharArray()) {
+            if (!(Character.isAlphabetic(c) | Character.isDigit(c))) {
+                return true;
+            }
         }
         return false;
     }
+
     public static String analyzeSemantics(Expression[] expressions) {
         String s = "\n";
         for (int i = 0; i < expressions.length; i++) {
@@ -189,7 +201,9 @@ public class InappExp {
                 int start = i;
                 s += "(";
                 for (; i < expressions.length; i++) {
-                    if(expressions[i].postag.equals("."))break;
+                    if (expressions[i].postag.equals(".")) {
+                        break;
+                    }
                     if (expressions[i].isInvoked) {
                         s += " " + expressions[i].word + " ";
                         testExpressions.add(expressions[i]);
@@ -215,31 +229,31 @@ public class InappExp {
         }
         return s;
     }
-    
+
     public static boolean inappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = probablyInappropriate(expressions);
         if (passiveVoice(expressions)) {
             for (int i = expressions.size() - 1; i <= 0; i--) {
-                if(negativeWord(expressions.get(i))){
-                    inappropriateness=false;
+                if (negativeWord(expressions.get(i))) {
+                    inappropriateness = false;
                 }
-                if(targetableUnit(expressions.get(i))){
-                    inappropriateness=true;
+                if (targetableUnit(expressions.get(i))) {
+                    inappropriateness = true;
                 }
             }
         } else {
             for (Expression expression : expressions) {
-                if(negativeWord(expression)){
-                    inappropriateness=false;
+                if (negativeWord(expression)) {
+                    inappropriateness = false;
                 }
-                if(targetableUnit(expression)){
-                    inappropriateness=true;
+                if (targetableUnit(expression)) {
+                    inappropriateness = true;
                 }
             }
         }
-        String s="";
-        for(Expression expression:expressions){
-            s+=expression.word+" ";
+        String s = "";
+        for (Expression expression : expressions) {
+            s += expression.word + " ";
         }
         try {
             PlotTool.expressionPlot(expressions, s);
@@ -247,50 +261,55 @@ public class InappExp {
         }
         return inappropriateness;
     }
-    
+
     public static boolean negativeWord(Expression expression) {
         if (expression.postag.startsWith("RB")) {
             return expression.word.equalsIgnoreCase("not") | expression.word.equalsIgnoreCase("n't") | expression.word.equalsIgnoreCase("never");
         }
         return false;
     }
-    
+
     public static boolean passiveVoice(LinkedList<Expression> expressions) {
         for (Expression expression : expressions) {
             if (expression.postag.contains("VB")) {
-                if (expression.word.equalsIgnoreCase("'s")|expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
+                if (expression.word.equalsIgnoreCase("'s") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
                     return true;
                 }
             }
         }
         return false;
     }
-    
+
     public static boolean probablyInappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = false;
         for (Expression expression : expressions) {
-            if (expression.isInappropriate&expression.value<threshold()) {
+            if (expression.isInappropriate & expression.value < threshold()) {
                 inappropriateness = true;
             }
         }
         return inappropriateness;
     }
-    
+
     public static boolean targetableUnit(Expression expression) {
-        if(expression.postag.contains("PR"))
+        if (expression.postag.contains("PR")) {
             return true;
-        if(expression.postag.contains("NN")){
-            if(expression.nertag.equalsIgnoreCase("person")|expression.nertag.equalsIgnoreCase("location"))return true;
-            for(String definition:expression.definitions){
-                if(definition.contains("man ")|definition.contains("men ")|definition.contains(" he ")
-                                            | definition.contains(" she ")
-                                            | definition.contains(" person ")
-                                            | definition.contains(" people")
-                                            | definition.contains(" who ")
-                                            | definition.contains(" girl ")
-                                            | definition.contains(" boy ")
-                                            | definition.contains(" man ")
-                                            | definition.contains(" woman "))return true;
+        }
+        if (expression.postag.contains("NN")) {
+            if (expression.nertag.equalsIgnoreCase("person") | expression.nertag.equalsIgnoreCase("location")) {
+                return true;
+            }
+            for (String definition : expression.definitions) {
+                if (definition.contains("man ") | definition.contains("men ") | definition.contains(" he ")
+                        | definition.contains(" she ")
+                        | definition.contains(" person ")
+                        | definition.contains(" people")
+                        | definition.contains(" who ")
+                        | definition.contains(" girl ")
+                        | definition.contains(" boy ")
+                        | definition.contains(" man ")
+                        | definition.contains(" woman ")) {
+                    return true;
+                }
             }
         }
         return false;
