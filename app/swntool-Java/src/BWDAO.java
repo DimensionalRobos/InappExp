@@ -21,7 +21,7 @@ public class BWDAO {
             Scanner scan = new Scanner(new File(Config.BasisData));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
-                Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
+                Sentiment sentiment = new Sentiment(s.split("#")[0].trim(), Double.valueOf(s.split("#")[1]));
                 sentiment.word=sentiment.word.trim();
                 word=word.trim();
                 if (sentiment.word.equals(word=word.toLowerCase())) {
@@ -94,5 +94,24 @@ public class BWDAO {
             Logger.getLogger(BWDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public static double extract(String word) {
+        word = word.toLowerCase();
+        try {
+            Scanner scan = new Scanner(new File(Config.BasisData));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
+                sentiment.word=sentiment.word.trim();
+                word=word.trim();
+                if (sentiment.word.equals(word=word.toLowerCase())) {
+                   return sentiment.sentimentValue;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BWDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 }

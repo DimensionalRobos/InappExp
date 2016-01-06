@@ -12,11 +12,21 @@ public class InappExp {
 
     public static boolean isInappropriate(Expression expression) {
         ExpressionList trainingData = BWDAO.getSentiments();
+        if (EWDAO.exists(expression.word)) {
+            expression.value = 0;
+            return false;
+        }
         if (BWDAO.exists(expression.word)) {
+            expression.value = BWDAO.extract(expression.word);
             return true;
         }
         for (String baseForm : expression.baseForms) {
+            if (EWDAO.exists(baseForm)) {
+                expression.value = 0;
+                return false;
+            }
             if (BWDAO.exists(baseForm)) {
+                expression.value = BWDAO.extract(baseForm);
                 return true;
             }
         }
@@ -36,6 +46,8 @@ public class InappExp {
         s += nerTaggedInput + "\n";
         String[] tokens = posTaggedInput.split(" ");
         String[] nerTokens = nerTaggedInput.split(" ");
+        LinkedList<Expression> uniqueExpressions = new LinkedList<Expression>();
+        uniqueExpressions.clear();
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
             expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
@@ -60,7 +72,7 @@ public class InappExp {
                     }
                 }
             }
-            if (shouldBeTested(expression)) {
+            if (shouldBeDefined(expression)) {
                 try {
                     for (String look : DefinitionExtractor.extract(expression.word)) {
                         Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
@@ -98,6 +110,10 @@ public class InappExp {
                 if (InappExp.isInappropriate(expression)) {
                     expression.isInappropriate = true;
                 }
+            }
+            if (unique(expression, uniqueExpressions)) {
+                new DefGenerator(expression).setVisible(true);
+                uniqueExpressions.add(expression);
             }
         }
         for (Expression expression : expressions) {
@@ -174,11 +190,28 @@ public class InappExp {
                 s += expression.word + " ";
             }
         }
+        new DefGenerator(expressions).setVisible(true);
         return s;
+    }
+
+    public static boolean unique(Expression e, LinkedList<Expression> expressions) {
+        for (Expression expression : expressions) {
+            if (e.word == expression.word) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static boolean shouldBeTested(Expression e) {
         if (!isSymbolToken(e.word) & !EWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
+            return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
+        }
+        return false;
+    }
+
+    public static boolean shouldBeDefined(Expression e) {
+        if (!isSymbolToken(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
@@ -298,18 +331,18 @@ public class InappExp {
             if (expression.nertag.equalsIgnoreCase("person") | expression.nertag.equalsIgnoreCase("location")) {
                 return true;
             }
-            for (String definition : expression.definitions) {
-                if (definition.contains("man ") | definition.contains("men ") | definition.contains(" he ")
-                        | definition.contains(" she ")
-                        | definition.contains(" person ")
-                        | definition.contains(" people")
-                        | definition.contains(" who ")
-                        | definition.contains(" girl ")
-                        | definition.contains(" boy ")
-                        | definition.contains(" man ")
-                        | definition.contains(" woman ")) {
-                    return true;
-                }
+        }
+        for (String definition : expression.definitions) {
+            if (definition.contains("man ") | definition.contains("men ") | definition.contains(" he ")
+                    | definition.contains(" she ")
+                    | definition.contains(" person ")
+                    | definition.contains(" people")
+                    | definition.contains(" who ")
+                    | definition.contains(" girl ")
+                    | definition.contains(" boy ")
+                    | definition.contains(" man ")
+                    | definition.contains(" woman ")) {
+                return true;
             }
         }
         return false;
