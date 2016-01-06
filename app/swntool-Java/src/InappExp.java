@@ -110,10 +110,10 @@ public class InappExp {
                 if (InappExp.isInappropriate(expression)) {
                     expression.isInappropriate = true;
                 }
-            }
-            if (unique(expression, uniqueExpressions)) {
-                new DefGenerator(expression).setVisible(true);
-                uniqueExpressions.add(expression);
+                if (unique(expression, uniqueExpressions)) {
+                    new DefGenerator(expression).setVisible(true);
+                    uniqueExpressions.add(expression);
+                }
             }
         }
         for (Expression expression : expressions) {
