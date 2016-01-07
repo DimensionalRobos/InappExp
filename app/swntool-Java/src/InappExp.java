@@ -184,9 +184,8 @@ public class InappExp {
                 s += expression.word + " ";
             } else if (expression.isInappropriate & expression.isInvoked) {
                 s += "<Inapp>" + expression.word + "</Inapp> ";
-            } else if (isSymbolToken(expression.word)) {
-                s = s.substring(0, s.length() - 1) + expression.word + " ";
-            } else {
+            }
+            else {
                 s += expression.word + " ";
             }
         }
