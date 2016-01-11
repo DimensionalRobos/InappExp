@@ -184,8 +184,6 @@ public class InappExp {
                 s += expression.word + " ";
             } else if (expression.isInappropriate & expression.isInvoked) {
                 s += "<Inapp>" + expression.word + "</Inapp> ";
-            } else if (isSymbolToken(expression.word)) {
-                s = s.substring(0, s.length() - 1) + expression.word + " ";
             } else {
                 s += expression.word + " ";
             }
@@ -232,32 +230,35 @@ public class InappExp {
             if (expressions[i].isInvoked) {
                 LinkedList<Expression> testExpressions = new LinkedList<Expression>();
                 int start = i;
-                s += "(";
+                String tempString = "";
+                tempString += "(";
                 for (; i < expressions.length; i++) {
                     if (expressions[i].postag.equals(".")) {
                         break;
                     }
                     if (expressions[i].isInvoked) {
-                        s += " " + expressions[i].word + " ";
+                        tempString += " " + expressions[i].word + " ";
                         testExpressions.add(expressions[i]);
                     } else {
                         break;
                     }
                 }
-                s += ")";
-                if (!inappropriate(testExpressions)) {
-                    s += " is not Inappropriate";
-                    for (i = start; i < expressions.length; i++) {
-                        if (expressions[i].isInvoked) {
-                            expressions[i].isInvoked = false;
-                        } else {
-                            break;
+                tempString += ")";
+                if (!testExpressions.isEmpty()) {
+                    if (!inappropriate(testExpressions)) {
+                        tempString += " is not Inappropriate";
+                        for (i = start; i < expressions.length; i++) {
+                            if (!expressions[i].isInvoked) {
+                                break;
+                            } else {
+                                expressions[i].isInvoked = false;
+                            }
                         }
+                    } else {
+                        tempString += " is Inappropriate";
                     }
-                } else {
-                    s += " is Inappropriate";
+                    s += tempString + "\n";
                 }
-                s += "\n";
             }
         }
         return s;
