@@ -266,23 +266,35 @@ public class InappExp {
 
     public static boolean inappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = probablyInappropriate(expressions);
+        boolean leftInappness=inappropriateness;
+        boolean rightInappness=inappropriateness;
+        for (int i = expressions.size() - 1; i <= 0; i--) {
+            if (negativeWord(expressions.get(i))) {
+                leftInappness = false;
+            }
+            if (targetableUnit(expressions.get(i))) {
+                leftInappness = true;
+            }
+        }
+        
         for (Expression expression : expressions) {
             if (negativeWord(expression)) {
-                inappropriateness = false;
+                rightInappness = false;
             }
             if (targetableUnit(expression)) {
-                inappropriateness = true;
+                rightInappness = true;
             }
         }
         String s = "";
         for (Expression expression : expressions) {
             s += expression.word + " ";
         }
+
         try {
             PlotTool.expressionPlot(expressions, s);
         } catch (Exception e) {
         }
-        return inappropriateness;
+        return leftInappness&rightInappness;
     }
 
     public static boolean negativeWord(Expression expression) {
