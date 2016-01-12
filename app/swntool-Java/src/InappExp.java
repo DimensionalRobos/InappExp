@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -248,6 +249,9 @@ public class InappExp {
                     if (!inappropriate(testExpressions)) {
                         tempString += " is not Inappropriate";
                         for (i = start; i < expressions.length; i++) {
+                            if (expressions[i].postag.equals(".")) {
+                                break;
+                            }
                             if (!expressions[i].isInvoked) {
                                 break;
                             } else {
@@ -266,8 +270,8 @@ public class InappExp {
 
     public static boolean inappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = probablyInappropriate(expressions);
-        boolean leftInappness=inappropriateness;
-        boolean rightInappness=inappropriateness;
+        boolean leftInappness = inappropriateness;
+        boolean rightInappness = inappropriateness;
         for (int i = expressions.size() - 1; i <= 0; i--) {
             if (negativeWord(expressions.get(i))) {
                 leftInappness = false;
@@ -276,7 +280,7 @@ public class InappExp {
                 leftInappness = true;
             }
         }
-        
+
         for (Expression expression : expressions) {
             if (negativeWord(expression)) {
                 rightInappness = false;
@@ -294,24 +298,25 @@ public class InappExp {
             PlotTool.expressionPlot(expressions, s);
         } catch (Exception e) {
         }
-        return leftInappness&rightInappness;
+        return leftInappness & rightInappness;
     }
 
     public static boolean negativeWord(Expression expression) {
-        if (expression.postag.startsWith("RB")) {
-            return expression.word.equalsIgnoreCase("not") | expression.word.equalsIgnoreCase("n't") | expression.word.equalsIgnoreCase("never");
-        }
-        return false;
+        return expression.word.equalsIgnoreCase("not") | expression.word.equalsIgnoreCase("n't") | expression.word.equalsIgnoreCase("never");
     }
 
     public static boolean probablyInappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = false;
+        int inappropriateCount = 0;
         for (Expression expression : expressions) {
+            if (expression.isInappropriate) {
+                inappropriateCount++;
+            }
             if (expression.isInappropriate & expression.value < threshold()) {
                 inappropriateness = true;
             }
         }
-        return inappropriateness;
+        return inappropriateness | ((double) inappropriateCount / expressions.size()) > 0.33;
     }
 
     public static boolean targetableUnit(Expression expression) {
