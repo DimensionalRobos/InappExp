@@ -266,12 +266,23 @@ public class InappExp {
 
     public static boolean inappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = probablyInappropriate(expressions);
-        for (Expression expression : expressions) {
-            if (negativeWord(expression)) {
-                inappropriateness = false;
+        if (passiveVoice(expressions)) {
+            for (int i = expressions.size() - 1; i <= 0; i--) {
+                if (negativeWord(expressions.get(i))) {
+                    inappropriateness = false;
+                }
+                if (targetableUnit(expressions.get(i))) {
+                    inappropriateness = true;
+                }
             }
-            if (targetableUnit(expression)) {
-                inappropriateness = true;
+        } else {
+            for (Expression expression : expressions) {
+                if (negativeWord(expression)) {
+                    inappropriateness = false;
+                }
+                if (targetableUnit(expression)) {
+                    inappropriateness = true;
+                }
             }
         }
         String s = "";
@@ -288,6 +299,17 @@ public class InappExp {
     public static boolean negativeWord(Expression expression) {
         if (expression.postag.startsWith("RB")) {
             return expression.word.equalsIgnoreCase("not") | expression.word.equalsIgnoreCase("n't") | expression.word.equalsIgnoreCase("never");
+        }
+        return false;
+    }
+
+    public static boolean passiveVoice(LinkedList<Expression> expressions) {
+        for (Expression expression : expressions) {
+            if (expression.postag.contains("VB")) {
+                if (expression.word.equalsIgnoreCase("'s") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
+                    return true;
+                }
+            }
         }
         return false;
     }
