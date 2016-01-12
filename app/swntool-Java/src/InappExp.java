@@ -266,50 +266,40 @@ public class InappExp {
 
     public static boolean inappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = probablyInappropriate(expressions);
-        if (passiveVoice(expressions)) {
-            for (int i = expressions.size() - 1; i <= 0; i--) {
-                if (negativeWord(expressions.get(i))) {
-                    inappropriateness = false;
-                }
-                if (targetableUnit(expressions.get(i))) {
-                    inappropriateness = true;
-                }
+        boolean leftInappness=inappropriateness;
+        boolean rightInappness=inappropriateness;
+        for (int i = expressions.size() - 1; i <= 0; i--) {
+            if (negativeWord(expressions.get(i))) {
+                leftInappness = false;
             }
-        } else {
-            for (Expression expression : expressions) {
-                if (negativeWord(expression)) {
-                    inappropriateness = false;
-                }
-                if (targetableUnit(expression)) {
-                    inappropriateness = true;
-                }
+            if (targetableUnit(expressions.get(i))) {
+                leftInappness = true;
+            }
+        }
+        
+        for (Expression expression : expressions) {
+            if (negativeWord(expression)) {
+                rightInappness = false;
+            }
+            if (targetableUnit(expression)) {
+                rightInappness = true;
             }
         }
         String s = "";
         for (Expression expression : expressions) {
             s += expression.word + " ";
         }
+
         try {
             PlotTool.expressionPlot(expressions, s);
         } catch (Exception e) {
         }
-        return inappropriateness;
+        return leftInappness&rightInappness;
     }
 
     public static boolean negativeWord(Expression expression) {
         if (expression.postag.startsWith("RB")) {
             return expression.word.equalsIgnoreCase("not") | expression.word.equalsIgnoreCase("n't") | expression.word.equalsIgnoreCase("never");
-        }
-        return false;
-    }
-
-    public static boolean passiveVoice(LinkedList<Expression> expressions) {
-        for (Expression expression : expressions) {
-            if (expression.postag.contains("VB")) {
-                if (expression.word.equalsIgnoreCase("'s") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
-                    return true;
-                }
-            }
         }
         return false;
     }
