@@ -1,3 +1,7 @@
+/**
+ * Exception Word/Stop Words Data Access Object for words that will never be used inappropriately
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

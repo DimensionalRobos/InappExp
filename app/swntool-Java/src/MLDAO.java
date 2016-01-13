@@ -1,8 +1,7 @@
 /**
- * Machine Learning Data Retrieval Module
- * write=puts learned data
- * getSentiments=Pulls out data that is learned
+ * Machine Learning Data Access Modifier for the feature sets of InappExp
  */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
