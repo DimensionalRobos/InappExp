@@ -319,7 +319,7 @@ public class InappExp {
                 inappropriateness = true;
             }
         }
-        return inappropriateness | ((double) inappropriateCount / expressions.size()) > 0.33;
+        return inappropriateness | ((double) inappropriateCount / expressions.size()) > 0.2;
     }
 
     public static boolean targetableUnit(Expression expression) {
