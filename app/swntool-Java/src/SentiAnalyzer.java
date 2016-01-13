@@ -1,3 +1,6 @@
+/**
+ * Analyzes Sentiments after being tagged and returns the main descriptor for inappropriateness
+ */
 
 import java.io.IOException;
 import java.util.LinkedList;

@@ -1,7 +1,5 @@
 /**
- * Pulls out data in Dictionary
- * extract=pulls out WordNet WordSenses and definition
- * resample=retrieves Synset of a word with similar WordSenses
+ * Pulls out data in WordNet Dictionary
  */
 
 import edu.smu.tspell.wordnet.Synset;

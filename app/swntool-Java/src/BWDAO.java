@@ -1,5 +1,5 @@
 /**
- * Bad Word Data Retrieval Module
+ * Bad Words/Inappropriate Words Data Access Object
  */
 
 import java.io.File;

@@ -2,8 +2,13 @@
  * All configurations are done here.
  * PythonFolder=location of udscrape.py
  * WordNetPath=location of wordNet dict
- * Training Data=basis of Inappropriateness
+ * TrainingData=basis of Inappropriateness
+ * NGramData=Inappropriateness Patterns
+ * BasisData=Seed "Bad words"
+ * ResampleData=Collection of words that are possibly inappropriate via Wordnet Synsets
+ * stopWordData=Collection of words that will never have inappropriate usage to avoid Data noise
  */
+
 /**
  *
  * @author Daikaiser
