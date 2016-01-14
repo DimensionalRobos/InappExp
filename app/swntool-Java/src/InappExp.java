@@ -1,7 +1,7 @@
+
 /**
  * Expression Inappropriateness Evaluation
  */
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -237,14 +237,18 @@ public class InappExp {
                 String tempString = "";
                 tempString += "(";
                 for (; i < expressions.length; i++) {
-                    if (expressions[i].postag.equals(".")) {
-                        break;
-                    }
-                    if (expressions[i].isInvoked) {
-                        tempString += " " + expressions[i].word + " ";
-                        testExpressions.add(expressions[i]);
-                    } else {
-                        break;
+                    try {
+                        if (expressions[i].postag.equals(".")) {
+                            break;
+                        }
+                        if (expressions[i].isInvoked) {
+                            tempString += " " + expressions[i].word + " ";
+                            testExpressions.add(expressions[i]);
+                        } else {
+                            break;
+                        }
+                    } catch (Exception e) {
+
                     }
                 }
                 tempString += ")";
@@ -252,13 +256,17 @@ public class InappExp {
                     if (!inappropriate(testExpressions)) {
                         tempString += " is not Inappropriate";
                         for (i = start; i < expressions.length; i++) {
-                            if (expressions[i].postag.equals(".")) {
-                                break;
-                            }
-                            if (!expressions[i].isInvoked) {
-                                break;
-                            } else {
-                                expressions[i].isInvoked = false;
+                            try {
+                                if (expressions[i].postag.equals(".")) {
+                                    break;
+                                }
+                                if (!expressions[i].isInvoked) {
+                                    break;
+                                } else {
+                                    expressions[i].isInvoked = false;
+                                }
+                            } catch (Exception e) {
+
                             }
                         }
                     } else {
