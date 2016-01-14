@@ -1,4 +1,7 @@
 
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Daikaiser
@@ -112,7 +115,8 @@ public class NGramGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRecognizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecognizeActionPerformed
-        this.txaOutput.setText(InappExp.recognize(this.txtInput.getText()));        
+        this.txaOutput.setText(InappExp.recognize(this.txtInput.getText()));   
+        JOptionPane.showMessageDialog(null,"Finished Evaluation");
     }//GEN-LAST:event_btnRecognizeActionPerformed
 
     private void btnWordLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWordLearnActionPerformed
