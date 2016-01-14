@@ -18,6 +18,7 @@ class Expression {
     public String nertag;
     public double value = 0;
     public LinkedList<String> definitions=new LinkedList<String>();
+    public LinkedList<String> urbanDefinitions=new LinkedList<String>();
     public boolean isInvoked=false;
     public double sentimentValue=0;
     
