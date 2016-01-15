@@ -262,7 +262,6 @@ public class InappExp {
                 if (targetableUnit(expression)) {
                     hasTarget = true;
                 }
-                MessageBox.show("Inappropriateness="+inappropriateness+" Word="+expression.word+" HasTarget="+hasTarget);
             }
         } else {
             boolean hasTarget=false;
@@ -279,7 +278,6 @@ public class InappExp {
                 if (targetableUnit(expression)) {
                     hasTarget = true;
                 }
-                MessageBox.show("Inappropriateness="+inappropriateness+" Word="+expression.word+" HasTarget="+hasTarget);
             }
         }
         String s = "";
