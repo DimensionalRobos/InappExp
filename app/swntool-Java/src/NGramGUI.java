@@ -159,7 +159,6 @@ public class NGramGUI extends javax.swing.JFrame {
     private void btnNGramLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNGramLearnActionPerformed
         txaOutput.setText("");
         for(String comment:txaInput.getText().split("\n")){
-            JOptionPane.showMessageDialog(null, comment);
             this.txaOutput.setText(txaOutput.getText()+NGramGenerator.generateAndLearn(comment)+"\n");  
         }
     }//GEN-LAST:event_btnNGramLearnActionPerformed
