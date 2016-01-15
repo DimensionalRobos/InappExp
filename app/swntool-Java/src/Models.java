@@ -9,6 +9,14 @@ import java.util.LinkedList;
  * @author Daikaiser
  */
 
+class Report{
+    public String postag;
+    public String nertag;
+    public String ngram;
+    public String ria;
+    public Expression[] expressions;
+}
+
 class Expression {
 
     public String word;

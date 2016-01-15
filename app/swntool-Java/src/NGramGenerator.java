@@ -25,46 +25,7 @@ public class NGramGenerator {
             expressions[i].nertag = nerTokens[i].split("/")[1];
         }
         for (Expression expression : expressions) {
-            double sum = 0;
-            int numberOfDefs = 0;
-            if (InappExp.shouldBeTested(expression)) {
-                if (!BWDAO.exists(expression.word)) {
-                    try {
-                        for (String look : DefinitionExtractor.extract(expression.word)) {
-                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
-                            if (senti != null) {
-                                sum += senti.sentimentValue;
-                                numberOfDefs++;
-                            }
-                        }
-                    } catch (Exception ex) {
-                        Logger.getLogger(Learner.class
-                                .getName()).log(Level.SEVERE, null, ex);
-                    }
-                    try {
-                        for (String scrape : UrbanDictScraper.scrape(expression.word)) {
-                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                            if (senti != null) {
-                                sum += senti.sentimentValue;
-                                numberOfDefs++;
-                            }
-                        }
-                    } catch (IOException ex) {
-                        Logger.getLogger(Learner.class
-                                .getName()).log(Level.SEVERE, null, ex);
-                    }
-                    sum /= numberOfDefs;
-                    expression.value = sum;
-                } else {
-                    Sentiment sent = BWDAO.findExpression(expression.word);
-                    expression.value = sent.sentimentValue;
-                    expression.isInappropriate = true;
-                    continue;
-                }
-                if (InappExp.isInappropriate(expression)) {
-                    expression.isInappropriate = true;
-                }
-            }
+            ContextGenerator.generate(expression);
         }
         for (Expression expression : expressions) {
             if (expression.isInappropriate) {

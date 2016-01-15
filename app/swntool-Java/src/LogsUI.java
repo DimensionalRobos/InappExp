@@ -10,6 +10,33 @@ public class LogsUI extends javax.swing.JFrame {
     public LogsUI() {
         initComponents();
     }
+    
+    public LogsUI(Report report){
+        this();
+        this.setVisible(true);
+        this.txtPOSTag.setText(report.postag);
+        this.txtNERTag.setText(report.nertag);
+        for(Expression expression:report.expressions){
+            this.txtDefinitions.setText(txtDefinitions.getText()+expression.word+"\n");
+            for(String definition:expression.definitions){
+                this.txtDefinitions.setText(txtDefinitions.getText()+"=>"+definition+"\n");
+            }
+            for(String definition:expression.urbanDefinitions){
+                this.txtDefinitions.setText(txtDefinitions.getText()+"=>"+definition+"\n");
+            }
+            this.txtSentiAna.setText(txtSentiAna.getText()+"====================\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"Word:"+expression.word+"\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"POSTag:"+expression.postag+"\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"NERTag:"+expression.nertag+"\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"Word Inappropriateness level:"+expression.value+"\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"Sentiment Value:"+expression.sentimentValue+"\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"Structural Inappropriateness:"+expression.isInvoked+"\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"isInappropriate:"+expression.isInappropriate+"\n");
+            this.txtSentiAna.setText(txtSentiAna.getText()+"Targetable Entity:"+InappExp.targetableUnit(expression)+"\n");
+        }
+        this.txtNGrams.setText(report.ngram);
+        this.txtRIA.setText(report.ria);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -21,17 +48,17 @@ public class LogsUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txtNERTag = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        txtDefinitions = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        txtPOSTag = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        txtSentiAna = new javax.swing.JTextArea();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
+        txtRIA = new javax.swing.JTextArea();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea8 = new javax.swing.JTextArea();
+        txtNGrams = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,37 +66,38 @@ public class LogsUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Logs");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
-        jTextArea3.getAccessibleContext().setAccessibleName("NERTag");
+        txtNERTag.setColumns(20);
+        txtNERTag.setRows(5);
+        jScrollPane3.setViewportView(txtNERTag);
+        txtNERTag.getAccessibleContext().setAccessibleName("NERTag");
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
-        jTextArea4.getAccessibleContext().setAccessibleName("DefinitionExtraction");
+        txtDefinitions.setColumns(20);
+        txtDefinitions.setRows(5);
+        jScrollPane4.setViewportView(txtDefinitions);
+        txtDefinitions.getAccessibleContext().setAccessibleName("DefinitionExtraction");
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setRows(5);
-        jScrollPane5.setViewportView(jTextArea5);
-        jTextArea5.getAccessibleContext().setAccessibleName("POSTag");
+        txtPOSTag.setColumns(20);
+        txtPOSTag.setRows(5);
+        jScrollPane5.setViewportView(txtPOSTag);
+        txtPOSTag.getAccessibleContext().setAccessibleName("POSTag");
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jScrollPane6.setViewportView(jTextArea6);
-        jTextArea6.getAccessibleContext().setAccessibleName("InappExpressScoring");
+        txtSentiAna.setColumns(20);
+        txtSentiAna.setRows(5);
+        jScrollPane6.setViewportView(txtSentiAna);
+        txtSentiAna.getAccessibleContext().setAccessibleName("InappExpressScoring");
 
-        jTextArea7.setColumns(20);
-        jTextArea7.setRows(5);
-        jScrollPane7.setViewportView(jTextArea7);
-        jTextArea7.getAccessibleContext().setAccessibleName("SentimentScoring");
+        txtRIA.setColumns(20);
+        txtRIA.setRows(5);
+        jScrollPane7.setViewportView(txtRIA);
+        txtRIA.getAccessibleContext().setAccessibleName("SentimentScoring");
 
-        jTextArea8.setColumns(20);
-        jTextArea8.setRows(5);
-        jScrollPane8.setViewportView(jTextArea8);
-        jTextArea8.getAccessibleContext().setAccessibleName("NGRAMAnalysis");
+        txtNGrams.setColumns(20);
+        txtNGrams.setRows(5);
+        jScrollPane8.setViewportView(txtNGrams);
+        txtNGrams.getAccessibleContext().setAccessibleName("NGRAMAnalysis");
 
         jLabel1.setText("POS Tag");
 
@@ -81,7 +109,7 @@ public class LogsUI extends javax.swing.JFrame {
 
         jLabel5.setText("InappExpress Scoring");
 
-        jLabel6.setText("Sentiment Scoring");
+        jLabel6.setText("Relational Inference Analyzer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +146,7 @@ public class LogsUI extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(156, 156, 156))
+                .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,11 +225,11 @@ public class LogsUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
-    private javax.swing.JTextArea jTextArea8;
+    public javax.swing.JTextArea txtDefinitions;
+    public javax.swing.JTextArea txtNERTag;
+    public javax.swing.JTextArea txtNGrams;
+    public javax.swing.JTextArea txtPOSTag;
+    public javax.swing.JTextArea txtRIA;
+    public javax.swing.JTextArea txtSentiAna;
     // End of variables declaration//GEN-END:variables
 }

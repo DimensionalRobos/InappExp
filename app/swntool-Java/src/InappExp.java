@@ -1,7 +1,7 @@
-
 /**
  * Expression Inappropriateness Evaluation
  */
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -45,12 +45,12 @@ public class InappExp {
         String s = "";
         String posTaggedInput = POSTagger.tag(input);
         String nerTaggedInput = NERTagger.tag(input);
-        s += posTaggedInput + "\n";
-        s += nerTaggedInput + "\n";
+        Report report = new Report();
+        report.postag = posTaggedInput;
+        report.nertag = nerTaggedInput;
         String[] tokens = posTaggedInput.split(" ");
         String[] nerTokens = nerTaggedInput.split(" ");
         LinkedList<Expression> uniqueExpressions = new LinkedList<Expression>();
-        uniqueExpressions.clear();
         Expression[] expressions = new Expression[tokens.length];
         for (int i = 0; i < tokens.length; i++) {
             expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
@@ -76,112 +76,76 @@ public class InappExp {
                 }
             }
             if (shouldBeDefined(expression)) {
-                try {
-                    for (String look : DefinitionExtractor.extract(expression.word)) {
-                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(look));
-                        if (senti != null) {
-                            sum += senti.sentimentValue;
-                            numberOfDefs++;
-                            expression.definitions.add(look);
-                        }
-                    }
-                } catch (Exception ex) {
-                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    for (String scrape : UrbanDictScraper.scrape(expression.word)) {
-                        Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                        if (senti != null) {
-                            sum += senti.sentimentValue;
-                            numberOfDefs++;
-                        }
-                    }
-                    for (String baseForm : expression.baseForms) {
-                        for (String scrape : UrbanDictScraper.scrape(baseForm)) {
-                            Sentiment senti = SentiAnalyzer.analyze(POSTagger.tag(scrape));
-                            if (senti != null) {
-                                sum += senti.sentimentValue;
-                                numberOfDefs++;
-                            }
-                        }
-                    }
-                } catch (IOException ex) {
-                    Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                sum /= numberOfDefs;
-                expression.value = sum;
-                if (InappExp.isInappropriate(expression)) {
-                    expression.isInappropriate = true;
-                }
-                if (unique(expression, uniqueExpressions)) {
-                    new DefGenerator(expression).setVisible(true);
-                    uniqueExpressions.add(expression);
-                }
+                ContextGenerator.generate(expression);
             }
         }
+        report.expressions = expressions;
+        String ngram = "";
         for (Expression expression : expressions) {
             if (expression.isInappropriate) {
                 System.out.print("IE ");
-                s += "IE ";
+                ngram += "IE ";
                 expression.postag = "IE";
             } else {
                 System.out.print(expression.postag + " ");
                 try {
-                    s += expression.postag.substring(0, 2) + " ";
+                    ngram += expression.postag.substring(0, 2) + " ";
                 } catch (Exception e) {
-                    s += expression.postag + " ";
+                    ngram += expression.postag + " ";
                 }
             }
         }
-        s += "\nNGrams:\n";
+        ngram += "\nNGrams:\n";
         for (int i = 0; i < expressions.length; i++) {
             try {
-                s += NGramGenerator.generateNGram(expressions, i - 1, 2);
+                ngram += NGramGenerator.generateNGram(expressions, i - 1, 2);
             } catch (Exception e) {
 
             }
             try {
-                s += NGramGenerator.generateNGram(expressions, i - 2, 3);
+                ngram += NGramGenerator.generateNGram(expressions, i - 2, 3);
             } catch (Exception e) {
 
             }
             try {
-                s += NGramGenerator.generateNGram(expressions, i - 3, 4);
+                ngram += NGramGenerator.generateNGram(expressions, i - 3, 4);
             } catch (Exception e) {
 
             }
             try {
-                s += NGramGenerator.generateNGram(expressions, i - 4, 5);
+                ngram += NGramGenerator.generateNGram(expressions, i - 4, 5);
             } catch (Exception e) {
 
             }
             try {
-                s += NGramGenerator.generateNGram(expressions, i, 2);
+                ngram += NGramGenerator.generateNGram(expressions, i, 2);
             } catch (Exception e) {
 
             }
             try {
-                s += NGramGenerator.generateNGram(expressions, i, 3);
+                ngram += NGramGenerator.generateNGram(expressions, i, 3);
             } catch (Exception e) {
 
             }
             try {
-                s += NGramGenerator.generateNGram(expressions, i, 4);
+                ngram += NGramGenerator.generateNGram(expressions, i, 4);
             } catch (Exception e) {
 
             }
             try {
-                s += NGramGenerator.generateNGram(expressions, i, 5);
+                ngram += NGramGenerator.generateNGram(expressions, i, 5);
             } catch (Exception e) {
 
             }
         }
+        report.ngram=ngram;
         for (Expression expression : expressions) {
             System.err.println(expression.value);
         }
         NGramParser.parse(expressions);
-        s += "\n";
-        s += analyzeSemantics(expressions);
+        String ria = "";
+        ria += analyzeSemantics(expressions);
+        report.ria=ria;
         for (Expression expression : expressions) {
             if (!expression.isInvoked) {
                 s += expression.word + " ";
@@ -191,7 +155,7 @@ public class InappExp {
                 s += expression.word + " ";
             }
         }
-        new DefGenerator(expressions).setVisible(true);
+        new LogsUI(report);
         return s;
     }
 
