@@ -146,7 +146,6 @@ public class NGramGUI extends javax.swing.JFrame {
     private void btnRecognizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecognizeActionPerformed
         txaOutput.setText("");
         for(String comment:txaInput.getText().split("\n")){
-            JOptionPane.showMessageDialog(null, comment);
             this.txaOutput.setText(txaOutput.getText()+InappExp.recognize(comment)+"\n");   
         }
         JOptionPane.showMessageDialog(null,"Finished Evaluation");
