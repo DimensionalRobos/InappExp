@@ -9,6 +9,8 @@ import java.util.LinkedList;
  * @author Daikaiser
  */
 
+
+
 class Report{
     public String postag;
     public String nertag;

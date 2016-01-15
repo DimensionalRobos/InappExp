@@ -1,3 +1,4 @@
+
 /**
  * Expression Inappropriateness Evaluation
  */
@@ -6,6 +7,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -138,14 +140,14 @@ public class InappExp {
 
             }
         }
-        report.ngram=ngram;
+        report.ngram = ngram;
         for (Expression expression : expressions) {
             System.err.println(expression.value);
         }
         NGramParser.parse(expressions);
         String ria = "";
         ria += analyzeSemantics(expressions);
-        report.ria=ria;
+        report.ria = ria;
         for (Expression expression : expressions) {
             if (!expression.isInvoked) {
                 s += expression.word + " ";
@@ -244,23 +246,38 @@ public class InappExp {
 
     public static boolean inappropriate(LinkedList<Expression> expressions) {
         boolean inappropriateness = probablyInappropriate(expressions);
-        boolean leftInappness = inappropriateness;
-        boolean rightInappness = inappropriateness;
-        for (int i = expressions.size() - 1; i <= 0; i--) {
-            if (negativeWord(expressions.get(i))) {
-                leftInappness = false;
+        if (passiveVoice(expressions)) {
+            boolean hasTarget = false;
+            LinkedList<Expression>reversedExpressions = LinkedListUtils.reverse(expressions);
+            for (Expression expression : reversedExpressions) {
+                if (negativeWord(expression)) {
+                    return false;
+                }
+                if (expression.isInappropriate) {
+                    if (hasTarget) {
+                        inappropriateness = true;
+                        continue;
+                    }
+                }
+                if (targetableUnit(expression)) {
+                    hasTarget = true;
+                }
             }
-            if (targetableUnit(expressions.get(i))) {
-                leftInappness = true;
-            }
-        }
-
-        for (Expression expression : expressions) {
-            if (negativeWord(expression)) {
-                rightInappness = false;
-            }
-            if (targetableUnit(expression)) {
-                rightInappness = true;
+        } else {
+            boolean hasTarget=false;
+            for (Expression expression : expressions) {
+                if (negativeWord(expression)) {
+                    inappropriateness = false;
+                }
+                if (expression.isInappropriate) {
+                    if (hasTarget) {
+                        inappropriateness = true;
+                        continue;
+                    }
+                }
+                if (targetableUnit(expression)) {
+                    hasTarget = true;
+                }
             }
         }
         String s = "";
@@ -272,7 +289,7 @@ public class InappExp {
             PlotTool.expressionPlot(expressions, s);
         } catch (Exception e) {
         }
-        return leftInappness & rightInappness;
+        return inappropriateness;
     }
 
     public static boolean negativeWord(Expression expression) {
@@ -290,17 +307,25 @@ public class InappExp {
                 inappropriateness = true;
             }
         }
-        return inappropriateness | ((double) inappropriateCount / expressions.size()) > 0.2;
+        return inappropriateness | ((double) inappropriateCount / expressions.size()) > 0.4;
     }
 
     public static boolean targetableUnit(Expression expression) {
-        if (expression.postag.contains("PR")) {
+        if (expression.postag.contains("PR") & (!firstPerson(expression))) {
             return true;
         }
         if (expression.postag.contains("NN")) {
             if (expression.nertag.equalsIgnoreCase("person") | expression.nertag.equalsIgnoreCase("location")) {
                 return true;
             }
+        }
+        if (expression.word.equalsIgnoreCase("somebody")
+                | expression.word.equalsIgnoreCase("someone")
+                | expression.word.equalsIgnoreCase("anybody")
+                | expression.word.equalsIgnoreCase("anyone")
+                | expression.word.equalsIgnoreCase("everybody")
+                | expression.word.equalsIgnoreCase("everyone")) {
+            return true;
         }
         for (String definition : expression.definitions) {
             if (definition.contains("man ") | definition.contains("men ") | definition.contains(" he ")
@@ -316,5 +341,25 @@ public class InappExp {
             }
         }
         return false;
+    }
+
+    public static boolean passiveVoice(LinkedList<Expression> expressions) {
+        if(expressions.getFirst().word.equalsIgnoreCase("this"))return false;
+        for (Expression expression : expressions) {
+            if (expression.word.equalsIgnoreCase("been") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean firstPerson(Expression expression) {
+        return expression.word.equalsIgnoreCase("i") 
+                | expression.word.equalsIgnoreCase("we")
+                | expression.word.equalsIgnoreCase("me")
+                | expression.word.equalsIgnoreCase("mine")
+                | expression.word.equalsIgnoreCase("us")
+                | expression.word.equalsIgnoreCase("our")
+                | expression.word.equalsIgnoreCase("ours");
     }
 }
