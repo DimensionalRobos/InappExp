@@ -1,4 +1,8 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
@@ -24,7 +28,6 @@ public class NGramGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtInput = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaOutput = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
@@ -32,6 +35,9 @@ public class NGramGUI extends javax.swing.JFrame {
         btnRecognize = new javax.swing.JButton();
         btnWordLearn = new javax.swing.JButton();
         btnNGramLearn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txaInput = new javax.swing.JTextArea();
+        btnOpenFile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inappropriate Expressions Recognition");
@@ -65,22 +71,41 @@ public class NGramGUI extends javax.swing.JFrame {
             }
         });
 
+        txaInput.setColumns(20);
+        txaInput.setRows(5);
+        jScrollPane2.setViewportView(txaInput);
+
+        btnOpenFile.setText("Open File");
+        btnOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOpenFileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(277, 277, 277))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(287, 287, 287))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
+                                .addGap(6, 6, 6))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRecognize, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnOpenFile, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRecognize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNGramLearn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnWordLearn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnWordLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNGramLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -95,27 +120,35 @@ public class NGramGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRecognize, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRecognize, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNGramLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNGramLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnWordLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnWordLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnOpenFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(1, 1, 1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRecognizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecognizeActionPerformed
-        this.txaOutput.setText(InappExp.recognize(this.txtInput.getText()));   
+        txaOutput.setText("");
+        for(String comment:txaInput.getText().split("\n")){
+            JOptionPane.showMessageDialog(null, comment);
+            this.txaOutput.setText(txaOutput.getText()+InappExp.recognize(comment)+"\n");   
+        }
         JOptionPane.showMessageDialog(null,"Finished Evaluation");
     }//GEN-LAST:event_btnRecognizeActionPerformed
 
@@ -124,8 +157,30 @@ public class NGramGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnWordLearnActionPerformed
 
     private void btnNGramLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNGramLearnActionPerformed
-        this.txaOutput.setText(NGramGenerator.generateAndLearn(this.txtInput.getText()));
+        txaOutput.setText("");
+        for(String comment:txaInput.getText().split("\n")){
+            JOptionPane.showMessageDialog(null, comment);
+            this.txaOutput.setText(txaOutput.getText()+NGramGenerator.generateAndLearn(comment)+"\n");  
+        }
     }//GEN-LAST:event_btnNGramLearnActionPerformed
+
+    private void btnOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenFileActionPerformed
+        txaInput.setText("");
+        JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            try {
+                Scanner scanFile = new Scanner(new File(chooser.getSelectedFile().getAbsolutePath()));
+                while (scanFile.hasNextLine()) {
+                    String input = scanFile.nextLine();
+                    txaInput.setText(txaInput.getText()+input+"\n");
+                }
+                txaInput.setText(txaInput.getText().trim());
+            } catch (FileNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "You selected an unopenable file");
+            }
+        }
+    }//GEN-LAST:event_btnOpenFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,12 +219,14 @@ public class NGramGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNGramLearn;
+    private javax.swing.JButton btnOpenFile;
     private javax.swing.JButton btnRecognize;
     private javax.swing.JButton btnWordLearn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea txaInput;
     private javax.swing.JTextArea txaOutput;
-    private javax.swing.JTextField txtInput;
     // End of variables declaration//GEN-END:variables
 }
