@@ -47,6 +47,8 @@ public class InappExp {
         String posTaggedInput = POSTagger.tag(input);
         String nerTaggedInput = NERTagger.tag(input);
         Report report = new Report();
+        report.sentences=SentenceSplitter.split(posTaggedInput);
+        report.tokens=Tokenizer.tokenize(posTaggedInput);
         report.postag = posTaggedInput;
         report.nertag = nerTaggedInput;
         String[] tokens = posTaggedInput.split(" ");

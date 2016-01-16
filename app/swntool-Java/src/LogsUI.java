@@ -30,6 +30,10 @@ public class LogsUI extends javax.swing.JFrame {
             for(String definition:expression.urbanDefinitions){
                 this.txtDefinitions.setText(txtDefinitions.getText()+"=>"+definition+"\n");
             }
+            this.txtStemmer.setText(txtStemmer.getText()+expression.word+"\n");
+            for(String baseForm:expression.baseForms){
+                this.txtStemmer.setText(txtStemmer.getText()+"=>"+baseForm+"\n");
+            }
             this.txtSentiAna.setText(txtSentiAna.getText()+"====================\n");
             this.txtSentiAna.setText(txtSentiAna.getText()+"Word:"+expression.word+"\n");
             this.txtSentiAna.setText(txtSentiAna.getText()+"POSTag:"+expression.postag+"\n");
@@ -40,6 +44,8 @@ public class LogsUI extends javax.swing.JFrame {
             this.txtSentiAna.setText(txtSentiAna.getText()+"isInappropriate:"+expression.isInappropriate+"\n");
             this.txtSentiAna.setText(txtSentiAna.getText()+"Targetable Entity:"+InappExp.targetableUnit(expression)+"\n");
         }
+        this.txtSentenceSplit.setText(report.sentences);
+        this.txtTokenizer.setText(report.tokens);
         this.txtNGrams.setText(report.ngram);
         this.txtRIA.setText(report.ria);
     }
@@ -72,13 +78,13 @@ public class LogsUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtSentenceSplit = new javax.swing.JTextArea();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txtTokenizer = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtStemmer = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -150,19 +156,19 @@ public class LogsUI extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Relational Inference Analyzer");
 
-        jTextArea1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-        jTextArea1.getAccessibleContext().setAccessibleName("SentenceSplitter");
+        txtSentenceSplit.setBackground(new java.awt.Color(102, 102, 102));
+        txtSentenceSplit.setColumns(20);
+        txtSentenceSplit.setForeground(new java.awt.Color(255, 255, 255));
+        txtSentenceSplit.setRows(5);
+        jScrollPane1.setViewportView(txtSentenceSplit);
+        txtSentenceSplit.getAccessibleContext().setAccessibleName("SentenceSplitter");
 
-        jTextArea3.setBackground(new java.awt.Color(102, 102, 102));
-        jTextArea3.setColumns(20);
-        jTextArea3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea3.setRows(5);
-        jScrollPane9.setViewportView(jTextArea3);
-        jTextArea3.getAccessibleContext().setAccessibleName("Tokenizer");
+        txtTokenizer.setBackground(new java.awt.Color(102, 102, 102));
+        txtTokenizer.setColumns(20);
+        txtTokenizer.setForeground(new java.awt.Color(255, 255, 255));
+        txtTokenizer.setRows(5);
+        jScrollPane9.setViewportView(txtTokenizer);
+        txtTokenizer.getAccessibleContext().setAccessibleName("Tokenizer");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,12 +178,12 @@ public class LogsUI extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tokenizer");
 
-        jTextArea2.setBackground(new java.awt.Color(102, 102, 102));
-        jTextArea2.setColumns(20);
-        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
-        jTextArea2.getAccessibleContext().setAccessibleName("Stemmer");
+        txtStemmer.setBackground(new java.awt.Color(102, 102, 102));
+        txtStemmer.setColumns(20);
+        txtStemmer.setForeground(new java.awt.Color(255, 255, 255));
+        txtStemmer.setRows(5);
+        jScrollPane2.setViewportView(txtStemmer);
+        txtStemmer.getAccessibleContext().setAccessibleName("Stemmer");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -346,14 +352,14 @@ public class LogsUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     public javax.swing.JTextArea txtDefinitions;
     public javax.swing.JTextArea txtNERTag;
     public javax.swing.JTextArea txtNGrams;
     public javax.swing.JTextArea txtPOSTag;
     public javax.swing.JTextArea txtRIA;
+    private javax.swing.JTextArea txtSentenceSplit;
     public javax.swing.JTextArea txtSentiAna;
+    private javax.swing.JTextArea txtStemmer;
+    private javax.swing.JTextArea txtTokenizer;
     // End of variables declaration//GEN-END:variables
 }

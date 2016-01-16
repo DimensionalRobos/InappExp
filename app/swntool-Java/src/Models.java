@@ -12,6 +12,8 @@ import java.util.LinkedList;
 
 
 class Report{
+    public String sentences;
+    public String tokens;
     public String postag;
     public String nertag;
     public String ngram;
