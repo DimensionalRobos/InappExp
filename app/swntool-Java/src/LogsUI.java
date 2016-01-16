@@ -1,3 +1,8 @@
+
+import java.awt.Color;
+
+
+
 /**
  *
  * @author Anj Lasala
@@ -9,6 +14,7 @@ public class LogsUI extends javax.swing.JFrame {
      */
     public LogsUI() {
         initComponents();
+        this.getContentPane().setBackground(Color.BLACK);
     }
     
     public LogsUI(Report report){

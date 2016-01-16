@@ -251,7 +251,7 @@ public class InappExp {
             LinkedList<Expression> reversedExpressions = LinkedListUtils.reverse(expressions);
             for (Expression expression : reversedExpressions) {
                 if (negativeWord(expression)) {
-                    return false;
+                    inappropriateness = false;
                 }
                 if (expression.isInappropriate) {
                     if (hasTarget) {
@@ -349,6 +349,12 @@ public class InappExp {
         }
         boolean isSubjectObject = false;
         for (Expression expression : expressions) {
+            if (expression.word.equalsIgnoreCase("been") | expression.word.equalsIgnoreCase("being")) {
+                return false;
+            }
+            if (expression.word.equalsIgnoreCase("will") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
+                return true;
+            }
             if (isSubjectObject) {
                 if (expression.postag.startsWith("VB")|expression.postag.equalsIgnoreCase("IE")) {
                     return true;
@@ -364,12 +370,6 @@ public class InappExp {
                 isSubjectObject = true;
             }
         }
-        for (Expression expression : expressions) {
-            if (expression.word.equalsIgnoreCase("will") | expression.word.equalsIgnoreCase("been") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
-                return true;
-            }
-        }
-
         return false;
     }
 

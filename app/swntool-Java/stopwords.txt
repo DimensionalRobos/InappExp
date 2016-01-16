@@ -3428,3 +3428,9 @@ kill
 filthy
 ocd
 bad
+teacher
+engine
+profess
+compute
+calculate
+law

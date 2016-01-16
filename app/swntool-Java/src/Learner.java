@@ -3,6 +3,7 @@
  * Machine Learning Module of the InappExp Learns Inappropriate Expression
  * Features and retrieves resamples.
  */
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,6 +25,10 @@ public class Learner extends javax.swing.JFrame {
      */
     public Learner() {
         initComponents();
+        this.getContentPane().setBackground(Color.BLACK);
+        this.btnLearn.setBackground(Color.BLACK);
+        this.btnResample.setBackground(Color.BLACK);
+        this.btnViewLearning.setBackground(Color.BLACK);
     }
 
     /**
@@ -48,6 +53,7 @@ public class Learner extends javax.swing.JFrame {
         setTitle("Inappropriate Expressions Learning");
 
         btnLearn.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnLearn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLearn.setForeground(new java.awt.Color(255, 255, 255));
         btnLearn.setText("Learn");
         btnLearn.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +63,7 @@ public class Learner extends javax.swing.JFrame {
         });
 
         btnViewLearning.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnViewLearning.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnViewLearning.setForeground(new java.awt.Color(255, 255, 255));
         btnViewLearning.setText("View Learning Graph");
         btnViewLearning.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +94,7 @@ public class Learner extends javax.swing.JFrame {
         lblOut.setText("OUTPUT");
 
         btnResample.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnResample.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnResample.setForeground(new java.awt.Color(255, 255, 255));
         btnResample.setText("Resample");
         btnResample.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +305,24 @@ public class Learner extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
         }
+        sentiments.clear();
+        try {
+            Scanner scanFile = new Scanner(new File(Config.BasisData));
+            while (scanFile.hasNextLine()) {
+                String s = scanFile.nextLine();
+                Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
+                sentiments.add(sentiment);
+            }
+            txaInput.setText(txaInput.getText().trim());
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "You selected an unopenable file");
+        }
+        try {
+            PlotTool.learnPlot(new LinkedList<>(sentiments),"Inappropriate Expressions Regression");
+        } catch (Exception ex) {
+            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnLearnActionPerformed
 
     private void btnViewLearningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLearningActionPerformed
@@ -357,6 +383,23 @@ public class Learner extends javax.swing.JFrame {
             }
         }
         this.resample(sample, sentiments);
+        try {
+            PlotTool.learnPlot(new LinkedList<>(sentiments),"Feature sets Regression");
+        } catch (Exception ex) {
+            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        sentiments.clear();
+        try {
+            Scanner scanFile = new Scanner(new File(Config.TrainingData));
+            while (scanFile.hasNextLine()) {
+                String s = scanFile.nextLine();
+                Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
+                sentiments.add(sentiment);
+            }
+            txaInput.setText(txaInput.getText().trim());
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "You selected an unopenable file");
+        }
         try {
             PlotTool.learnPlot(new LinkedList<>(sentiments),"Feature sets Regression");
         } catch (Exception ex) {
