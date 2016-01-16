@@ -52,9 +52,12 @@ public class NGramGUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txaOutput);
 
         jLabel1.setBackground(java.awt.SystemColor.controlDkShadow);
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INPUT:");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("OUTPUT:");
 
         btnRecognize.setBackground(java.awt.SystemColor.activeCaptionText);

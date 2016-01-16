@@ -47,6 +47,8 @@ public class Learner extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inappropriate Expressions Learning");
 
+        btnLearn.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnLearn.setForeground(new java.awt.Color(255, 255, 255));
         btnLearn.setText("Learn");
         btnLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +56,8 @@ public class Learner extends javax.swing.JFrame {
             }
         });
 
+        btnViewLearning.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnViewLearning.setForeground(new java.awt.Color(255, 255, 255));
         btnViewLearning.setText("View Learning Graph");
         btnViewLearning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,20 +66,28 @@ public class Learner extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Neutra Display Titling", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INAPPROPRIATE EXPRESSIONS LEARNING");
         jLabel1.setToolTipText("");
 
+        txaInput.setBackground(new java.awt.Color(102, 102, 102));
         txaInput.setEditable(false);
+        txaInput.setForeground(new java.awt.Color(255, 255, 255));
 
-        txaOutput.setBackground(new java.awt.Color(255, 255, 255));
+        txaOutput.setBackground(new java.awt.Color(102, 102, 102));
         txaOutput.setEditable(false);
+        txaOutput.setForeground(new java.awt.Color(255, 255, 255));
 
         lblIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblIn.setForeground(new java.awt.Color(255, 255, 255));
         lblIn.setText("INPUT");
 
         lblOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblOut.setForeground(new java.awt.Color(255, 255, 255));
         lblOut.setText("OUTPUT");
 
+        btnResample.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnResample.setForeground(new java.awt.Color(255, 255, 255));
         btnResample.setText("Resample");
         btnResample.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,8 +113,8 @@ public class Learner extends javax.swing.JFrame {
                                     .addComponent(lblOut)
                                     .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnLearn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnResample))))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(15, Short.MAX_VALUE))
@@ -124,12 +136,11 @@ public class Learner extends javax.swing.JFrame {
                     .addComponent(txaInput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txaOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnLearn)
-                        .addComponent(btnResample))
-                    .addComponent(btnViewLearning))
-                .addGap(54, 54, 54))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnViewLearning, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(btnLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnResample, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         pack();

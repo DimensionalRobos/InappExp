@@ -69,46 +69,70 @@ public class LogsUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Logs");
 
+        txtNERTag.setBackground(new java.awt.Color(102, 102, 102));
         txtNERTag.setColumns(20);
+        txtNERTag.setForeground(new java.awt.Color(255, 255, 255));
         txtNERTag.setRows(5);
         jScrollPane3.setViewportView(txtNERTag);
         txtNERTag.getAccessibleContext().setAccessibleName("NERTag");
 
+        txtDefinitions.setBackground(new java.awt.Color(102, 102, 102));
         txtDefinitions.setColumns(20);
+        txtDefinitions.setForeground(new java.awt.Color(255, 255, 255));
         txtDefinitions.setRows(5);
         jScrollPane4.setViewportView(txtDefinitions);
         txtDefinitions.getAccessibleContext().setAccessibleName("DefinitionExtraction");
 
+        txtPOSTag.setBackground(new java.awt.Color(102, 102, 102));
         txtPOSTag.setColumns(20);
+        txtPOSTag.setForeground(new java.awt.Color(255, 255, 255));
         txtPOSTag.setRows(5);
         jScrollPane5.setViewportView(txtPOSTag);
         txtPOSTag.getAccessibleContext().setAccessibleName("POSTag");
 
+        txtSentiAna.setBackground(new java.awt.Color(102, 102, 102));
         txtSentiAna.setColumns(20);
+        txtSentiAna.setForeground(new java.awt.Color(255, 255, 255));
         txtSentiAna.setRows(5);
         jScrollPane6.setViewportView(txtSentiAna);
         txtSentiAna.getAccessibleContext().setAccessibleName("InappExpressScoring");
 
+        txtRIA.setBackground(new java.awt.Color(102, 102, 102));
         txtRIA.setColumns(20);
+        txtRIA.setForeground(new java.awt.Color(255, 255, 255));
         txtRIA.setRows(5);
         jScrollPane7.setViewportView(txtRIA);
         txtRIA.getAccessibleContext().setAccessibleName("SentimentScoring");
 
+        txtNGrams.setBackground(new java.awt.Color(102, 102, 102));
         txtNGrams.setColumns(20);
+        txtNGrams.setForeground(new java.awt.Color(255, 255, 255));
         txtNGrams.setRows(5);
         jScrollPane8.setViewportView(txtNGrams);
         txtNGrams.getAccessibleContext().setAccessibleName("NGRAMAnalysis");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("POS Tag");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("NER Tag");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("NGRAM Analysis");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Definition Extraction");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("InappExpress Scoring");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Relational Inference Analyzer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,26 +156,26 @@ public class LogsUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
+                .addGap(163, 163, 163)
                 .addComponent(jLabel1)
-                .addGap(287, 287, 287)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(223, 223, 223)
                 .addComponent(jLabel4)
-                .addGap(149, 149, 149))
+                .addGap(136, 136, 136))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(135, 135, 135)
                 .addComponent(jLabel3)
-                .addGap(233, 233, 233)
-                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(151, 151, 151)
                 .addComponent(jLabel6)
-                .addGap(145, 145, 145))
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
