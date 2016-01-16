@@ -2,7 +2,6 @@
 /**
  * Expression Inappropriateness Evaluation
  */
-
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -158,6 +157,7 @@ public class InappExp {
             }
         }
         new LogsUI(report);
+        MessageBox.show(s);
         return s;
     }
 
@@ -248,7 +248,7 @@ public class InappExp {
         boolean inappropriateness = probablyInappropriate(expressions);
         if (passiveVoice(expressions)) {
             boolean hasTarget = false;
-            LinkedList<Expression>reversedExpressions = LinkedListUtils.reverse(expressions);
+            LinkedList<Expression> reversedExpressions = LinkedListUtils.reverse(expressions);
             for (Expression expression : reversedExpressions) {
                 if (negativeWord(expression)) {
                     return false;
@@ -264,7 +264,7 @@ public class InappExp {
                 }
             }
         } else {
-            boolean hasTarget=false;
+            boolean hasTarget = false;
             for (Expression expression : expressions) {
                 if (negativeWord(expression)) {
                     inappropriateness = false;
@@ -344,22 +344,55 @@ public class InappExp {
     }
 
     public static boolean passiveVoice(LinkedList<Expression> expressions) {
-        if(expressions.getFirst().word.equalsIgnoreCase("this"))return false;
+        if (expressions.getFirst().word.equalsIgnoreCase("this")) {
+            return false;
+        }
+        boolean isSubjectObject = false;
         for (Expression expression : expressions) {
-            if (expression.word.equalsIgnoreCase("been") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
+            if (isSubjectObject) {
+                if (expression.postag.startsWith("VB")|expression.postag.equalsIgnoreCase("IE")) {
+                    return true;
+                }
+                if (isSubjectObject(expression)) {
+                    continue;
+                } else {
+                    return false;
+                }
+                
+            }
+            if (isSubjectObject(expression)) {
+                isSubjectObject = true;
+            }
+        }
+        for (Expression expression : expressions) {
+            if (expression.word.equalsIgnoreCase("will") | expression.word.equalsIgnoreCase("been") | expression.word.equalsIgnoreCase("is") | expression.word.equalsIgnoreCase("are") | expression.word.equalsIgnoreCase("was") | expression.word.equalsIgnoreCase("were")) {
                 return true;
             }
         }
+
         return false;
     }
 
     public static boolean firstPerson(Expression expression) {
-        return expression.word.equalsIgnoreCase("i") 
+        return expression.word.equalsIgnoreCase("i")
                 | expression.word.equalsIgnoreCase("we")
                 | expression.word.equalsIgnoreCase("me")
                 | expression.word.equalsIgnoreCase("mine")
                 | expression.word.equalsIgnoreCase("us")
                 | expression.word.equalsIgnoreCase("our")
-                | expression.word.equalsIgnoreCase("ours");
+                | expression.word.equalsIgnoreCase("ours")
+                | expression.word.equalsIgnoreCase("yours")
+                | expression.word.equalsIgnoreCase("it")
+                | expression.word.equalsIgnoreCase("its")
+                | expression.word.equalsIgnoreCase("theirs")
+                | expression.word.equalsIgnoreCase("your")
+                | expression.word.equalsIgnoreCase("his")
+                | expression.word.equalsIgnoreCase("her")
+                | expression.word.equalsIgnoreCase("their");
+    }
+
+    public static boolean isSubjectObject(Expression expression) {
+        return expression.postag.startsWith("NN")
+                | expression.postag.startsWith("PR");
     }
 }
