@@ -251,6 +251,7 @@ public class InappExp {
             LinkedList<Expression> reversedExpressions = LinkedListUtils.reverse(expressions);
             for (Expression expression : reversedExpressions) {
                 if (negativeWord(expression)) {
+                    inappropriateness = probablyInappropriate(expressions);
                     inappropriateness = false;
                 }
                 if (expression.isInappropriate) {
@@ -270,6 +271,7 @@ public class InappExp {
                     inappropriateness = false;
                 }
                 if (expression.isInappropriate) {
+                    inappropriateness = probablyInappropriate(expressions);
                     if (hasTarget) {
                         inappropriateness = true;
                         continue;
