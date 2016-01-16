@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -17,6 +18,11 @@ public class NGramGUI extends javax.swing.JFrame {
      */
     public NGramGUI() {
         initComponents();
+        this.getContentPane().setBackground(Color.BLACK);
+        this.btnNGramLearn.setBackground(Color.BLACK);
+        this.btnOpenFile.setBackground(Color.BLACK);
+        this.btnRecognize.setBackground(Color.BLACK);
+        this.btnWordLearn.setBackground(Color.BLACK);
     }
     
     /**
@@ -52,12 +58,16 @@ public class NGramGUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txaOutput);
 
         jLabel1.setBackground(java.awt.SystemColor.controlDkShadow);
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INPUT:");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("OUTPUT:");
 
         btnRecognize.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnRecognize.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnRecognize.setForeground(new java.awt.Color(255, 255, 255));
         btnRecognize.setText("Recognize");
         btnRecognize.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +77,7 @@ public class NGramGUI extends javax.swing.JFrame {
         });
 
         btnWordLearn.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnWordLearn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnWordLearn.setForeground(new java.awt.Color(255, 255, 255));
         btnWordLearn.setText("Word Learn");
         btnWordLearn.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +87,7 @@ public class NGramGUI extends javax.swing.JFrame {
         });
 
         btnNGramLearn.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnNGramLearn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnNGramLearn.setForeground(new java.awt.Color(255, 255, 255));
         btnNGramLearn.setText("NGram Learn");
         btnNGramLearn.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +103,7 @@ public class NGramGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txaInput);
 
         btnOpenFile.setBackground(java.awt.SystemColor.activeCaptionText);
+        btnOpenFile.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnOpenFile.setForeground(new java.awt.Color(255, 255, 255));
         btnOpenFile.setText("Open File");
         btnOpenFile.addActionListener(new java.awt.event.ActionListener() {
