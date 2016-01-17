@@ -28,8 +28,8 @@ public class BWDAO {
                     return true;
                 }
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(BWDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            
         }
         return false;
     }
@@ -45,8 +45,8 @@ public class BWDAO {
                     return true;
                 }
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MLDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            
         }
         return false;
     }

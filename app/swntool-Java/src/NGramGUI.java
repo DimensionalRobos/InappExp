@@ -53,6 +53,7 @@ public class NGramGUI extends javax.swing.JFrame {
         txaOutput.setEditable(false);
         txaOutput.setBackground(new java.awt.Color(102, 102, 102));
         txaOutput.setColumns(20);
+        txaOutput.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txaOutput.setForeground(new java.awt.Color(255, 255, 255));
         txaOutput.setRows(5);
         jScrollPane1.setViewportView(txaOutput);
@@ -98,6 +99,7 @@ public class NGramGUI extends javax.swing.JFrame {
 
         txaInput.setBackground(new java.awt.Color(102, 102, 102));
         txaInput.setColumns(20);
+        txaInput.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txaInput.setForeground(new java.awt.Color(255, 255, 255));
         txaInput.setRows(5);
         jScrollPane2.setViewportView(txaInput);

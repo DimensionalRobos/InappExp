@@ -79,10 +79,12 @@ public class Learner extends javax.swing.JFrame {
 
         txaInput.setBackground(new java.awt.Color(102, 102, 102));
         txaInput.setEditable(false);
+        txaInput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txaInput.setForeground(new java.awt.Color(255, 255, 255));
 
         txaOutput.setBackground(new java.awt.Color(102, 102, 102));
         txaOutput.setEditable(false);
+        txaOutput.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txaOutput.setForeground(new java.awt.Color(255, 255, 255));
 
         lblIn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -295,7 +297,7 @@ public class Learner extends javax.swing.JFrame {
                     sample.addLast(input);
                 }
                 txaInput.setText(txaInput.getText().trim());
-            } catch (FileNotFoundException ex) {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "You selected an unopenable file");
             }
         }
@@ -303,7 +305,7 @@ public class Learner extends javax.swing.JFrame {
         try {
             PlotTool.learnPlot(new LinkedList<>(sentiments),"Feature sets Regression");
         } catch (Exception ex) {
-            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         sentiments.clear();
         try {
@@ -314,8 +316,8 @@ public class Learner extends javax.swing.JFrame {
                 sentiments.add(sentiment);
             }
             txaInput.setText(txaInput.getText().trim());
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "You selected an unopenable file");
+        } catch (Exception ex) {
+            
         }
         try {
             PlotTool.learnPlot(new LinkedList<>(sentiments),"Inappropriate Expressions Regression");
