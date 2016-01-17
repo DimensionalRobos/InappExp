@@ -25,7 +25,9 @@ public class NGramGenerator {
             expressions[i].nertag = nerTokens[i].split("/")[1];
         }
         for (Expression expression : expressions) {
-            ContextGenerator.generate(expression);
+            if (InappExp.shouldBeDefined(expression)) {
+                ContextGenerator.generate(expression);
+            }
         }
         for (Expression expression : expressions) {
             if (expression.isInappropriate) {
