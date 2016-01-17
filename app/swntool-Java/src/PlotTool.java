@@ -37,14 +37,6 @@ public class PlotTool {
         distributionPlot.addLinePlot("InappExp Fluctuations", Color.BLUE, x, y);
         distributionPlot.addScatterPlot("InappExp Fluctuations", Color.PINK, x, y);
 
-        double []linX=new double[2];
-        double []linY=new double[2];
-        linY[0]=0;
-        linY[1]=SentiAnalyzer.getMin(sentiments);
-        linX[0]=sentiments.size();
-        linX[1]=SentiAnalyzer.getMax(sentiments);
-        
-        distributionPlot.addLinePlot("Regression", Color.GRAY, linX, linY);
         System.err.println("Sample Count:" + sentiments.size());
 
         for (i = 0; i < sentiments.size(); i++) {
