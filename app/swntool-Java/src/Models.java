@@ -1,3 +1,4 @@
+
 /**
  * Contains Models used For Sentiment Analysis
  */
@@ -8,10 +9,8 @@ import java.util.LinkedList;
  *
  * @author Daikaiser
  */
+class Report {
 
-
-
-class Report{
     public String sentences;
     public String tokens;
     public String postag;
@@ -24,16 +23,16 @@ class Report{
 class Expression {
 
     public String word;
-    public LinkedList<String> baseForms=new LinkedList<String>();
+    public LinkedList<String> baseForms = new LinkedList<String>();
     public boolean isInappropriate = false;
     public String postag;
     public String nertag;
     public double value = 0;
-    public LinkedList<String> definitions=new LinkedList<String>();
-    public LinkedList<String> urbanDefinitions=new LinkedList<String>();
-    public boolean isInvoked=false;
-    public double sentimentValue=0;
-    
+    public LinkedList<String> definitions = new LinkedList<String>();
+    public LinkedList<String> urbanDefinitions = new LinkedList<String>();
+    public boolean isInvoked = false;
+    public double sentimentValue = 0;
+
     public Expression(String word, String postag) {
         this.word = word;
         this.postag = postag;
@@ -67,10 +66,14 @@ class WordList extends LinkedList<String> {
 class ExpressionList extends LinkedList<Sentiment> {
 
     public boolean contains(Sentiment s) {
-        for (Sentiment sentiments : this) {
-            if (sentiments.word.equals(s.word) & s.sentimentValue == sentiments.sentimentValue) {
-                return true;
+        try {
+            for (Sentiment sentiments : this) {
+                if (sentiments.word.equals(s.word) & s.sentimentValue == sentiments.sentimentValue) {
+                    return true;
+                }
             }
+        } catch (Exception e) {
+
         }
         return false;
     }
@@ -96,6 +99,6 @@ class Sentiment {
     }
 }
 
-public class Models{
-    
+public class Models {
+
 }

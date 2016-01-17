@@ -31,8 +31,8 @@ public class MLDAO {
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
                 expressions.add(sentiment);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MLDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            
         }
         return expressions;
     }
