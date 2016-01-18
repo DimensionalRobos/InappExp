@@ -311,7 +311,7 @@ public class InappExp {
                 inappropriateness = true;
             }
         }
-        return inappropriateness | ((double) inappropriateCount / expressions.size()) > 0.4;
+        return inappropriateness | ((double) inappropriateCount / expressions.size()) >= 0.4;
     }
 
     public static boolean targetableUnit(Expression expression) {
@@ -351,6 +351,10 @@ public class InappExp {
         if (expressions.getFirst().word.equalsIgnoreCase("this")) {
             return false;
         }
+        if (expressions.getFirst().postag.startsWith("VB")|expressions.getFirst().postag.startsWith("IE")){
+            return true;
+        }
+        
         boolean isSubjectObject = false;
         for (Expression expression : expressions) {
             if (expression.word.equalsIgnoreCase("been") | expression.word.equalsIgnoreCase("being")) {
