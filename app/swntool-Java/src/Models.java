@@ -61,6 +61,24 @@ class WordList extends LinkedList<String> {
         }
         return false;
     }
+    
+    public WordList sort(){
+        WordList sortedList=new WordList();
+        int maxLen=0;
+        for(String word:this){
+            if(word.length()>maxLen){
+                maxLen=word.length();
+            }
+        }
+        for(int i=maxLen;i>=0;i--){
+            for(String word:this){
+                if(word.length()==i){
+                    sortedList.add(word);;
+                }
+            }
+        }
+        return sortedList;
+    }
 }
 
 class ExpressionList extends LinkedList<Sentiment> {
