@@ -33,6 +33,9 @@ class MessageBox{
     public static void show(String input){
         JOptionPane.showMessageDialog(null, input);
     }
+    public static void showError(String input){
+        JOptionPane.showMessageDialog(null, input,"Error",JOptionPane.ERROR_MESSAGE);
+    }
 }
 
 public class Utils {

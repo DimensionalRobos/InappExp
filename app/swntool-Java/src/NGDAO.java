@@ -3,12 +3,9 @@
  */
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -34,9 +31,8 @@ public class NGDAO {
                     System.out.println(s);
                 }
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(NGDAO.class
-                    .getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            
         }
         return NGrams;
     }

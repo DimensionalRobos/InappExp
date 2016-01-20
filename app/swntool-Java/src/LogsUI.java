@@ -90,6 +90,7 @@ public class LogsUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Logs");
 
+        txtNERTag.setEditable(false);
         txtNERTag.setBackground(new java.awt.Color(102, 102, 102));
         txtNERTag.setColumns(20);
         txtNERTag.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,6 +98,7 @@ public class LogsUI extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtNERTag);
         txtNERTag.getAccessibleContext().setAccessibleName("NERTag");
 
+        txtDefinitions.setEditable(false);
         txtDefinitions.setBackground(new java.awt.Color(102, 102, 102));
         txtDefinitions.setColumns(20);
         txtDefinitions.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,6 +106,7 @@ public class LogsUI extends javax.swing.JFrame {
         jScrollPane4.setViewportView(txtDefinitions);
         txtDefinitions.getAccessibleContext().setAccessibleName("DefinitionExtraction");
 
+        txtPOSTag.setEditable(false);
         txtPOSTag.setBackground(new java.awt.Color(102, 102, 102));
         txtPOSTag.setColumns(20);
         txtPOSTag.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,6 +114,7 @@ public class LogsUI extends javax.swing.JFrame {
         jScrollPane5.setViewportView(txtPOSTag);
         txtPOSTag.getAccessibleContext().setAccessibleName("POSTag");
 
+        txtSentiAna.setEditable(false);
         txtSentiAna.setBackground(new java.awt.Color(102, 102, 102));
         txtSentiAna.setColumns(20);
         txtSentiAna.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,6 +122,7 @@ public class LogsUI extends javax.swing.JFrame {
         jScrollPane6.setViewportView(txtSentiAna);
         txtSentiAna.getAccessibleContext().setAccessibleName("InappExpressScoring");
 
+        txtRIA.setEditable(false);
         txtRIA.setBackground(new java.awt.Color(102, 102, 102));
         txtRIA.setColumns(20);
         txtRIA.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,6 +130,7 @@ public class LogsUI extends javax.swing.JFrame {
         jScrollPane7.setViewportView(txtRIA);
         txtRIA.getAccessibleContext().setAccessibleName("SentimentScoring");
 
+        txtNGrams.setEditable(false);
         txtNGrams.setBackground(new java.awt.Color(102, 102, 102));
         txtNGrams.setColumns(20);
         txtNGrams.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,6 +162,7 @@ public class LogsUI extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Relational Inference Analyzer");
 
+        txtSentenceSplit.setEditable(false);
         txtSentenceSplit.setBackground(new java.awt.Color(102, 102, 102));
         txtSentenceSplit.setColumns(20);
         txtSentenceSplit.setForeground(new java.awt.Color(255, 255, 255));
@@ -163,6 +170,7 @@ public class LogsUI extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtSentenceSplit);
         txtSentenceSplit.getAccessibleContext().setAccessibleName("SentenceSplitter");
 
+        txtTokenizer.setEditable(false);
         txtTokenizer.setBackground(new java.awt.Color(102, 102, 102));
         txtTokenizer.setColumns(20);
         txtTokenizer.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,6 +186,7 @@ public class LogsUI extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tokenizer");
 
+        txtStemmer.setEditable(false);
         txtStemmer.setBackground(new java.awt.Color(102, 102, 102));
         txtStemmer.setColumns(20);
         txtStemmer.setForeground(new java.awt.Color(255, 255, 255));

@@ -2,11 +2,7 @@
 /**
  * Expression Inappropriateness Evaluation
  */
-import java.io.IOException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,6 +40,12 @@ public class InappExp {
 
     public static String recognize(String input) {
         String s = "";
+        if(input.isEmpty()){
+            MessageBox.showError("Please Input something");
+        }
+        if(InputVerifier.isInjectable(input)){
+            MessageBox.showError("Input must not contain _ or /");
+        }
         String posTaggedInput = POSTagger.tag(input);
         String nerTaggedInput = NERTagger.tag(input);
         Report report = new Report();
@@ -55,6 +57,9 @@ public class InappExp {
         String[] nerTokens = nerTaggedInput.split(" ");
         LinkedList<Expression> uniqueExpressions = new LinkedList<Expression>();
         Expression[] expressions = new Expression[tokens.length];
+        if(!InputVerifier.mustBeEvaluated(expressions)){
+            MessageBox.showError("There must be more than one token/word before evaluation");
+        }
         for (int i = 0; i < tokens.length; i++) {
             expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
         }
