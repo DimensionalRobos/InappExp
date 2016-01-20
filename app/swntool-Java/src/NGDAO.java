@@ -34,6 +34,7 @@ public class NGDAO {
         } catch (Exception ex) {
             
         }
+        NGrams=NGrams.sort();
         return NGrams;
     }
 }
