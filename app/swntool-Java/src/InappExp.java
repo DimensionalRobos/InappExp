@@ -178,14 +178,14 @@ public class InappExp {
     }
 
     public static boolean shouldBeTested(Expression e) {
-        if (!isSymbolToken(e.word) & !EWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
+        if (!isSymbolToken(e.word) & !EWDAO.exists(e.word) &!SWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
     }
 
     public static boolean shouldBeDefined(Expression e) {
-        if (!isSymbolToken(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
+        if (!isSymbolToken(e.word) & !SWDAO.exists(e.word) & !e.nertag.equals("PERSON") & !e.nertag.equals("LOCATION")) {
             return e.postag.startsWith("NN") | e.postag.startsWith("FW") | e.postag.startsWith("RB") | e.postag.startsWith("VB") | e.postag.startsWith("JJ");
         }
         return false;
