@@ -74,16 +74,17 @@ public class SentiAnaGUI extends javax.swing.JFrame {
         Dictionary dict = new Dictionary(new File("C:\\Program Files\\WordNet\\2.1\\dict"));
         try {
             dict.open();
-        } catch (IOException ex) {
-            Logger.getLogger(SentiAnaGUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            
         }
         WordnetStemmer stemmer = new WordnetStemmer(dict);
         try {
             String taggedText=POSTagger.tag(taInput.getText());
             SentiAnalyzer.analyze(taggedText);
         } catch (Exception ex) {
-            Logger.getLogger(Models.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
     }//GEN-LAST:event_btnAnalyzeActionPerformed
 
     /**
