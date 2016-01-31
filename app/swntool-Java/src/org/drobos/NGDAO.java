@@ -1,3 +1,5 @@
+package org.drobos;
+
 /**
  * N-Gram Data Access Object
  */

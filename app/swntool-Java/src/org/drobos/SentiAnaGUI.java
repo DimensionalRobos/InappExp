@@ -1,3 +1,5 @@
+package org.drobos;
+
 import edu.mit.jwi.Dictionary;
 import edu.mit.jwi.morph.WordnetStemmer;
 import java.io.File;

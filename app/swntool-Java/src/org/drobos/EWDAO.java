@@ -1,3 +1,5 @@
+package org.drobos;
+
 /**
  * Exception Words Data Access Object for words that will never be used inappropriately
  */

@@ -1,3 +1,5 @@
+package org.drobos;
+
 /**
  * Analyzes Sentiments after being tagged and returns the main descriptor for inappropriateness
  */

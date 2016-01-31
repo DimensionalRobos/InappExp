@@ -1,3 +1,5 @@
+package org.drobos;
+
 /**
  * Bad Words/Inappropriate Words Data Access Object
  */
