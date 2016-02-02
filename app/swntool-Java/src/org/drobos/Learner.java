@@ -51,7 +51,7 @@ public class Learner extends javax.swing.JFrame {
         lblOut = new javax.swing.JLabel();
         btnResample = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inappropriate Expressions Learning");
 
         btnLearn.setBackground(java.awt.SystemColor.activeCaptionText);

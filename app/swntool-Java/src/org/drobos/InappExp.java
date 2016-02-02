@@ -166,7 +166,6 @@ public class InappExp {
             }
         }
         new LogsUI(report);
-        MessageBox.show(s);
         return s;
     }
 

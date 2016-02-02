@@ -52,6 +52,7 @@ public class NGramGUI extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(0, 0, 0));
 
+        txaOutput.setEditable(false);
         txaOutput.setBackground(new java.awt.Color(102, 102, 102));
         txaOutput.setColumns(20);
         txaOutput.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
