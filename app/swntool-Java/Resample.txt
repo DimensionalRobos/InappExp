@@ -1349,3 +1349,8 @@ down#0
 drink down#0
 obliterate#0
 wipe out#0
+nut#0
+crackpot#0
+nut case#0
+nutcase#0
+fruitcake#0
