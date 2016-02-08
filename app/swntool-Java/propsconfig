@@ -6,3 +6,4 @@ NGramData=NGram.txt
 BasisData=WordVal.txt
 ResampleData=Resample.txt
 ExceptionData=exceptionlist.txt
+StopWordData=Stopwords.txt
