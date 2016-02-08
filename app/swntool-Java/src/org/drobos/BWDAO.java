@@ -20,7 +20,7 @@ public class BWDAO {
     public static boolean exists(String word) {
         word = word.toLowerCase();
         try {
-            Scanner scan = new Scanner(new File(Config.BasisData));
+            Scanner scan = new Scanner(new File(Config.BasisData()));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0].trim(), Double.valueOf(s.split("#")[1]));
@@ -38,7 +38,7 @@ public class BWDAO {
 
     public static boolean existsAsResample(String word){
         try {
-            Scanner scan = new Scanner(new File(Config.ResampleData));
+            Scanner scan = new Scanner(new File(Config.ResampleData()));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
@@ -55,7 +55,7 @@ public class BWDAO {
     
     public static void write(String word,boolean isResample) {
         try {
-            File file = new File(isResample?Config.ResampleData:Config.BasisData);
+            File file = new File(isResample?Config.ResampleData():Config.BasisData());
             FileWriter f = new FileWriter(file, true);
             f.write(word);
             f.close();
@@ -67,7 +67,7 @@ public class BWDAO {
     public static ExpressionList getSentiments(){
         ExpressionList expressions=new ExpressionList();
         try {
-            Scanner scan=new Scanner(new File(Config.BasisData));
+            Scanner scan=new Scanner(new File(Config.BasisData()));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
@@ -81,7 +81,7 @@ public class BWDAO {
     
     public static Sentiment findExpression(String word){
         try {
-            Scanner scan=new Scanner(new File(Config.BasisData));
+            Scanner scan=new Scanner(new File(Config.BasisData()));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
@@ -101,7 +101,7 @@ public class BWDAO {
     public static double extract(String word) {
         word = word.toLowerCase();
         try {
-            Scanner scan = new Scanner(new File(Config.BasisData));
+            Scanner scan = new Scanner(new File(Config.BasisData()));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));

@@ -311,7 +311,7 @@ public class Learner extends javax.swing.JFrame {
         }
         sentiments.clear();
         try {
-            Scanner scanFile = new Scanner(new File(Config.BasisData));
+            Scanner scanFile = new Scanner(new File(Config.BasisData()));
             while (scanFile.hasNextLine()) {
                 String s = scanFile.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
@@ -332,7 +332,7 @@ public class Learner extends javax.swing.JFrame {
     private void btnViewLearningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewLearningActionPerformed
         LinkedList<Sentiment> sentiments = new LinkedList<Sentiment>();
         try {
-            Scanner scanFile = new Scanner(new File(Config.BasisData));
+            Scanner scanFile = new Scanner(new File(Config.BasisData()));
             while (scanFile.hasNextLine()) {
                 String s = scanFile.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
@@ -349,7 +349,7 @@ public class Learner extends javax.swing.JFrame {
         }
         sentiments.clear();
         try {
-            Scanner scanFile = new Scanner(new File(Config.TrainingData));
+            Scanner scanFile = new Scanner(new File(Config.TrainingData()));
             while (scanFile.hasNextLine()) {
                 String s = scanFile.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));
@@ -394,7 +394,7 @@ public class Learner extends javax.swing.JFrame {
         }
         sentiments.clear();
         try {
-            Scanner scanFile = new Scanner(new File(Config.TrainingData));
+            Scanner scanFile = new Scanner(new File(Config.TrainingData()));
             while (scanFile.hasNextLine()) {
                 String s = scanFile.nextLine();
                 Sentiment sentiment = new Sentiment(s.split("#")[0], Double.valueOf(s.split("#")[1]));

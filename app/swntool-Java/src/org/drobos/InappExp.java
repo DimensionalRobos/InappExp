@@ -73,12 +73,12 @@ public class InappExp {
             int numberOfDefs = 0;
             expression.baseForms = Stemmer.stem(expression.word, expression.postag);
             try {
-                SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath);
+                SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath());
                 expression.sentimentValue = sentiWordNet.extract(input);
             } catch (Exception e) {
                 for (String baseForm : expression.baseForms) {
                     try {
-                        SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath);
+                        SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath());
                         expression.sentimentValue = sentiWordNet.extract(input);
                         break;
                     } catch (Exception ex) {

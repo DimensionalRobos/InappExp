@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class NGDAO {
     public static void write(String NGram) throws IOException{
-        File file =new File(Config.NGramData);
+        File file =new File(Config.NGramData());
         FileWriter f=new FileWriter(file,true);
         f.write(NGram);
         f.close();
@@ -25,7 +25,7 @@ public class NGDAO {
     public static WordList extractNGrams() {
         WordList NGrams = new WordList();
         try {
-            Scanner scan = new Scanner(new File(Config.NGramData));
+            Scanner scan = new Scanner(new File(Config.NGramData()));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 if (!NGrams.contains(s)) {

@@ -19,7 +19,7 @@ public class SWDAO {
     public static boolean exists(String word){
         word = word.toLowerCase();
         try {
-            Scanner scan = new Scanner(new File(Config.StopWordData));
+            Scanner scan = new Scanner(new File(Config.StopWordData()));
             while (scan.hasNextLine()) {
                 String s = scan.nextLine();
                 if (s.equalsIgnoreCase(word)) {

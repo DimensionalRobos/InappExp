@@ -1,5 +1,8 @@
 package org.drobos;
 
+import java.io.File;
+import java.util.Scanner;
+
 /**
  * All configurations are done here.
  * PythonFolder=location of udscrape.py
@@ -16,13 +19,121 @@ package org.drobos;
  * @author Daikaiser
  */
 public class Config {
-    public static String PythonFolder="C:\\Users\\root\\Documents\\GitHub\\InappExp\\app\\UrbanDictScraper-Python\\";
-    public static String WordNetPath="C:\\Program Files\\WordNet\\2.1\\dict";
-    public static String SentiWordNetPath="swn.txt";
-    public static String TrainingData="MLearn.txt";
-    public static String NGramData="NGram.txt";
-    public static String BasisData="WordVal.txt";
-    public static String ResampleData="Resample.txt";
-    public static String ExceptionData="exceptionlist.txt";
-    public static String StopWordData="stopwords.txt";
+    public static String PythonFolder(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("PythonFolder"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String WordNetPath(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("WordNetPath"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String SentiWordNetPath(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("SentiWordNetPath"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String TrainingData(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("TrainingData"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String NGramData(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("NGramData"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String BasisData(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("BasisData"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String ResampleData(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("ResampleData"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String ExceptionData(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("ExceptionData"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
+    public static String StopWordData(){
+        try {
+            Scanner scan=new Scanner(new File("propsconfig"));
+            while (scan.hasNextLine()) {
+                String s = scan.nextLine();
+                if(s.split("=")[0].equals("StopWordData"))
+                    return s.split("=")[1];
+            }
+        } catch (Exception ex) {
+            
+        }
+        return "";
+    }
 }
