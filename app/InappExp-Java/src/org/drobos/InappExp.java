@@ -40,7 +40,7 @@ public class InappExp {
         return SentiAnalyzer.getMean(trainingData);
     }
 
-    public static String recognize(String input) {
+    public static String recognizeDebugMode(String input) {
         String s = "";
         if(input.isEmpty()){
             MessageBox.showError("Please Input something");
@@ -166,6 +166,69 @@ public class InappExp {
             }
         }
         new LogsUI(report);
+        return s;
+    }
+    
+    public static String recognize(String input) {
+        String s = "";
+        if(input.isEmpty()){
+            MessageBox.showError("Please Input something");
+        }
+        if(InputVerifier.isInjectable(input)){
+            MessageBox.showError("Input must not contain _ or /");
+        }
+        String posTaggedInput = POSTagger.tag(input);
+        String nerTaggedInput = NERTagger.tag(input);
+        String[] tokens = posTaggedInput.split(" ");
+        String[] nerTokens = nerTaggedInput.split(" ");
+        LinkedList<Expression> uniqueExpressions = new LinkedList<Expression>();
+        Expression[] expressions = new Expression[tokens.length];
+        if(!InputVerifier.mustBeEvaluated(expressions)){
+            MessageBox.showError("There must be more than one token/word before evaluation");
+        }
+        for (int i = 0; i < tokens.length; i++) {
+            expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
+        }
+        for (int i = 0; i < tokens.length; i++) {
+            expressions[i].nertag = nerTokens[i].split("/")[1];
+        }
+        for (Expression expression : expressions) {
+            double sum = 0;
+            int numberOfDefs = 0;
+            expression.baseForms = Stemmer.stem(expression.word, expression.postag);
+            try {
+                SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath());
+                expression.sentimentValue = sentiWordNet.extract(input);
+            } catch (Exception e) {
+                for (String baseForm : expression.baseForms) {
+                    try {
+                        SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath());
+                        expression.sentimentValue = sentiWordNet.extract(input);
+                        break;
+                    } catch (Exception ex) {
+                    }
+                }
+            }
+            if (shouldBeDefined(expression)) {
+                ContextGenerator.generate(expression);
+            }
+        }
+        
+        for (Expression expression : expressions) {
+            System.err.println(expression.value);
+        }
+        NGramParser.parse(expressions);
+        analyzeSemantics(expressions);
+        
+        for (Expression expression : expressions) {
+            if (!expression.isInvoked) {
+                s += expression.word + " ";
+            } else if (expression.isInappropriate & expression.isInvoked) {
+                s += "<Inapp>" + expression.word + "</Inapp> ";
+            } else {
+                s += expression.word + " ";
+            }
+        }
         return s;
     }
 

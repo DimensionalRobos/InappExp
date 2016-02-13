@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author Daikaiser
  */
-public class NGramGUI extends javax.swing.JFrame {
+public class InappExpSimulator extends javax.swing.JFrame {
     
     /**
      * Creates new form NGramGUI
      */
-    public NGramGUI() {
+    public InappExpSimulator() {
         initComponents();
         this.getContentPane().setBackground(Color.BLACK);
         this.btnNGramLearn.setBackground(Color.BLACK);
@@ -174,7 +174,7 @@ public class NGramGUI extends javax.swing.JFrame {
     private void btnRecognizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecognizeActionPerformed
         txaOutput.setText("");
         for(String comment:txaInput.getText().split("\n")){
-            this.txaOutput.setText(txaOutput.getText()+InappExp.recognize(comment)+"\n");   
+            this.txaOutput.setText(txaOutput.getText()+InappExp.recognizeDebugMode(comment)+"\n");   
         }
         JOptionPane.showMessageDialog(null,"Finished Evaluation");
     }//GEN-LAST:event_btnRecognizeActionPerformed
@@ -225,20 +225,21 @@ public class NGramGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NGramGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InappExpSimulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NGramGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InappExpSimulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NGramGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InappExpSimulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NGramGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InappExpSimulator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NGramGUI().setVisible(true);
+                new InappExpSimulator().setVisible(true);
             }
         });
     }
