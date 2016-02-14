@@ -1183,6 +1183,7 @@ honestly
 honorable
 honored
 hoo
+ho
 hop
 hope
 hopeful
@@ -3244,3 +3245,4 @@ Juvenoia
 teens
 safeguard
 bloody
+Dragonite
