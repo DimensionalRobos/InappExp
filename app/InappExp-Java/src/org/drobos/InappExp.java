@@ -44,9 +44,11 @@ public class InappExp {
         String s = "";
         if(input.isEmpty()){
             MessageBox.showError("Please Input something");
+            return "";
         }
         if(InputVerifier.isInjectable(input)){
             MessageBox.showError("Input must not contain _ or /");
+            return "";
         }
         String posTaggedInput = POSTagger.tag(input);
         String nerTaggedInput = NERTagger.tag(input);
@@ -61,6 +63,7 @@ public class InappExp {
         Expression[] expressions = new Expression[tokens.length];
         if(!InputVerifier.mustBeEvaluated(expressions)){
             MessageBox.showError("There must be more than one token/word before evaluation");
+            return "";
         }
         for (int i = 0; i < tokens.length; i++) {
             expressions[i] = new Expression(tokens[i].split("_")[0], tokens[i].split("_")[1]);
@@ -74,12 +77,12 @@ public class InappExp {
             expression.baseForms = Stemmer.stem(expression.word, expression.postag);
             try {
                 SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath());
-                expression.sentimentValue = sentiWordNet.extract(input);
+                expression.sentimentValue = sentiWordNet.extract(expression.word+"#"+expression.postag);
             } catch (Exception e) {
                 for (String baseForm : expression.baseForms) {
                     try {
                         SentimentCorpus sentiWordNet = new SentimentCorpus(Config.SentiWordNetPath());
-                        expression.sentimentValue = sentiWordNet.extract(input);
+                        expression.sentimentValue = sentiWordNet.extract(baseForm+"#"+expression.postag);
                         break;
                     } catch (Exception ex) {
                     }
