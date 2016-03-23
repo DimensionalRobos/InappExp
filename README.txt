@@ -13,7 +13,9 @@ Folder Arrangements:
 		IEEE Publishable of the SA for Offensive Exp
 		SRS for SA for Offensive Exp
 		InappExp Concept Paper
-	
+	Experiments contains
+	===================
+		Experiments done for InappExp
 	app contains
 	============
 		InappExp Code Tools in Java & Python
@@ -39,14 +41,12 @@ Dependencies:
 	Java Runtime Environment 1.8
 
 Libraries:
-	Python Requests Module
-	Python BeautifulSoup
+	JSoup
 	Apache Commons
 	WordNet
-	MIT JWI
+	MIT JWI Stemmer
 	JAWS API
 	JWNL
 	JMathIO
 	JMathPlot
-	Stanford POSTagger
-	Stanford Parser(To be removed during Modules Integration)
+	Stanford CoreNLP
