@@ -1,4 +1,3 @@
-PythonFolder=C:\Users\root\Documents\GitHub\InappExp\app\UrbanDictScraper-Python\
 WordNetPath=C:\Program Files\WordNet\2.1\dict
 SentiWordNetPath=swn.txt
 TrainingData=MLearn.txt

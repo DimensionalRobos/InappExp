@@ -59,3 +59,4 @@ $RECYCLE.BIN/
 *.lnk
 /app/ThreshTool-Java/build/
 /app/swntool-Java/dist/
+/app/InappExp-Java/build/

@@ -1,7 +1,5 @@
 package org.drobos;
 
-
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,8 +51,8 @@ public class ContextGenerator {
                     }
                 }
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Learner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            
         }
         sum /= numberOfDefs;
         expression.value = sum;

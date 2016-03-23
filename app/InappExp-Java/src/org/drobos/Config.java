@@ -19,19 +19,6 @@ import java.util.Scanner;
  * @author Daikaiser
  */
 public class Config {
-    public static String PythonFolder(){
-        try {
-            Scanner scan=new Scanner(new File("propsconfig"));
-            while (scan.hasNextLine()) {
-                String s = scan.nextLine();
-                if(s.split("=")[0].equals("PythonFolder"))
-                    return s.split("=")[1];
-            }
-        } catch (Exception ex) {
-            
-        }
-        return "";
-    }
     public static String WordNetPath(){
         try {
             Scanner scan=new Scanner(new File("propsconfig"));

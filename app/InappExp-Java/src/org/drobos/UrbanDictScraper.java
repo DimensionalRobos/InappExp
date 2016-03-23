@@ -1,7 +1,7 @@
 package org.drobos;
 
 /**
- * Retrieves Data from UrbanDictionary by invoking udscrape.py python script
+ * Retrieves Data from UrbanDictionary via JSoup Module
  */
 
 
@@ -9,28 +9,28 @@ package org.drobos;
  *
  * @author Daikaiser
  */
-import java.io.*;
 import java.util.LinkedList;
-public class UrbanDictScraper
-{
-    public static LinkedList<String> scrape(String word) throws IOException{
-        LinkedList<String> scrapedData=new LinkedList<String>();
-        ProcessBuilder builder = new ProcessBuilder(
-            "python",Config.PythonFolder()+"udscrape.py",word);
-        Process pr = builder.start();
-        // retrieve output from python script
-        BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-        String line="";
-        String s="";
-        while( (line=bfr.readLine())!= null) {
-            // display each output line form python script
-            //System.out.println(line);
-            s+=" "+line;
+
+import java.io.IOException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class UrbanDictScraper {
+    public static LinkedList<String> scrape(String word){
+        Document doc=null;
+        LinkedList<String> definitions=new LinkedList<String>();
+        try {
+            doc = Jsoup.connect("http://www.urbandictionary.com/define.php?term="+word).get();
+            Elements meanings=doc.select("div[class=meaning]");
+            for(Element meaning:meanings){
+                definitions.add(meaning.text());
+            }        
+        } 
+        catch (IOException ex) {
+            
         }
-        for(String input:s.split("<p>")){
-            System.out.println(input);
-            scrapedData.add(input);
-        }
-        return scrapedData;
+        return definitions;
     }
 }
