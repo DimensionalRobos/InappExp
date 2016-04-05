@@ -60,3 +60,6 @@ $RECYCLE.BIN/
 /app/ThreshTool-Java/build/
 /app/swntool-Java/dist/
 /app/InappExp-Java/build/
+/app/InappExpAPI/nbproject/private/
+/app/InappExpAPI/build/
+/app/InappExpAPI/dist/
